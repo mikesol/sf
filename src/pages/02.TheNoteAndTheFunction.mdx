@@ -1,17 +1,34 @@
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+import { simple } from "../examples/02.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faPlayCircle,
+  faSpinner
+} from '@fortawesome/free-solid-svg-icons'
+import * as _ from 'lodash';
+deckDeckGoHighlightElement();
+
+
 # The note and the function
 
-We'll start our journey with a single note. This note will be produced by a sine-wave oscillator, meaning that the computer sends instructions to your loudspeaker or headphone to oscillate back and forth a certain number of times per second in sinusoidal motion. Middle-C, the note below, makes your speaker oscillate 264 times a second. This creates wave-like variations in air pressure that propagate all the way to your ear. 264-times a second is, of course, really fast - far too fast to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C.
+We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click **Start Audio**, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This is, of course, really fast - far too fast to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
 
-![]()
+<iframe style={{width:"100%", height:"300px"}} src="https://purescript-wags.netlify.app/?wags&idim=60" title="LoFi"></iframe>
 
-Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts with a `module` name, which declares what our program will be called (in this case, `Main`). It then has a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Effect Unit`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about sound and functional programs.
+Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Effect Unit`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
 
-Functional programs contain two basic units of composition: _types_ and _terms_. Furthermore, each functional program features three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `play` to indicate to other readers what it _is_ or _does_. A `type` is an assertion to the compiler about how a term can be used in a program. We give the type a name like `Effect Unit`, and the type is either an axiomatic type that is built into the compiler or a user-defined type created by composing together other types. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `play c4` has the type `Effect Unit`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
+## Types and terms
+
+Functional programs contain two basic units of composition: _types_ and _terms_. Furthermore, each functional program features three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `play` to indicate to other readers what it _is_ or _does_. A `type` is an assertion to the compiler about how a term can be used in a program. Types have names like `Effect Unit`. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `play c4` has the type `Effect Unit`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
 
 Let's revisit the program above:
 
-```purescript
-```
+<div>
+  <deckgo-highlight-code editable={true} language="purescript">
+    <code slot="code">{_.escape(simple)}</code>
+  </deckgo-highlight-code>
+  <p><FontAwesomeIcon icon={faSpinner} spin size="2x" /></p>
+</div>
 
 It contains one type assertion - that `main` is `Effect Unit` - and three terms:
 
