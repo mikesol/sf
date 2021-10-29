@@ -1,3 +1,8 @@
 node_modules/
 .cache/
 public
+
+/.spago/
+/output
+.psc-ide-port
+.purs-repl

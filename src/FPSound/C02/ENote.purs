@@ -1,19 +1,18 @@
-export const simple = `module Main where
+module FPSound.C02.ENote where
 
 import Prelude
 
 import Data.NonEmpty ((:|))
-import Effect (Effect)
-import WAGS.Lib.Learn (play)
+import WAGS.Lib.Learn (player, Player)
 import WAGS.Lib.Learn.Note (accelerando, noteFromPitch_, repeat, seq)
 import WAGS.Lib.Learn.Pitch (c4, d4, e4, fSharp4, gSharp4, bFlat4, c5)
 
 
-main :: Effect Unit
+main :: Player
 main =
-  play
+  player
     $ repeat
     $ accelerando
     $ seq
     $ map noteFromPitch_
-    $ c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5, bFlat4, gSharp4, fSharp4, e4, d4, c4 ]`;
+    $ c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5, bFlat4, gSharp4, fSharp4, e4, d4, c4 ]

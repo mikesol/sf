@@ -10,7 +10,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "gatsby build",
+    "build": "npx spago build && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
@@ -36,8 +36,14 @@
     "gatsby-transformer-remark": "^5.0.0",
     "gatsby-transformer-sharp": "^4.0.0",
     "netlify-cms-app": "^2.15.55",
+    "purescript": "^0.14.5",
+    "purs-tidy": "^0.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "spago": "^0.20.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
   }
 }

@@ -1,8 +1,13 @@
+import { intro } from "../examples/01.js";
+import { Player } from "../components/player";
+import { main as introMain } from "../../output/FPSound.C01.Intro/";
+
 # Hi 👋
 
 I'm Mike, and I use functional programming to make music and noise.
 
-<iframe style={{width:"100%", height:"300px"}} src="https://purescript-wags.netlify.app/?gist=56d2ce5a021956f3db68a4a8bd81de4c&wags&idim=60" title="LoFi"></iframe>
+<Player player={introMain} code={intro} />
+
 
 The example above would be difficult or impossible to create using a traditional DAW like Logic, a tool like Live, a visual coding language like Max or a procedural language like JavaScript.  Instead, I've written it in a programming language called PureScript, and when you click **Start Audio**, it is rendering right in your browser in real-time.
 
@@ -14,13 +19,13 @@ Over the next few lessons, we'll go over rhythms, functors, chords, products, im
 
 During this journey, we will frequently make use of our fingers to type or edit code and our ears to listen. The basic interface, which you will see time and time again, is the editor pane. Go on, click **Start Audio** below and listen to the musical example.
 
-<iframe style={{width:"100%", height:"300px"}} src="https://purescript-wags.netlify.app/?wags&idim=60" title="LoFi"></iframe>
+> todo: example
 
 In the example above, `c4` is a pitch representing middle-c on a piano. Try changing it to `d4`, then play it again and listen to the difference. What about `aFlat4`? `c5`?
 
 In just a few lines of code, we can already arrive at rich and expressive musical textures.
 
-<iframe style={{width:"100%", height:"300px"}} src="https://purescript-wags.netlify.app/?wags&idim=60" title="LoFi"></iframe>
+> todo: example
 
 If you've never worked with functional programming or with music before, don't worry. You just listened to an [isorhythmic pattern](https://en.wikipedia.org/wiki/Isorhythm) with a _talea_ and _color_, and the code in the example uses a several powerful abstractions, including the [functor](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Functor#t:Functor), the [profunctor](https://pursuit.purescript.org/packages/purescript-profunctor/5.0.0/docs/Data.Profunctor#t:Profunctor), and the [semigroupoid](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid). We'll learn about what all these concepts mean and revisit some of them multiple times. The important thing to know is that one domain will always reinforce the other, stimulating our creativity and leading us to new territory as both musicians and programmers.
 

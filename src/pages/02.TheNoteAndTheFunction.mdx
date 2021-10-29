@@ -1,19 +1,12 @@
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 import { simple } from "../examples/02.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faPlayCircle,
-  faSpinner
-} from '@fortawesome/free-solid-svg-icons'
-import * as _ from 'lodash';
-deckDeckGoHighlightElement();
-
+import { Player } from "../components/player";
+import { main as eNote } from "../../output/FPSound.C02.ENote/";
 
 # The note and the function
 
 We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click **Start Audio**, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This is, of course, really fast - far too fast to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
 
-<iframe style={{width:"100%", height:"300px"}} src="https://purescript-wags.netlify.app/?wags&idim=60" title="LoFi"></iframe>
+> todo: insert example
 
 Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Effect Unit`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
 
@@ -23,12 +16,7 @@ Functional programs contain two basic units of composition: _types_ and _terms_.
 
 Let's revisit the program above:
 
-<div>
-  <deckgo-highlight-code editable={true} language="purescript">
-    <code slot="code">{_.escape(simple)}</code>
-  </deckgo-highlight-code>
-  <p><FontAwesomeIcon icon={faSpinner} spin size="2x" /></p>
-</div>
+<Player player={eNote} code={simple} />
 
 It contains one type assertion - that `main` is `Effect Unit` - and three terms:
 
