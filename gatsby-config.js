@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/fp-sound`,
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "Soundly functional",
