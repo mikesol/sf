@@ -41,7 +41,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "spago": "^0.20.3"
+    "spago": "^0.20.3",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "prettier": "^2.4.1"

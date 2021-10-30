@@ -169,7 +169,7 @@ let additions =
           , "profunctor-lenses"
           , "psci-support"
           , "record"
-          ,  "simple-json"
+          , "simple-json"
           , "sized-vectors"
           , "transformers"
           , "tuples"
@@ -201,7 +201,14 @@ let additions =
         , version = "master"
         }
       , wags-lib =
-        { dependencies = [ "wags", "run", "halogen", "halogen-css", "string-parsers", "strings" ]
+        { dependencies =
+          [ "wags"
+          , "run"
+          , "halogen"
+          , "halogen-css"
+          , "string-parsers"
+          , "strings"
+          ]
         , repo = "https://github.com/mikesol/purescript-wags-lib.git"
         , version = "v0.0.37"
         }
