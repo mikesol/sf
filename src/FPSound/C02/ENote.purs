@@ -7,7 +7,6 @@ import WAGS.Lib.Learn (player, Player)
 import WAGS.Lib.Learn.Note (accelerando, noteFromPitch_, repeat, seq)
 import WAGS.Lib.Learn.Pitch (c4, d4, e4, fSharp4, gSharp4, bFlat4, c5)
 
-
 main :: Player
 main =
   player
