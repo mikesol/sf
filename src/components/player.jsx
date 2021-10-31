@@ -73,7 +73,18 @@ ${errs.map(
     }`
 )}`;
 
-export const Player = ({ player, code }) => {
+const renameAsMain = (str) =>
+  str
+    .split("\n")
+    .map((e) =>
+      e.indexOf("module ") !== -1 && e.indexOf(" where") !== -1
+        ? "module Main where"
+        : e
+    )
+    .join("\n");
+
+export const Player = ({ player, code: protoCode }) => {
+  const code = renameAsMain(protoCode);
   const [lastCode, setLastCode] = useState(code);
   const [compileErrorsShowing, setCompileErrorsShowing] = useState(false);
   const [compileErrors, setCompileErrors] = useState([]);
