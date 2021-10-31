@@ -6,7 +6,6 @@ import {
   faPlayCircle,
   faStopCircle,
   faSpinner,
-  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAlert } from "react-alert";
 deckDeckGoHighlightElement();
