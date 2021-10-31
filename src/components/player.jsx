@@ -6,7 +6,9 @@ import {
   faPlayCircle,
   faStopCircle,
   faSpinner,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAlert } from "react-alert";
 deckDeckGoHighlightElement();
 
 const LOADING = "LOADING";
@@ -37,11 +39,15 @@ const evalSources = function (sources) {
     function require(path) {
       return load(resolvePath(name, path));
     }
-    var module = modules[name] = { exports: {} };
-    new Function("module", "exports", "require", sources[name])(module, module.exports, require);
+    var module = (modules[name] = { exports: {} });
+    new Function("module", "exports", "require", sources[name])(
+      module,
+      module.exports,
+      require
+    );
     return module.exports;
   };
-}
+};
 
 const playCompiled = function (data) {
   return function (errorCb) {
@@ -53,90 +59,150 @@ const playCompiled = function (data) {
         } else {
           errorCb(new Error("Could not find main in file."))();
         }
-      }
-    }
-  }
-}
+      };
+    };
+  };
+};
+
+const compileErrorsToText = (errs) => `The following error(s) occurred:
+
+${errs.map(
+  (err) =>
+    `${err.position ? "On line " + err.position.startLine + ":\n" : ""}${
+      err.message + "\n\n"
+    }`
+)}`;
 
 export const Player = ({ player, code }) => {
   const [lastCode, setLastCode] = useState(code);
+  const [compileErrorsShowing, setCompileErrorsShowing] = useState(false);
+  const [compileErrors, setCompileErrors] = useState([]);
   const codeRef = useRef();
+  const alert = useAlert();
   useEffect(() => {
     // prime pump
     // this forces the page to cache all of the tryps resources
     // which makes compilation the first time round faster
     // the downside is that there will be jank if someone plays an example immediately
     // but this is usually not the case
-    compile(code)(err => () => {
-      console.log(err);
-    })(err => () => {
-      console.log(err);
-    })(suc => () => {
-      playCompiled(suc.js)(loaderErrorCb)(() => () => { })()
+    compile(code)((err) => () => {
+      handleError(err);
+    })((err) => () => {
+      handleError(err);
+    })((suc) => () => {
+      playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
     })();
   }, [null]);
   const [playerState, setPlayerState] = useState(STOPPED);
-  const [stop, setStop] = useState({ hack: () => { } });
+  const [stop, setStop] = useState({ hack: () => {} });
   const playerLoadingCb = () => (cb) => () => {
     setPlayerState(LOADING);
     cb()();
+  };
+  const handleError = (err) => {
+    alert.error("Something went wrong. Our fault 🤦 Check the console 🙏", {
+      timeout: 2000,
+    });
+    handleError(err);
   };
   const playerLoadedCb = () => (cb) => () => {
     setPlayerState(PLAYING);
     cb()();
   };
   const playerErrorCb = (err) => () => {
-    console.log(err);
+    handleError(err);
   };
   const loaderErrorCb = (err) => () => {
-    console.log(err);
+    handleError(err);
   };
   const myPlayer = player(playerLoadingCb)(playerLoadedCb)(playerErrorCb);
 
   return (
     <div>
-      <deckgo-highlight-code onChange={() => console.log("code on change")} codeDidChange={() => console.log("dhc on change")} editable={true} language="purescript">
-        <code slot="code" ref={codeRef}>{code}</code>
+      <deckgo-highlight-code editable={true} language="purescript">
+        <code slot="code" ref={codeRef}>
+          {code}
+        </code>
       </deckgo-highlight-code>
-      <p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <FontAwesomeIcon
           icon={
             playerState === LOADING
               ? faSpinner
               : playerState === PLAYING
-                ? faStopCircle
-                : faPlayCircle
+              ? faStopCircle
+              : faPlayCircle
           }
           style={{ cursor: "pointer" }}
           spin={playerState === LOADING}
           onClick={
             playerState === LOADING
-              ? () => { }
+              ? () => {}
               : playerState === PLAYING
-                ? () => { setPlayerState(STOPPED); stop.hack(); setStop({ hack: () => { } }); }
-                : () => {
-                  if (codeRef.current.innerText === lastCode) {
+              ? () => {
+                  setPlayerState(STOPPED);
+                  stop.hack();
+                  setStop({ hack: () => {} });
+                }
+              : () => {
+                  if (
+                    codeRef.current.innerText === lastCode &&
+                    playerState !== CODE_ERROR
+                  ) {
                     setStop({ hack: myPlayer() });
                   } else {
                     setLastCode(codeRef.current.innerHTML);
                     setPlayerState(LOADING);
-                    compile(codeRef.current.innerHTML)(err => () => {
-                      console.log(err);
+                    compile(codeRef.current.innerHTML)((err) => () => {
+                      handleError(err);
                       setPlayerState(PROGRAMMING_ERROR);
-                    })(err => () => {
-                      console.log(err);
+                    })((err) => () => {
+                      setCompileErrors(err);
+                      setCompileErrorsShowing(false);
                       setPlayerState(CODE_ERROR);
-                    })(suc => () => {
+                    })((suc) => () => {
                       playCompiled(suc.js)(loaderErrorCb)((plyr) => () => {
-                        setStop({ hack: plyr(() => (cb) => () => cb()())(playerLoadedCb)(playerErrorCb)() })
-                      })()
+                        setStop({
+                          hack: plyr(() => (cb) => () => cb()())(
+                            playerLoadedCb
+                          )(playerErrorCb)(),
+                        });
+                      })();
                     })();
                   }
                 }
           }
           size="2x"
         />
-      </p>
+        {playerState === CODE_ERROR && (
+          <span>
+            👾 The code above has errors.{" "}
+            <a
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setCompileErrorsShowing(!compileErrorsShowing);
+              }}
+            >
+              {compileErrorsShowing ? "Less info." : "More info."}
+            </a>
+          </span>
+        )}
+      </div>
+      {playerState === CODE_ERROR && compileErrorsShowing && (
+        <deckgo-highlight-code
+          terminal={"none"}
+          editable={false}
+          language="bash"
+        >
+          <code slot="code">{compileErrorsToText(compileErrors)}</code>
+        </deckgo-highlight-code>
+      )}
     </div>
   );
 };
