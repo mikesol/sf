@@ -130,7 +130,7 @@ export const Player = ({ player, code: protoCode }) => {
 
   return (
     <div>
-      <deckgo-highlight-code editable={true} language="purescript">
+      <deckgo-highlight-code line-numbers={playerState === CODE_ERROR} editable={true} language="purescript">
         <code slot="code" ref={codeRef}>
           {code}
         </code>
