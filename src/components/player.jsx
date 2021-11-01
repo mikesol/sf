@@ -77,7 +77,7 @@ ${errs.map(
 
 const renameAsMain = (str) =>
   str
-    .split("\n")
+    .split(/\r?\n/)
     .map((e) =>
       e.indexOf("module ") !== -1 && e.indexOf(" where") !== -1
         ? "module Main where"
