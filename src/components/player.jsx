@@ -149,7 +149,6 @@ export const Player = ({ player, code: protoCode }) => {
               zIndex: 1000,
               left: 0,
               width: "100%",
-              backgroundColor: "white",
             }}
           >
             <div style={{ position: "relative" }}>
@@ -160,7 +159,7 @@ export const Player = ({ player, code: protoCode }) => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  backgroundColor: "white",
+                  backgroundImage: "linear-gradient(#bdc3c7,#2c3e50)",
                 }}
               ></div>
               <div>
