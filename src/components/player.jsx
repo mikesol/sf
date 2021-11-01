@@ -159,7 +159,7 @@ export const Player = ({ player, code: protoCode }) => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  backgroundImage: "linear-gradient(45deg,#bdc3c7,#2c3e50)",
+                  backgroundImage: "linear-gradient(90deg,#bdc3c7,#2c3e50)",
                 }}
               ></div>
               <div>
