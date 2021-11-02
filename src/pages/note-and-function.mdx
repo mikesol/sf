@@ -11,6 +11,8 @@ import fadeNoteGuard from "../FPSound/C02/FadeNoteGuard.purs";
 import { main as fadeNoteGuardMain } from "../../output/FPSound.C02.FadeNoteGuard/";
 import fadeNoteLfo from "../FPSound/C02/FadeNoteLFO.purs";
 import { main as fadeNoteLfoMain } from "../../output/FPSound.C02.FadeNoteLFO/";
+import fadeNoteComp from "../FPSound/C02/FadeNoteComp.purs";
+import { main as fadeNoteCompMain } from "../../output/FPSound.C02.FadeNoteComp/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -93,9 +95,9 @@ Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https:
 
 The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
-Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add a constant offset, and the third will clip the wave at boundaires.
+Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add an offset, and the third will clip the wave at boundaires.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={fadeNoteCompMain} code={fadeNoteComp} />
 
 Visually, the result looks something like this:
 
