@@ -1,8 +1,12 @@
 import { Player } from "../components/player";
 import singleNote from "../FPSound/C01/SingleNote.purs";
 import { main as singleNoteMain } from "../../output/FPSound.C01.SingleNote/";
-import { main as eNote } from "../../output/FPSound.C02.ENote/";
-import simple from "../FPSound/C02/ENote.purs";
+import fadeNote from "../FPSound/C02/FadeNote.purs";
+import { main as fadeNoteMain } from "../../output/FPSound.C02.FadeNote/";
+import fadeNoteAlt from "../FPSound/C02/FadeNoteAlt.purs";
+import { main as fadeNoteAltMain } from "../../output/FPSound.C02.FadeNoteAlt/";
+import fadeNoteEta from "../FPSound/C02/FadeNoteEta.purs";
+import { main as fadeNoteEtaMain } from "../../output/FPSound.C02.FadeNoteEta/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,7 +24,7 @@ Functional programs contain two basic units of composition: _types_ and _terms_.
 
 Let's revisit the program above:
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={singleNoteMain} code={singleNote} />
 
 It contains one type assertion - that `main` is `Player` - and three terms:
 
@@ -41,9 +45,39 @@ The fluidity with which one can switch between the language of logic (proving a 
 
 In the example above, we listened to our first note `c4` by applying the function `play` to it. Let's add together some more functions to see how far we can push that note.
 
-We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 10 seconds. To do so, we'll write a function that calculates slope and binds our volume between 1 and 0.
+We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 10 seconds. To do so, we'll write a function that multiplies time by 0.1 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 10 seconds.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={fadeNoteMain} code={fadeNote} />
+
+An equivalent way to write that would be the following:
+
+<Player player={fadeNoteAltMain} code={fadeNoteAlt} />
+
+[`calcSlope`](https://github.com/mikesol/purescript-wags/blob/81dd024e13ad2bdb6a2598b29e86105fa762b7a9/src/WAGS/Math.purs#L7) and [`betwixt`](https://github.com/mikesol/purescript-wags-lib/blob/a1569215c2360461f70f1e6505d01ec3d5a72f05/src/WAGS/Lib/Tidal/Tidal.purs#L953) are functions provided by the libraries [`wags`](https://github.com/mikesol/purescript-wags) and [`wags-lib`](https://github.com/mikesol/purescript-wags-lib), as will be the case of many of the functions we'll encounter along our path.  While we'll use these functions for convenience, it's often helpful to write them out by hand for learning purposes.  As a challenge throughout this and other articles, after reading the article once, try to write some these functions from scratch and compare them to the reference implementations.
+
+When working with functions of time like calcSlope, one common convention is to leave `time` as the last argument. If we write a function `f` of `time` that internally calls a function `g` of `time`, we say that `time` is an [_abstraction_](https://wiki.haskell.org/Eta_conversion) over the function `g`. Without the time term, we call the function `f` eta-reduced.
+
+```haskell
+f time = g time -- time abstracted over g
+f = g -- eta-reduced
+```
+
+This is similar to reducing a term in algebra:
+
+```haskell
+f + 2 = g + 2 -- ...is the same as stating that...
+f = g
+```
+
+The idea of abstraction (creating a function), along with application (otherwise known as _invoking_ a function) are core to the [Simple Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) and act as a basis for functional programming.
+
+In order to eta-reduce the function in the example above, we introduce one of the most powerful ideas in functional programming - composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`.
+
+<Player player={fadeNoteEtaMain} code={fadeNoteEta} />
+
+Function composition is not just about terser syntax - as we will see in subsequent lessons on profunctors and free-semigroupoids, composition as an operation can be applied to other things besides functions. So working with at this higher level of abstraction, we unteather ourselves from functions and talk in more general terms about two things being composed. For me, describing the world abstractly in this way is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
+
+### A bouquet of functions
 
 Let's write another function of time that makes our note step between different volumes in a cyclic fashion. We'll accomplish this using the [remainder operator](https://pursuit.purescript.org/packages/purescript-math/3.0.0/docs/Math#v:remainder) and [guards](https://github.com/purescript/documentation/blob/master/language/Pattern-Matching.md#guards).
 
