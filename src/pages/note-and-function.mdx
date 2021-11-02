@@ -1,55 +1,152 @@
 import { Player } from "../components/player";
+import singleNote from "../FPSound/C01/SingleNote.purs";
+import { main as singleNoteMain } from "../../output/FPSound.C01.SingleNote/";
 import { main as eNote } from "../../output/FPSound.C02.ENote/";
 import simple from "../FPSound/C02/ENote.purs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 
 # The note and the function
 
-We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click **Start Audio**, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This is, of course, really fast - far too fast to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
+We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click <FontAwesomeIcon icon={faPlayCircle} />, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This pattern is far too fast for us to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
 
-> todo: insert example
+<Player player={singleNoteMain} code={singleNote} />
 
-Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Effect Unit`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
+Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Player`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
 
 ## Types and terms
 
-Functional programs contain two basic units of composition: _types_ and _terms_. These types and terms are the props used in a play staring three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `play` to indicate to other readers what it _is_ or _does_. A _type_ is an assertion to the compiler about how a term can be used in a program. Types have names like `Effect Unit`. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `play c4` has the type `Effect Unit`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
+Functional programs contain two basic units of composition: _types_ and _terms_. These units form the basis of a play staring three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `play` to indicate to other readers what it _is_ or _does_. A _type_ is an assertion to the compiler about how a term can be used in a program. Types have names like `Player`. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `play c4` has the type `Player`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
 
 Let's revisit the program above:
 
-<Player player={eNote} code={simple} />
+<Player player={singleNoteMain} code={singleNote} />
 
-It contains one type assertion - that `main` is `Effect Unit` - and three terms:
+It contains one type assertion - that `main` is `Player` - and three terms:
 
-- `main`, whose type is asserted to be `Effect Unit`;
-- `play`, whose type is `Function Pitch (Effect Unit)`; and
+- `main`, whose type is asserted to be `Player`;
+- `play`, whose type is `Function Pitch Player`; and
 - `c4`, whose type is `Pitch`.
 
-Often times, when talking about functions, we'll use an infix notation of a right-pointing arrow `->`. So, `play` can be rewritten as `Pitch -> Effect Unit`.
+Often times, when talking about functions, we'll use an infix notation of a right-pointing arrow `->`. So, `play` can be rewritten as `Pitch -> Player`.
 
-When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `play` is a proposition saying "If you give me a `Pitch`, I'll give you a term of type `Effect Unit`". In the program, `c4` is _evidence_ to play (we can also call it an argument to `play` or `play`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch` unlocks the proposition `Pitch -> Effect Unit`, producing an `Effect Unit`. Because we have annotated our program `main` as `Effect Unit`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
+When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `play` is a proposition saying "If you give me a `Pitch`, I'll give you a term of type `Player`". In the program, `c4` is _evidence_ to play (we can also call it an argument to `play` or `play`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch` unlocks the proposition `Pitch -> Player`, producing an `Player`. Because we have annotated our program `main` as `Player`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
 
-The fluidity with which one can switch between the language of logic (proving a proposition with evidence) and programming (applying to a function an argument) is called the Curry-Howard correspondence. Informally, it teaches us that programs are proofs and vice versa. Granted, music is a highly _illogical_ endeavor, so this type of rigorous formalism may seem antithetical to the high degree of fantasy present in music composition and listening. The point of types here is to provide a set of constraints proving that what you're building has the best chance to work as expected and produce the sound you're aiming to produce.
+The fluidity with which one can switch between the language of logic (proving a proposition with evidence) and programming (applying to a function an argument) is called the [Curry-Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence). Informally, it posits that programs are logical proofs and vice versa. Granted, music is a highly _illogical_ endeavor, so this type of rigorous formalism may seem out of place given the high degree of fantasy present in music composition and listening. The point of types here is to provide a set of constraints that accomplish two goals:
+
+1. The constraints act as a proof that what you're building has the best chance to work as expected and produce the sound you're aiming to produce. This makes experimentation go faster.
+2. Like all art-forms, the constraints act simultaneously as a dialectical guide through _and_ impediment to creation. It's the epiphanies we have as we are guided and impeded that help us make great work.
 
 ## Our first composition(s)
 
-In this example above, we listened to our first note `c4` by applying the function `play` to it. Let's compose together some more functions to see how far we can push that note.
+In the example above, we listened to our first note `c4` by applying the function `play` to it. Let's add together some more functions to see how far we can push that note.
 
-## The more the merrier
+We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 10 seconds. To do so, we'll write a function that calculates slope and binds our volume between 1 and 0.
 
-In music, when you compose together several notes, the outcome is often indistinguishable from a single note. Listen to the example below.
+**example**
 
-[]()
+Let's write another function of time that makes our note step between different volumes in a cyclic fashion. We'll accomplish this using the [remainder operator](https://pursuit.purescript.org/packages/purescript-math/3.0.0/docs/Math#v:remainder) and [guards](https://github.com/purescript/documentation/blob/master/language/Pattern-Matching.md#guards).
 
-This example is composed of 10 different notes, but they blend together in a single tone to the point that our ear has difficulty distinguishing between its constituent notes. From a functional programming standpoint, we compose the notes together with the function `<>`, which is also called `append`. We'll dive into what a `append` means in a bit, but one cool thing we can explore already is decomposing the note we hear into its constituent parts and letting them sum back up again. This creates a really interesting effect:
+**example**
 
-[]()
+Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https://en.wikipedia.org/wiki/Low-frequency_oscillation), using the `sin` function to create a sine wave.
 
-This effect can be quite expressive. In the example below, try moving your mouse (or finger for mobile users) over the screen as you listen.
+**example**
 
-[]()
+The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
-With several devices at different pitches, you have a tiny orchestra!
+Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add a constant offset, and the third will clip the wave at boundaires.
+
+**example**
+
+Visually, the result looks something like this:
+
+**example**
+
+There's a special term for functions whose input type is the same as the output type. We call these _endo_ functions - endo being a prefix from the Greek ἔνδον (endon) meaning "within, inner, absorbing, or containing." We can chain together compositions of endo-functions to create some pretty jolting sounds.
+
+The beautiful thing about chaining compositions where the input type and outp is that you can comment out different functions using two dashes `--` to radically change the result. In the example below, in addition to playing around with the values, try to comment out some functions (add `--`) and comment in (remove `--`) others.
+
+**example**
+
+## A taste of things to come
+
+In this article series, I will try to keep the pacing of the material more or less consistent. However, at certain points, I will glimpse into the future to show you where we are heading by subtly tweaking an example to provide a teaser for a future concept. We will have entire articles devoted to functors, applicatives, folds, semigroups and monoids, so consider this a small _mise en bouche_ for the not-too-distant future.
+
+### Functors and applicatives
+
+Currently, while we have a way to pipe output into an input via composition, we have no way to _blend_ two results together. For example, if we want to add the result of an LFO to the result of a terraced function, we would write something like `(\t -> lfo t + terraced t)`. While this is fine in small doses, it gets tedious if _everything_ is a function of time. We'd like to somehow abstract away time so that we never directly have to deal with it. In functional programming, there are many ways to do this, including the `Reader` pattern (treating time as an environment) and the `Behavior` pattern (representing functions of time as a separate type). We'll see both of those in a later article, but what I'd like to show here is how to accomplish this using functors and applicatives.
+
+The example above, using the Functor operation `<$>` and the Applicative operation `<*>`, can be written as `add <$> lfo <*> terraced`. There is no longer a `t` term and it still works. Let's hear it in a larger example:
+
+**example**
+
+If you're wondering what `<$>` and `<*>` are doing under the hood and how they relate to functions, there will be a whole lesson on applicatives that go over that. Here, I mostly want to build intution that you can blend together functions of time using binary operations like `add`, `pow`, `sub`, `mul` and `div` using `<$>` and `<*>`.
+
+### Folds
+
+In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with composition. [`compose`]() is, after all, a function that is applied to two arguments. So, rather than applying it directly, let's store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, `compose`) to the arguments starting from an initial argument.
+
+**example**
+
+## Music
+
+Already, just using this technique, we can make some wicked one-note beats that give the one-note samba a run for its money! Below, I've written three functions - `f0`, `f1` and `f2` - each of which create a one-note piece. The one currently slotted to play is called `f0`. Go ahead and substitute in and out different functions. Tweak them. Compose them. If you're up to it, try using `<$>`, `<*>` or `foldl` and see where they can take you!
+
+**example**
+
+## Scales
+
+Armed with our composition skills, we can approach pitch in the same way that we approached volume.  Before we do, though, it'd be useful to talk a bit about scales and perception of pitch and volume. While one can be plenty creative without knowing these scales, mastering them makes it easier to anticipate how music will be heard in certain cultural contexts.
+
+In the previous example, when we were linearly changing volume between 0 and 1, the change from `0.0-0.5` felt _much_ greater than the change from `0.5-1.0`. This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows linear increase of loudness from 0 to 1 and the corresponding change in decibels.
+
+**example**
+
+We can bring this even closer to human perception using [Fletcher-Munson curves](https://en.wikipedia.org/wiki/Equal-loudness_contour), also known as equal-loudness contours. This adds ripples into our logarithmic model that represent the ideosyncracies of human hearing. Many sensible defaults in industry-grade automatic equalization and mastering software are based on these curves.  In the examples below, we'll use a function that changes volume on a logarithmic rather than linear scale, and perhaps you will perceive it as being more smooth or gradual.
+
+Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3` in the examples, we are using a scale called the equally-tempered chromatic scale which became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when one is a multiple of two of the other one. For example, most people hear 220.0, 440.0, 880.0 and 1760.0 as the same note shifted higher and higher.  In fact, let's let that be the basis of our first exmaple on pitch.  We'll use a function similar to the terraced function we used for volume, but we will use values that correspond to jumping octaves.
+
+**example**
+
+## Pitch
+
+All of the same functions we used to control volume can also be used to control the pitch of our single note. Let's scale them from their 0-1 range as values to a range that makes more sense for pitch. Again, we'll use composition for this.
+
+**example**
+
+We can also use `<$>` and `<*>` to apply binary operators to pitch, just as we did on rhythm.  Interestingly, we see that when we add an octave twice to a pitch, this has the effect of multiplying it by 4
+
+**example**
+
+This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they adhere to certain predefined laws. Here, addition and multiplcation are the two operators that form a [Semiring](https://en.wikipedia.org/wiki/Semiring) and, as such, need to conform to semiring laws of being commutative over addition and distributive over multiplication. Let's test out those laws in music!
+
+**example**
+
+Indeed, we see that the addition of pitch commutes - `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](), [Idris](), and the language used for these examples - `PureScript`. The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can function differently in different contexts while retaining its identity.
+
+Getting less mathy for a bit, I'll close this section on pitch with two examples. The first will shows how to use simple data structures - in this case an array - to hold a musical score that we can play back to get a fun little Bach minuet.
+
+**example**
+
+The second is more abstract and experimental in nature, weaving a tapestry of pitches that brings me to a trance-like place.
+
+**example**
+
+In both cases, the same basic operations - functions of time - lead to different worlds, all the while keeping the rather austere constraint of a single note that can change only in pitch or volume.
+
+## Deconstructing and reconstructing
+
+One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's take our first `lfo` example and write it in a slightly different syntax with a different timbre. Here, instead of using one note, we'll use six. However, as the six notes will be playing at the same time, we'll hear them as a single organ-like sound.
+
+**example**
+
+Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use `<$>` and `<*>`. And again, we'll have a whole article devoted entirely to unpacking what `<$>` and `<*>` mean - for now we can treat them as building blocks for binary operations on functions of time.
+
+**example**
 
 ## Conclusion
 
-In this section, we learned about how a loudspeaker, oscillating back and forth in sinusoidal motion, produces a single note. We saw how we can compose together functions to modulate the pitch and amplitude of that note, and we saw how to compose together several notes into one uber-note that decomposes and recomposes as we listen to it. With these techniques, we can make beautiful little instruments like the one below, the source code of which can be found [here](). I hope you enjoy playing it, and I'll see you in the next section on [rhythm and functors]().
+In this section, we learned how to use functional programming to shape a single note. We saw how we can compose together functions to modulate the pitch and amplitude of that note, and we saw how to compose together several notes into one larger note that decomposes and recomposes as we listen to it. With these techniques, we can make fun little instruments like the one below, the source code of which can be found [here](). I hope you enjoy playing it, and I'll see you in the next article!
+
+> [Click here](https://github.com/mikesol/purescript-wags) for additional resources for working with these examples on the cloud, on Windows, on Mac or on Linux. [Click here](https://purescript.org) to learn more about the PureScript programming language.
