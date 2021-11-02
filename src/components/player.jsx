@@ -104,13 +104,13 @@ export const Player = ({ player, code: protoCode, stub }) => {
     // which makes compilation the first time round faster
     // the downside is that there will be jank if someone plays an example immediately
     // but this is usually not the case
-    compile(code)((err) => () => {
-      handleError(err);
-    })((err) => () => {
-      handleError(err);
-    })((suc) => () => {
-      playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
-    })();
+    // compile(code)((err) => () => {
+    //   handleError(err);
+    // })((err) => () => {
+    //   handleError(err);
+    // })((suc) => () => {
+    //   playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
+    // })();
   }, [null]);
   const [playerState, setPlayerState] = useState(STOPPED);
   const [stop, setStop] = useState({ hack: () => {} });
@@ -217,9 +217,9 @@ export const Player = ({ player, code: protoCode, stub }) => {
                     ) {
                       setStop({ hack: myPlayer() });
                     } else {
-                      setLastCode(codeRef.current.innerHTML);
+                      setLastCode(codeRef.current.innerText);
                       setPlayerState(LOADING);
-                      compile(codeRef.current.innerHTML)((err) => () => {
+                      compile(codeRef.current.innerText)((err) => () => {
                         handleError(err);
                         setPlayerState(PROGRAMMING_ERROR);
                       })((err) => () => {

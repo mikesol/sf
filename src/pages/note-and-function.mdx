@@ -7,6 +7,10 @@ import fadeNoteAlt from "../FPSound/C02/FadeNoteAlt.purs";
 import { main as fadeNoteAltMain } from "../../output/FPSound.C02.FadeNoteAlt/";
 import fadeNoteEta from "../FPSound/C02/FadeNoteEta.purs";
 import { main as fadeNoteEtaMain } from "../../output/FPSound.C02.FadeNoteEta/";
+import fadeNoteGuard from "../FPSound/C02/FadeNoteGuard.purs";
+import { main as fadeNoteGuardMain } from "../../output/FPSound.C02.FadeNoteGuard/";
+import fadeNoteLfo from "../FPSound/C02/FadeNoteLFO.purs";
+import { main as fadeNoteLfoMain } from "../../output/FPSound.C02.FadeNoteLFO/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -45,7 +49,7 @@ The fluidity with which one can switch between the language of logic (proving a 
 
 In the example above, we listened to our first note `c4` by applying the function `play` to it. Let's add together some more functions to see how far we can push that note.
 
-We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 10 seconds. To do so, we'll write a function that multiplies time by 0.1 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 10 seconds.
+We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 5 seconds. To do so, we'll write a function that multiplies time by 0.1 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 5 seconds.
 
 <Player player={fadeNoteMain} code={fadeNote} />
 
@@ -81,11 +85,11 @@ Function composition is not just about terser syntax - as we will see in subsequ
 
 Let's write another function of time that makes our note step between different volumes in a cyclic fashion. We'll accomplish this using the [remainder operator](https://pursuit.purescript.org/packages/purescript-math/3.0.0/docs/Math#v:remainder) and [guards](https://github.com/purescript/documentation/blob/master/language/Pattern-Matching.md#guards).
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={fadeNoteGuardMain} code={fadeNoteGuard} />
 
-Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https://en.wikipedia.org/wiki/Low-frequency_oscillation), using the `sin` function to create a sine wave.
+Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https://en.wikipedia.org/wiki/Low-frequency_oscillation).
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={fadeNoteLfoMain} code={fadeNoteLfo} />
 
 The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
