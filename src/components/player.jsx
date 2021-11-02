@@ -85,7 +85,7 @@ const renameAsMain = (str) =>
     )
     .join("\n");
 
-export const Player = ({ player, code: protoCode }) => {
+export const Player = ({ player, code: protoCode, stub }) => {
   const code = renameAsMain(protoCode);
   const [showLoader, setShowLoader] = useState(true);
   const [lastCode, setLastCode] = useState(code);
@@ -166,7 +166,7 @@ export const Player = ({ player, code: protoCode }) => {
                 <pre>
                   <code>{code}</code>
                 </pre>
-                <div style={{ height: "50px" }}></div>
+                <div style={{ height: "28px" }}></div>
               </div>
             </div>
           </motion.div>
@@ -174,6 +174,7 @@ export const Player = ({ player, code: protoCode }) => {
       </AnimatePresence>
 
       <div>
+        {stub && <p style={{backgroundColor: "red"}}>STUB</p>}
         <deckgo-highlight-code
           line-numbers={playerState === CODE_ERROR}
           editable={true}

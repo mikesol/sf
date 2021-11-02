@@ -20,7 +20,7 @@ Functional programs contain two basic units of composition: _types_ and _terms_.
 
 Let's revisit the program above:
 
-<Player player={singleNoteMain} code={singleNote} />
+<Player stub player={singleNoteMain} code={singleNote} />
 
 It contains one type assertion - that `main` is `Player` - and three terms:
 
@@ -43,31 +43,31 @@ In the example above, we listened to our first note `c4` by applying the functio
 
 We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 10 seconds. To do so, we'll write a function that calculates slope and binds our volume between 1 and 0.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Let's write another function of time that makes our note step between different volumes in a cyclic fashion. We'll accomplish this using the [remainder operator](https://pursuit.purescript.org/packages/purescript-math/3.0.0/docs/Math#v:remainder) and [guards](https://github.com/purescript/documentation/blob/master/language/Pattern-Matching.md#guards).
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https://en.wikipedia.org/wiki/Low-frequency_oscillation), using the `sin` function to create a sine wave.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
 Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add a constant offset, and the third will clip the wave at boundaires.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Visually, the result looks something like this:
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 There's a special term for functions whose input type is the same as the output type. We call these _endo_ functions - endo being a prefix from the Greek ἔνδον (endon) meaning "within, inner, absorbing, or containing." We can chain together compositions of endo-functions to create some pretty jolting sounds.
 
 The beautiful thing about chaining compositions where the input type and outp is that you can comment out different functions using two dashes `--` to radically change the result. In the example below, in addition to playing around with the values, try to comment out some functions (add `--`) and comment in (remove `--`) others.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## A taste of things to come
 
@@ -79,7 +79,7 @@ Currently, while we have a way to pipe output into an input via composition, we 
 
 The example above, using the Functor operation `<$>` and the Applicative operation `<*>`, can be written as `add <$> lfo <*> terraced`. There is no longer a `t` term and it still works. Let's hear it in a larger example:
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 If you're wondering what `<$>` and `<*>` are doing under the hood and how they relate to functions, there will be a whole lesson on applicatives that go over that. Here, I mostly want to build intution that you can blend together functions of time using binary operations like `add`, `pow`, `sub`, `mul` and `div` using `<$>` and `<*>`.
 
@@ -87,13 +87,13 @@ If you're wondering what `<$>` and `<*>` are doing under the hood and how they r
 
 In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with composition. [`compose`]() is, after all, a function that is applied to two arguments. So, rather than applying it directly, let's store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, `compose`) to the arguments starting from an initial argument.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
-## Music
+## Etude
 
 Already, just using this technique, we can make some wicked one-note beats that give the one-note samba a run for its money! Below, I've written three functions - `f0`, `f1` and `f2` - each of which create a one-note piece. The one currently slotted to play is called `f0`. Go ahead and substitute in and out different functions. Tweak them. Compose them. If you're up to it, try using `<$>`, `<*>` or `foldl` and see where they can take you!
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## Scales
 
@@ -101,37 +101,37 @@ Armed with our composition skills, we can approach pitch in the same way that we
 
 In the previous example, when we were linearly changing volume between 0 and 1, the change from `0.0-0.5` felt _much_ greater than the change from `0.5-1.0`. This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows linear increase of loudness from 0 to 1 and the corresponding change in decibels.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 We can bring this even closer to human perception using [Fletcher-Munson curves](https://en.wikipedia.org/wiki/Equal-loudness_contour), also known as equal-loudness contours. This adds ripples into our logarithmic model that represent the ideosyncracies of human hearing. Many sensible defaults in industry-grade automatic equalization and mastering software are based on these curves.  In the examples below, we'll use a function that changes volume on a logarithmic rather than linear scale, and perhaps you will perceive it as being more smooth or gradual.
 
 Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3` in the examples, we are using a scale called the equally-tempered chromatic scale which became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when one is a multiple of two of the other one. For example, most people hear 220.0, 440.0, 880.0 and 1760.0 as the same note shifted higher and higher.  In fact, let's let that be the basis of our first exmaple on pitch.  We'll use a function similar to the terraced function we used for volume, but we will use values that correspond to jumping octaves.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## Pitch
 
 All of the same functions we used to control volume can also be used to control the pitch of our single note. Let's scale them from their 0-1 range as values to a range that makes more sense for pitch. Again, we'll use composition for this.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 We can also use `<$>` and `<*>` to apply binary operators to pitch, just as we did on rhythm.  Interestingly, we see that when we add an octave twice to a pitch, this has the effect of multiplying it by 4
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they adhere to certain predefined laws. Here, addition and multiplcation are the two operators that form a [Semiring](https://en.wikipedia.org/wiki/Semiring) and, as such, need to conform to semiring laws of being commutative over addition and distributive over multiplication. Let's test out those laws in music!
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Indeed, we see that the addition of pitch commutes - `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](), [Idris](), and the language used for these examples - `PureScript`. The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can function differently in different contexts while retaining its identity.
 
 Getting less mathy for a bit, I'll close this section on pitch with two examples. The first will shows how to use simple data structures - in this case an array - to hold a musical score that we can play back to get a fun little Bach minuet.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 The second is more abstract and experimental in nature, weaving a tapestry of pitches that brings me to a trance-like place.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 In both cases, the same basic operations - functions of time - lead to different worlds, all the while keeping the rather austere constraint of a single note that can change only in pitch or volume.
 
@@ -139,11 +139,11 @@ In both cases, the same basic operations - functions of time - lead to different
 
 One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's take our first `lfo` example and write it in a slightly different syntax with a different timbre. Here, instead of using one note, we'll use six. However, as the six notes will be playing at the same time, we'll hear them as a single organ-like sound.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use `<$>` and `<*>`. And again, we'll have a whole article devoted entirely to unpacking what `<$>` and `<*>` mean - for now we can treat them as building blocks for binary operations on functions of time.
 
-**example**
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## Conclusion
 
