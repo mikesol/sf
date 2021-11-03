@@ -1,7 +1,7 @@
 module.exports = {
-  pathPrefix: `/fp-sound`,
+  pathPrefix: `/sf`,
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://mikesol.github.io/sf",
     title: "Soundly functional",
   },
   plugins: [
