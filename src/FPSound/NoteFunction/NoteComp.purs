@@ -1,12 +1,12 @@
-module FPSound.C02.FadeNoteComp where
+module FPSound.NoteFunction.NoteComp where
 
 import Prelude
 
 import WAGS.Lib.Learn (player, Player)
-import WAGS.Lib.Learn.Pitch (c4)
-import WAGS.Lib.Learn.Duration (breve)
+import WAGS.Lib.Learn.Pitch
+import WAGS.Lib.Learn.Duration (longest)
 import WAGS.Lib.Learn.Volume (Volume(..))
-import Wags.Learn.Oscillator (lfo)
+import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Learn.Note (note_)
 
 lfoIt :: Number -> Number
@@ -26,5 +26,5 @@ main = player
             <<< offsetIt
             <<< lfoIt
       )
-      breve
+      longest
       c4

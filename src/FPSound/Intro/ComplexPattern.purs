@@ -1,4 +1,4 @@
-module FPSound.C01.SingleNote where
+module FPSound.Intro.ComplexPattern where
 
 import WAGS.Lib.Learn (player, Player)
 import WAGS.Lib.Learn.Pitch

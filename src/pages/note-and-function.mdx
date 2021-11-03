@@ -1,26 +1,41 @@
 import { Player } from "../components/player";
-import singleNote from "../FPSound/C01/SingleNote.purs";
-import { main as singleNoteMain } from "../../output/FPSound.C01.SingleNote/";
-import fadeNote from "../FPSound/C02/FadeNote.purs";
-import { main as fadeNoteMain } from "../../output/FPSound.C02.FadeNote/";
-import fadeNoteAlt from "../FPSound/C02/FadeNoteAlt.purs";
-import { main as fadeNoteAltMain } from "../../output/FPSound.C02.FadeNoteAlt/";
-import fadeNoteEta from "../FPSound/C02/FadeNoteEta.purs";
-import { main as fadeNoteEtaMain } from "../../output/FPSound.C02.FadeNoteEta/";
-import fadeNoteGuard from "../FPSound/C02/FadeNoteGuard.purs";
-import { main as fadeNoteGuardMain } from "../../output/FPSound.C02.FadeNoteGuard/";
-import fadeNoteLfo from "../FPSound/C02/FadeNoteLFO.purs";
-import { main as fadeNoteLfoMain } from "../../output/FPSound.C02.FadeNoteLFO/";
-import fadeNoteComp from "../FPSound/C02/FadeNoteComp.purs";
-import { main as fadeNoteCompMain } from "../../output/FPSound.C02.FadeNoteComp/";
+import singleNote from "../FPSound/Intro/SingleNote.purs";
+import { main as singleNoteMain } from "../../output/FPSound.Intro.SingleNote/";
+import noteFade from "../FPSound/NoteFunction/NoteFade.purs";
+import { main as noteFadeMain } from "../../output/FPSound.NoteFunction.NoteFade/";
+import noteFadeAlt from "../FPSound/NoteFunction/NoteFadeAlt.purs";
+import { main as noteFadeAltMain } from "../../output/FPSound.NoteFunction.NoteFadeAlt/";
+import noteFadeEta from "../FPSound/NoteFunction/NoteFadeEta.purs";
+import { main as noteFadeEtaMain } from "../../output/FPSound.NoteFunction.NoteFadeEta/";
+import noteGuard from "../FPSound/NoteFunction/NoteGuard.purs";
+import { main as noteGuardMain } from "../../output/FPSound.NoteFunction.NoteGuard/";
+import noteLfo from "../FPSound/NoteFunction/NoteLFO.purs";
+import { main as noteLfoMain } from "../../output/FPSound.NoteFunction.NoteLFO/";
+import noteComp from "../FPSound/NoteFunction/NoteComp.purs";
+import { main as noteCompMain } from "../../output/FPSound.NoteFunction.NoteComp/";
+import noteChains from "../FPSound/NoteFunction/NoteChains.purs";
+import { main as noteChainsMain } from "../../output/FPSound.NoteFunction.NoteChains/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
+import noteFunk from "../FPSound/NoteFunction/NoteFunk.purs";
+import { main as noteFunkMain } from "../../output/FPSound.NoteFunction.NoteFunk/";
+import noteFunk2 from "../FPSound/NoteFunction/NoteFunk2.purs";
+import { main as noteFunk2Main } from "../../output/FPSound.NoteFunction.NoteFunk2/";
+import noteFold from "../FPSound/NoteFunction/NoteFold.purs";
+import { main as noteFoldMain } from "../../output/FPSound.NoteFunction.NoteFold/";
+import noteEndo from "../FPSound/NoteFunction/NoteEndo.purs";
+import { main as noteEndoMain } from "../../output/FPSound.NoteFunction.NoteEndo/";
+import noteFadeHalves from "../FPSound/NoteFunction/NoteFadeHalves.purs";
+import { main as noteFadeHalvesMain } from "../../output/FPSound.NoteFunction.NoteFadeHalves/";
+import CompChart from "../components/note-function/compose-chart";
 
 # The note and the function
 
 We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click <FontAwesomeIcon icon={faPlayCircle} />, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This pattern is far too fast for us to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
 
 <Player player={singleNoteMain} code={singleNote} />
+
+The player above, as well as all of the players in this article, are interactive, so you can edit them to change the sound. For example, try changing the note above from `c4` to `d4`, `aFlat4`, or `fSharp5` and see what happens.
 
 Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Player`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
 
@@ -53,11 +68,11 @@ In the example above, we listened to our first note `c4` by applying the functio
 
 We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 5 seconds. To do so, we'll write a function that multiplies time by 0.1 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 5 seconds.
 
-<Player player={fadeNoteMain} code={fadeNote} />
+<Player player={noteFadeMain} code={noteFade} />
 
 An equivalent way to write that would be the following:
 
-<Player player={fadeNoteAltMain} code={fadeNoteAlt} />
+<Player player={noteFadeAltMain} code={noteFadeAlt} />
 
 [`calcSlope`](https://github.com/mikesol/purescript-wags/blob/81dd024e13ad2bdb6a2598b29e86105fa762b7a9/src/WAGS/Math.purs#L7) and [`betwixt`](https://github.com/mikesol/purescript-wags-lib/blob/a1569215c2360461f70f1e6505d01ec3d5a72f05/src/WAGS/Lib/Tidal/Tidal.purs#L953) are functions provided by the libraries [`wags`](https://github.com/mikesol/purescript-wags) and [`wags-lib`](https://github.com/mikesol/purescript-wags-lib), as will be the case of many of the functions we'll encounter along our path.  While we'll use these functions for convenience, it's often helpful to write them out by hand for learning purposes.  As a challenge throughout this and other articles, after reading the article once, try to write some these functions from scratch and compare them to the reference implementations.
 
@@ -79,7 +94,7 @@ The idea of abstraction (creating a function), along with application (otherwise
 
 In order to eta-reduce the function in the example above, we introduce one of the most powerful ideas in functional programming - composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`.
 
-<Player player={fadeNoteEtaMain} code={fadeNoteEta} />
+<Player player={noteFadeEtaMain} code={noteFadeEta} />
 
 Function composition is not just about terser syntax - as we will see in subsequent lessons on profunctors and free-semigroupoids, composition as an operation can be applied to other things besides functions. So working with at this higher level of abstraction, we unteather ourselves from functions and talk in more general terms about two things being composed. For me, describing the world abstractly in this way is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
 
@@ -87,27 +102,27 @@ Function composition is not just about terser syntax - as we will see in subsequ
 
 Let's write another function of time that makes our note step between different volumes in a cyclic fashion. We'll accomplish this using the [remainder operator](https://pursuit.purescript.org/packages/purescript-math/3.0.0/docs/Math#v:remainder) and [guards](https://github.com/purescript/documentation/blob/master/language/Pattern-Matching.md#guards).
 
-<Player player={fadeNoteGuardMain} code={fadeNoteGuard} />
+<Player player={noteGuardMain} code={noteGuard} />
 
 Lastly, we'll control the volume with a [low-frequency oscilator, or LFO](https://en.wikipedia.org/wiki/Low-frequency_oscillation).
 
-<Player player={fadeNoteLfoMain} code={fadeNoteLfo} />
+<Player player={noteLfoMain} code={noteLfo} />
 
 The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
 Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add an offset, and the third will clip the wave at boundaires.
 
-<Player player={fadeNoteCompMain} code={fadeNoteComp} />
+<Player player={noteCompMain} code={noteComp} />
 
 Visually, the result looks something like this:
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<CompChart />
 
 There's a special term for functions whose input type is the same as the output type. We call these _endo_ functions - endo being a prefix from the Greek ἔνδον (endon) meaning "within, inner, absorbing, or containing." We can chain together compositions of endo-functions to create some pretty jolting sounds.
 
-The beautiful thing about chaining compositions where the input type and outp is that you can comment out different functions using two dashes `--` to radically change the result. In the example below, in addition to playing around with the values, try to comment out some functions (add `--`) and comment in (remove `--`) others.
+The beautiful thing about chaining compositions of endo-functions is that you can comment out different functions using two dashes `--` to change the result. In the example below, in addition to playing around with the values, try to comment out some functions (add `--`) and comment in (remove `--`) others.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteChainsMain} code={noteChains} />
 
 ## A taste of things to come
 
@@ -115,19 +130,25 @@ In this article series, I will try to keep the pacing of the material more or le
 
 ### Functors and applicatives
 
-Currently, while we have a way to pipe output into an input via composition, we have no way to _blend_ two results together. For example, if we want to add the result of an LFO to the result of a terraced function, we would write something like `(\t -> lfo t + terraced t)`. While this is fine in small doses, it gets tedious if _everything_ is a function of time. We'd like to somehow abstract away time so that we never directly have to deal with it. In functional programming, there are many ways to do this, including the `Reader` pattern (treating time as an environment) and the `Behavior` pattern (representing functions of time as a separate type). We'll see both of those in a later article, but what I'd like to show here is how to accomplish this using functors and applicatives.
+Currently, while we have a way to pipe output into an input via composition, we have no way to _blend_ two results together. For example, if we want to add the result of an LFO to the result of a terraced function, we would write something like `(\time -> lfo time + terraced time)`. While this is fine in small doses, it gets tedious if _everything_ is a function of time. We'd like to somehow have the time term get passed from function to function automatically. In functional programming, there are many ways to do this, including the [`Reader`](https://pursuit.purescript.org/packages/purescript-transformers/5.1.0/docs/Control.Monad.Reader#t:Reader) pattern and the [`Behavior`](https://pursuit.purescript.org/packages/purescript-behaviors/7.0.0/docs/FRP.Behavior#t:Behavior) pattern. We'll see both of those in a later article, but what I'd like to show here is how to accomplish this using functors and applicatives.
 
-The example above, using the Functor operation `<$>` and the Applicative operation `<*>`, can be written as `add <$> lfo <*> terraced`. There is no longer a `t` term and it still works. Let's hear it in a larger example:
+The example below, we'll write the same function with `time` abstracted over the function and without `time` abstracted. The "without" version uses functors via the [`<$>` or _map_](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Functor#t:Functor) operator and applicative functors via the [`<*>` or _apply_](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Apply#t:Apply) operator. You can think of them as "lifting" a computation (in this case, a function of time) into an abstraction. When we "lower" the computation, we get the abstraction over time back. If you substitute `variation1` for `variation2`, you'll hear no difference.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteFunkMain} code={noteFunk} />
 
-If you're wondering what `<$>` and `<*>` are doing under the hood and how they relate to functions, there will be a whole lesson on applicatives that go over that. Here, I mostly want to build intution that you can blend together functions of time using binary operations like `add`, `pow`, `sub`, `mul` and `div` using `<$>` and `<*>`.
+Later on, there will be a whole lesson on functors applicatives that explore the many uses of `<$>` and `<*>`. Here, I mostly want to build intution that you can blend together functions of time using binary operations, functors, applicatives, and function composition. The example below is a small Bolero using all three techniques. Play around with the parameters to see how it changes!
+
+<Player player={noteFunk2Main} code={noteFunk2} />
 
 ### Folds
 
-In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with composition. [`compose`]() is, after all, a function that is applied to two arguments. So, rather than applying it directly, let's store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, `compose`) to the arguments starting from an initial argument.
+In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with composition. [`<<<`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid) is, after all, a function that is applied to two arguments. So, rather than applying it directly, let's store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, `compose`) to the arguments starting from an initial argument. Here, the initial argument is `identity` - a function that returns its argument.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteFoldMain} code={noteFold} />
+
+The function [`identity`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Category#t:Category) is my favorite function. The profundity of `identity` comes up time and time again in functional programming through its central role in [Category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/). We'll see it again when we make music using the [Yoneda lemma](https://bartoszmilewski.com/2015/09/01/the-yoneda-lemma/). There are lots of neat tricks you can do with identity. You can even omit it enitrely in many forumlations, like in the example below, which produces the same sound as the example above but uses the fact that identity _is_ the identity in the set of endo functions (meaning that it is the endofunction that, when composed with an endofunction, will return the original).
+
+<Player player={noteEndoMain} code={noteEndo} />
 
 ## Etude
 
@@ -139,11 +160,33 @@ Already, just using this technique, we can make some wicked one-note beats that 
 
 Armed with our composition skills, we can approach pitch in the same way that we approached volume.  Before we do, though, it'd be useful to talk a bit about scales and perception of pitch and volume. While one can be plenty creative without knowing these scales, mastering them makes it easier to anticipate how music will be heard in certain cultural contexts.
 
-In the previous example, when we were linearly changing volume between 0 and 1, the change from `0.0-0.5` felt _much_ greater than the change from `0.5-1.0`. This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows linear increase of loudness from 0 to 1 and the corresponding change in decibels.
+In the previous example, when we were linearly changing volume between 0 and 1, the change from `0.0-0.5` was _much_ greater than the change from `0.5-1.0`. Let's confirm that by using the example below. Switch between the functions `firstHalf` and `secondHalf` to hear the difference.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteFadeHalvesMain} code={noteFadeHalves} />
+
+This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows loudness (amplitude ratio) descending from 1 to 0, and the corresponding change in decibels, and how we effectively hear it (the power ratio).
+
+<table>
+  <tr><th style={{textAlign: "center"}}>dB</th><th style={{textAlign: "center"}}>Power ratio</th><th style={{textAlign: "center"}}>Amplitude ratio</th></tr>
+  <tr><td>0</td><td>1</td><td>1</td></tr>
+  <tr><td>−1</td><td>0 .794</td><td>0 .891</td></tr>
+  <tr><td>−3</td><td>0 .501 ≈ 1⁄2</td><td>0 .708 ≈ √1⁄2</td></tr>
+  <tr><td>−6</td><td>0 .251 ≈ 1⁄4</td><td>0 .501 ≈ 1⁄2</td></tr>
+  <tr><td>−10</td><td>0 .1</td><td>0 .3162</td></tr>
+  <tr><td>−20</td><td>0 .01</td><td>0 .1</td></tr>
+  <tr><td>−30</td><td>0 .001</td><td>0 .03162</td></tr>
+  <tr><td>−40</td><td>0 .0001</td><td>0 .01</td></tr>
+  <tr><td>−50</td><td>0 .00001</td><td>0 .003162</td></tr>
+  <tr><td>−60</td><td>0 .000001</td><td>0 .001</td></tr>
+  <tr><td>−70</td><td>0 .0000001</td><td>0 .0003162</td></tr>
+  <tr><td>−80</td><td>0 .00000001</td><td>0 .0001</td></tr>
+  <tr><td>−90</td><td>0 .000000001</td><td>0 .00003162</td></tr>
+  <tr><td>−100</td><td>0 .0000000001</td><td>0 .00001</td></tr>
+</table>
 
 We can bring this even closer to human perception using [Fletcher-Munson curves](https://en.wikipedia.org/wiki/Equal-loudness_contour), also known as equal-loudness contours. This adds ripples into our logarithmic model that represent the ideosyncracies of human hearing. Many sensible defaults in industry-grade automatic equalization and mastering software are based on these curves.  In the examples below, we'll use a function that changes volume on a logarithmic rather than linear scale, and perhaps you will perceive it as being more smooth or gradual.
+
+![Fletcher-Munson curves](https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Lindos1.svg/668px-Lindos1.svg.png)
 
 Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3` in the examples, we are using a scale called the equally-tempered chromatic scale which became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when one is a multiple of two of the other one. For example, most people hear 220.0, 440.0, 880.0 and 1760.0 as the same note shifted higher and higher.  In fact, let's let that be the basis of our first exmaple on pitch.  We'll use a function similar to the terraced function we used for volume, but we will use values that correspond to jumping octaves.
 

@@ -35,7 +35,7 @@ compile code errCb cErrCb sucCb = launchAff_ do
   case cres of
     Left err -> liftEffect $ errCb (error err)
     Right (Left err) -> liftEffect $ errCb (error err)
-    Right (Right (API.CompileFailed cf)) -> 
+    Right (Right (API.CompileFailed cf)) ->
       case cf.error of
         API.OtherError e -> liftEffect $ errCb (error e)
         API.CompilerErrors errs -> liftEffect $ cErrCb errs
