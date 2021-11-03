@@ -1,4 +1,5 @@
 import { Player } from "../components/player";
+import CompChart from "../components/note-function/compose-chart";
 import singleNote from "../FPSound/Intro/SingleNote.purs";
 import { main as singleNoteMain } from "../../output/FPSound.Intro.SingleNote/";
 import noteFade from "../FPSound/NoteFunction/NoteFade.purs";
@@ -27,7 +28,22 @@ import noteEndo from "../FPSound/NoteFunction/NoteEndo.purs";
 import { main as noteEndoMain } from "../../output/FPSound.NoteFunction.NoteEndo/";
 import noteFadeHalves from "../FPSound/NoteFunction/NoteFadeHalves.purs";
 import { main as noteFadeHalvesMain } from "../../output/FPSound.NoteFunction.NoteFadeHalves/";
-import CompChart from "../components/note-function/compose-chart";
+import noteOctaves from "../FPSound/NoteFunction/NoteOctaves.purs";
+import { main as noteOctavesMain } from "../../output/FPSound.NoteFunction.NoteOctaves/";
+import noteSameVP from "../FPSound/NoteFunction/NoteSameVP.purs";
+import { main as noteSameVPMain } from "../../output/FPSound.NoteFunction.NoteSameVP/";
+import noteDim from "../FPSound/NoteFunction/NoteDim.purs";
+import { main as noteDimMain } from "../../output/FPSound.NoteFunction.NoteDim/";
+import pitchLaw1 from "../FPSound/NoteFunction/PitchLaw1.purs";
+import { main as pitchLaw1Main } from "../../output/FPSound.NoteFunction.PitchLaw1/";
+import pitchLaw2 from "../FPSound/NoteFunction/PitchLaw2.purs";
+import { main as pitchLaw2Main } from "../../output/FPSound.NoteFunction.PitchLaw2/";
+import bach from "../FPSound/NoteFunction/Bach.purs";
+import { main as bachMain } from "../../output/FPSound.NoteFunction.Bach/";
+import timbre from "../FPSound/NoteFunction/Timbre.purs";
+import { main as timbreMain } from "../../output/FPSound.NoteFunction.Timbre/";
+import timbrePlus from "../FPSound/NoteFunction/TimbrePlus.purs";
+import { main as timbrePlusMain } from "../../output/FPSound.NoteFunction.TimbrePlus/";
 
 # The note and the function
 
@@ -150,12 +166,6 @@ The function [`identity`](https://pursuit.purescript.org/packages/purescript-pre
 
 <Player player={noteEndoMain} code={noteEndo} />
 
-## Etude
-
-Already, just using this technique, we can make some wicked one-note beats that give the one-note samba a run for its money! Below, I've written three functions - `f0`, `f1` and `f2` - each of which create a one-note piece. The one currently slotted to play is called `f0`. Go ahead and substitute in and out different functions. Tweak them. Compose them. If you're up to it, try using `<$>`, `<*>` or `foldl` and see where they can take you!
-
-<Player stub player={singleNoteMain} code={singleNote} />
-
 ## Scales
 
 Armed with our composition skills, we can approach pitch in the same way that we approached volume.  Before we do, though, it'd be useful to talk a bit about scales and perception of pitch and volume. While one can be plenty creative without knowing these scales, mastering them makes it easier to anticipate how music will be heard in certain cultural contexts.
@@ -167,7 +177,9 @@ In the previous example, when we were linearly changing volume between 0 and 1, 
 This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows loudness (amplitude ratio) descending from 1 to 0, and the corresponding change in decibels, and how we effectively hear it (the power ratio).
 
 <table>
-  <tr><th style={{textAlign: "center"}}>dB</th><th style={{textAlign: "center"}}>Power ratio</th><th style={{textAlign: "center"}}>Amplitude ratio</th></tr>
+  <thead>
+  <tr><th style={{textAlign: "center"}}>dB</th><th style={{textAlign: "center"}}>Power ratio</th><th style={{textAlign: "center"}}>Amplitude ratio</th></tr></thead>
+  <tbody>
   <tr><td>0</td><td>1</td><td>1</td></tr>
   <tr><td>−1</td><td>0 .794</td><td>0 .891</td></tr>
   <tr><td>−3</td><td>0 .501 ≈ 1⁄2</td><td>0 .708 ≈ √1⁄2</td></tr>
@@ -181,55 +193,75 @@ This is because, while we scaled the amplitude of the waves in the air linearly,
   <tr><td>−70</td><td>0 .0000001</td><td>0 .0003162</td></tr>
   <tr><td>−80</td><td>0 .00000001</td><td>0 .0001</td></tr>
   <tr><td>−90</td><td>0 .000000001</td><td>0 .00003162</td></tr>
-  <tr><td>−100</td><td>0 .0000000001</td><td>0 .00001</td></tr>
+  <tr><td>−100</td><td>0 .0000000001</td><td>0 .00001</td></tr></tbody>
 </table>
 
-We can bring this even closer to human perception using [Fletcher-Munson curves](https://en.wikipedia.org/wiki/Equal-loudness_contour), also known as equal-loudness contours. This adds ripples into our logarithmic model that represent the ideosyncracies of human hearing. Many sensible defaults in industry-grade automatic equalization and mastering software are based on these curves.  In the examples below, we'll use a function that changes volume on a logarithmic rather than linear scale, and perhaps you will perceive it as being more smooth or gradual.
+We can bring this even closer to human perception using [Fletcher-Munson curves](https://en.wikipedia.org/wiki/Equal-loudness_contour), also known as equal-loudness contours. This adds ripples into our logarithmic model that represent the ideosyncracies of human hearing. Many sensible defaults in industry-grade automatic equalization and mastering software are based on these curves.
 
 ![Fletcher-Munson curves](https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Lindos1.svg/668px-Lindos1.svg.png)
 
 Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3` in the examples, we are using a scale called the equally-tempered chromatic scale which became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when one is a multiple of two of the other one. For example, most people hear 220.0, 440.0, 880.0 and 1760.0 as the same note shifted higher and higher.  In fact, let's let that be the basis of our first exmaple on pitch.  We'll use a function similar to the terraced function we used for volume, but we will use values that correspond to jumping octaves.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteOctavesMain} code={noteOctaves} />
 
 ## Pitch
 
-All of the same functions we used to control volume can also be used to control the pitch of our single note. Let's scale them from their 0-1 range as values to a range that makes more sense for pitch. Again, we'll use composition for this.
+All of the same functions we used to control volume can also be used to control the pitch of our single note. Let's use the same `base` function to control both volume and pitch, scaling it to appropriate ranges for each parameter. Again, we'll use composition (`<<<`) for this.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteSameVPMain} code={noteSameVP} />
 
-We can also use `<$>` and `<*>` to apply binary operators to pitch, just as we did on rhythm.  Interestingly, we see that when we add an octave twice to a pitch, this has the effect of multiplying it by 4
+When working with pitch, it's often useful to use notes from a scale like `c4` or `d5`. In addition, we can transpose notes by adding intervals. Let's see an example that modulates transposition based on time. Another interesting aspect of this example is that pitch no longer _contains_ a function of time, but rather a function of time is used to produce `Pitch`. We can distribute `time` from the outside to the inside of pitch using the function [`join`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Bind#v:join) - a function we'll explore deeper when we look at monads.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={noteDimMain} code={noteDim} />
 
-This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they adhere to certain predefined laws. Here, addition and multiplcation are the two operators that form a [Semiring](https://en.wikipedia.org/wiki/Semiring) and, as such, need to conform to semiring laws of being commutative over addition and distributive over multiplication. Let's test out those laws in music!
+Interestingly, we see that when we add an octave to a pitch, this has the effect of multiplying it by 2. This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they adhere to certain predefined laws. Here, addition and multiplcation are the two operators that form a [Semiring](https://en.wikipedia.org/wiki/Semiring). Here is how they're defined in `wags-lib`.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+```haskell
+cpsToMidi' :: Number -> Number
+cpsToMidi' i = (log (i / 440.0) / log 2.0) * 12.0 + 69.0
 
-Indeed, we see that the addition of pitch commutes - `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](), [Idris](), and the language used for these examples - `PureScript`. The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can function differently in different contexts while retaining its identity.
+midiToCps' :: Number -> Number
+midiToCps' i = 440.0 * (2.0 `pow` ((i - 69.0) / 12.0))
 
-Getting less mathy for a bit, I'll close this section on pitch with two examples. The first will shows how to use simple data structures - in this case an array - to hold a musical score that we can play back to get a fun little Bach minuet.
+instance semiringPitch :: Applicative f => Semiring (Pitch f) where
+  zero = Pitch (pure zero)
+  one = Pitch (pure one)
+  add (Pitch a) (Pitch b) = Pitch (midiToCps' <$>
+    (add <$> (cpsToMidi' <$> a) <*> (cpsToMidi' <$> b)))
+  mul (Pitch a) (Pitch b) = Pitch (midiToCps' <$>
+    (mul <$> (cpsToMidi' <$> a) <*> (cpsToMidi' <$> b)))
+```
 
-<Player stub player={singleNoteMain} code={singleNote} />
+Of course, these definitions need to conform to semiring laws of being commutative over addition and distributive over multiplication. Let's test out those laws in music! In functional programming, when we test laws, we usually use a tool called QuickCheck to generate a bunch of random examples, which we'll do here. In each example, we'll hear pairs of notes in series, and if the pairs are always the same, the law holds!
 
-The second is more abstract and experimental in nature, weaving a tapestry of pitches that brings me to a trance-like place.
+### Law 1 - Addition is commutative
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={pitchLaw1Main} code={pitchLaw1} />
 
-In both cases, the same basic operations - functions of time - lead to different worlds, all the while keeping the rather austere constraint of a single note that can change only in pitch or volume.
+### Law 2 - Multiplication is distributive
+
+<Player preload player={pitchLaw2Main} code={pitchLaw2} />
+
+Indeed, we hear that the addition of pitch commutes - `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](), [Idris](), and the language used for these examples - `PureScript`. The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can function differently in different contexts while retaining its identity.
+
+## I'll be Bach
+
+Getting less mathy for a bit, here are the first four bars of BWV 846 transcribed using the methods we've covered so far.
+
+<Player player={bachMain} code={bach} />
 
 ## Deconstructing and reconstructing
 
 One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's take our first `lfo` example and write it in a slightly different syntax with a different timbre. Here, instead of using one note, we'll use six. However, as the six notes will be playing at the same time, we'll hear them as a single organ-like sound.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={timbreMain} code={timbre} />
 
-Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use `<$>` and `<*>`. And again, we'll have a whole article devoted entirely to unpacking what `<$>` and `<*>` mean - for now we can treat them as building blocks for binary operations on functions of time.
+Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use a function of time and LFOs to subtly shift the overtones of the pitch, making it shimmer over time.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player preload player={timbrePlusMain} code={timbrePlus} />
 
 ## Conclusion
 
-In this section, we learned how to use functional programming to shape a single note. We saw how we can compose together functions to modulate the pitch and amplitude of that note, and we saw how to compose together several notes into one larger note that decomposes and recomposes as we listen to it. With these techniques, we can make fun little instruments like the one below, the source code of which can be found [here](). I hope you enjoy playing it, and I'll see you in the next article!
+In this section, we learned how to use functions to shape a single note. We saw how we can compose functions to modulate a note's volume and pitch, and we saw how to compose together several notes into one larger note that breaks apart and reforms as we listen to it. With these techniques, we can make fun little instruments like the one below, the source code of which can be found [here](). I hope you enjoy playing it, and I'll see you in the next article!
 
 > [Click here](https://github.com/mikesol/purescript-wags) for additional resources for working with these examples on the cloud, on Windows, on Mac or on Linux. [Click here](https://purescript.org) to learn more about the PureScript programming language.

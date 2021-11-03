@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   faPlayCircle,
   faStopCircle,
-  faCog,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAlert } from "react-alert";
@@ -92,7 +91,7 @@ const renameAsMain = (str) =>
     )
     .join("\n");
 
-export const Player = ({ player, code: protoCode, stub }) => {
+export const Player = ({ preload, player, code: protoCode, stub }) => {
   const code = renameAsMain(protoCode);
   const [showLoader, setShowLoader] = useState(true);
   const [lastCode, setLastCode] = useState(code);
@@ -111,13 +110,15 @@ export const Player = ({ player, code: protoCode, stub }) => {
     // which makes compilation the first time round faster
     // the downside is that there will be jank if someone plays an example immediately
     // but this is usually not the case
-    // compile(code)((err) => () => {
-    //   handleError(err);
-    // })((err) => () => {
-    //   handleError(err);
-    // })((suc) => () => {
-    //   playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
-    // })();
+    if (preload) {
+      compile(code)((err) => () => {
+        handleError(err);
+      })((err) => () => {
+        handleError(err);
+      })((suc) => () => {
+        playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
+      })();
+    }
   }, [null]);
   const [playerState, setPlayerState] = useState(STOPPED);
   const [stop, setStop] = useState({ hack: () => { } });
