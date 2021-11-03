@@ -10,7 +10,7 @@ When creating a new Spago project, you can use
 `spago init --no-comments` or `spago init -C`
 to generate this file without the comments in this block.
 -}
-{ name = "my-project"
+{ name = "fp-sound"
 , dependencies =
   [ "aff"
   , "affjax"
@@ -24,6 +24,7 @@ to generate this file without the comments in this block.
   , "foldable-traversable"
   , "foreign"
   , "foreign-object"
+  , "free"
   , "identity"
   , "integers"
   , "lists"
@@ -32,6 +33,7 @@ to generate this file without the comments in this block.
   , "newtype"
   , "nonempty"
   , "nullable"
+  , "ordered-collections"
   , "parallel"
   , "prelude"
   , "profunctor"
