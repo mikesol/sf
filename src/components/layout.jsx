@@ -1,7 +1,7 @@
 import React from "react";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 
 const options = {
   position: positions.BOTTOM_CENTER,
@@ -22,6 +22,5 @@ export default function Layout({ children }) {
         {children}
       </AlertProvider>
     </div>
-
   );
 }

@@ -47,11 +47,10 @@ const evalSources = function (sources) {
         module.exports,
         require
       );
-    }
-    catch (e) {
+    } catch (e) {
       console.error("ERR", e);
-      console.error(name)
-      console.error(sources[name])
+      console.error(name);
+      console.error(sources[name]);
       throw e;
     }
     return module.exports;
@@ -77,7 +76,8 @@ const compileErrorsToText = (errs) => `The following error(s) occurred:
 
 ${errs.map(
   (err) =>
-    `${err.position ? "On line " + err.position.startLine + ":\n" : ""}${err.message + "\n\n"
+    `${err.position ? "On line " + err.position.startLine + ":\n" : ""}${
+      err.message + "\n\n"
     }`
 )}`;
 
@@ -121,7 +121,7 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
     }
   }, [null]);
   const [playerState, setPlayerState] = useState(STOPPED);
-  const [stop, setStop] = useState({ hack: () => { } });
+  const [stop, setStop] = useState({ hack: () => {} });
   const playerLoadingCb = () => (cb) => () => {
     setPlayerState(LOADING);
     cb()();
@@ -204,21 +204,21 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
               playerState === LOADING
                 ? faSpinner
                 : playerState === PLAYING
-                  ? faStopCircle
-                  : faPlayCircle
+                ? faStopCircle
+                : faPlayCircle
             }
             style={{ cursor: "pointer" }}
             spin={playerState === LOADING}
             onClick={
               playerState === LOADING
-                ? () => { }
+                ? () => {}
                 : playerState === PLAYING
-                  ? () => {
+                ? () => {
                     setPlayerState(STOPPED);
                     stop.hack();
-                    setStop({ hack: () => { } });
+                    setStop({ hack: () => {} });
                   }
-                  : () => {
+                : () => {
                     if (
                       codeRef.current.innerText === lastCode &&
                       playerState !== CODE_ERROR
