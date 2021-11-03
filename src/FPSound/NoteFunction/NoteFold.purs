@@ -43,4 +43,4 @@ main = player
             ]
       )
       longest
-      c4
+      c3
