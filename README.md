@@ -1,3 +1,3 @@
 # Soundly functional
 
-https://mikesol.github.com/sf
+A blog hosted [here](https://mikesol.github.com/sf).
