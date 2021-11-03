@@ -5,14 +5,14 @@ import WAGS.Lib.Learn.Duration
 import WAGS.Lib.Learn.Pitch
 import WAGS.Lib.Learn.Volume
 import Control.Comonad (extract)
-import Control.Comonad.Cofree (Cofree, deferCofree)
-import Control.Comonad.Cofree.Class (class ComonadCofree, unwrapCofree)
+import Control.Comonad.Cofree (deferCofree)
+import Control.Comonad.Cofree.Class (unwrapCofree)
 import Data.Identity (Identity(..))
-import Data.Newtype (class Newtype, unwrap)
+import Data.Newtype (unwrap)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import WAGS.Lib.Learn (player, Player)
-import WAGS.Lib.Learn.Note (Note, note_)
+import WAGS.Lib.Learn.Note (note_)
 import WAGS.Lib.Learn.Tempo (allegro)
 import WAGS.Lib.Stream (cycle)
 
