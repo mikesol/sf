@@ -111,12 +111,8 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
     // the downside is that there will be jank if someone plays an example immediately
     // but this is usually not the case
     if (preload) {
-      compile(code)((err) => () => {
-        handleError(err);
-      })((err) => () => {
-        handleError(err);
-      })((suc) => () => {
-        playCompiled(suc.js)(loaderErrorCb)(() => () => {})();
+      compile(code)(swallowError)(swallowError)((suc) => () => {
+        playCompiled(suc.js)(swallowError)(() => () => {})();
       })();
     }
   }, [null]);
@@ -126,11 +122,12 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
     setPlayerState(LOADING);
     cb()();
   };
+  const swallowError = (err) => () => console.error(err);
   const handleError = (err) => {
     alert.error("Something went wrong. Our fault 🤦 Check the console 🙏", {
       timeout: 2000,
     });
-    handleError(err);
+    console.error(err);
   };
   const playerLoadedCb = () => (cb) => () => {
     setPlayerState(PLAYING);
