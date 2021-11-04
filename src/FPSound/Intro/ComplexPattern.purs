@@ -5,6 +5,7 @@ import WAGS.Lib.Learn.Duration
 import WAGS.Lib.Learn.Pitch
 import WAGS.Lib.Learn.Volume
 
+import Control.Apply (lift2)
 import Control.Comonad (extract)
 import Control.Comonad.Cofree (Cofree, deferCofree)
 import Control.Comonad.Cofree.Class (unwrapCofree)
@@ -18,19 +19,22 @@ import WAGS.Lib.Learn.Note (Note(..), note_)
 import WAGS.Lib.Learn.Tempo (allegro)
 import WAGS.Lib.Stream (cycle)
 
-volumes = cycle $ forte :| [ mezzoPiano, forte, mezzoPiano, forte, mezzoPiano, mezzoForte ]
+volumes = cycle $ forte :|
+  [ mezzoPiano, forte, mezzoPiano, forte
+  , mezzoPiano, mezzoForte
+  ]
 
-pitches = cycle $
-  c4 :| [ g4, f4, eFlat4, bFlat4, d5, eFlat4, bFlat4, d5, f5, d5, bFlat4, eFlat4, f4, g4 ]
+pitches = cycle $ c4 :|
+  [ g4, f4, eFlat4, bFlat4, d5, eFlat4, bFlat4
+  , d5, f5, d5, bFlat4, eFlat4, f4, g4
+  ]
 
-rhythms = cycle
-  $ map allegro
-  $ crochet :| [ quaver, semiquaver, quaver, semiquaver, quaver, semiquaver ]
+rhythms = cycle $ map allegro $ crochet :|
+  [ quaver, semiquaver, quaver
+  , semiquaver, quaver, semiquaver
+  ]
 
-type CI = Cofree Identity
-zap :: forall a b. CI (a -> b) -> CI a -> CI b
-zap = deferCombine ($)
-  \f a b -> pure (f (extract a) (extract b))
+zap = deferCombine ($) lift2
 
 notes = note_ `map` volumes `zap` rhythms `zap` pitches
 
