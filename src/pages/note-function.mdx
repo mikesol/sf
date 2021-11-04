@@ -70,16 +70,20 @@ It contains one type assertion — that `main` is of type `Player` — and three
 - `player`, whose type is defined in `Wags.Lib.Learn` as `Pitch ((->) Number) -> Player`; and
 - `c4`, whose type is defined in `Wags.Lib.Learn.Pitch` as `Pitch ((->) Number)`.
 
-When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `player` is a proposition saying "If you give me a `Pitch ((->) Number)`, I'll give you a term of type `Player`." In the program, `c4` is _evidence_ to `player` (we can also call it an argument to `player` or `player`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch ((->) Number)` unlocks the proposition `Pitch ((->) Number) -> Player`, producing an `Player`. Because we have annotated our program `main` as `Player`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
+When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `player` is a proposition saying:
+
+> If you give me a `Pitch ((->) Number)`, I'll give you a term of type `Player`
+
+In the program, `c4` is _evidence_ to `player` (we can also call it an argument to `player` or `player`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch ((->) Number)` unlocks the proposition `Pitch ((->) Number) -> Player`, producing a `Player`. Because we have annotated our program `main` as `Player`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
 
 The fluidity with which one can switch between the language of logic (proving a proposition with evidence) and programming (applying to a function an argument) is called the [Curry-Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence). Informally, it posits that programs are logical proofs and vice versa. Granted, music is a highly _illogical_ endeavor, so this type of rigorous formalism may seem out of place given the deeply subjective nature of music composition and listening. The point of types here is to provide a set of constraints that accomplish two goals:
 
-1. Types act as proof that what you're building has the best chance to work as expected. This makes experimentation go faster as you spend less time fixing bugs and more time writing and listening.
-2. Like all art-forms, constraints act simultaneously as a dialectical guide through _and_ impediment to creation. The epiphanies we have as we are guided and impeded help us make great work.
+1. Types act as proof that what you're building has the best chance to work as expected. This means that you'll spend less time fixing bugs and more time making music.
+2. The best constraints act simultaneously as dialectical guides through _and_ impediments to creation. The epiphanies we have as we are guided and impeded help us make great work.
 
 ## Our first composition(s)
 
-In the example above, we listened to our first note `c4` by applying the function `player` to it. Let's add together some more functions to see how far we can push that note.
+In the example above, we listened to our first note `c4` by applying the function `player` to it. Let's use some more functions to see how far we can push that note.
 
 We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 5 seconds. To do so, we'll write a function that multiplies time by 0.2 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 5 seconds.
 
@@ -107,11 +111,11 @@ f = g
 
 The idea of abstraction (_defining_ a function) and application (_invoking_ a function) are core to a formal system in mathematical logic called the [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus). Developed in the 1930s by Alonzo Church, the Lambda Calculus acts as a syntactic basis for most functional programming languages, including PureScript.
 
-In order to eta-reduce `fadeOut` from the example above, we introduce one of the most powerful ideas in functional programming — composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`. The `time` term is no longer present - it has been eta-reduced using function composition.
+In order to eta-reduce `fadeOut` in the example above, we introduce one of the most powerful ideas in functional programming — composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`. The `time` term is no longer present - it has been eta-reduced using function composition.
 
 <Player player={noteFadeEtaMain} code={noteFadeEta} />
 
-Function composition is not just about terser syntax. In fact, the terser syntax — also called point-free syntax — often leads to a golf-like competition to make as short as possible and, when done too eagerly, unreadable. As we will see in subsequent articles on [Profunctors](https://pursuit.purescript.org/packages/purescript-profunctor/5.0.0/docs/Data.Profunctor#t:Profunctor) and [Free Semigroupoids](https://github.com/natefaubion/purescript-free-semigroupoid), composition as an operation can be applied to other things besides functions. By working at this higher level of abstraction, we unteather ourselves from functions and think in more general terms about output flowing into input. For me, this type of abstract reasoning is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
+Function composition is not just about terser syntax. In fact, the terser syntax — also called point-free syntax — often leads to a golf-like competition to make code as short as possible and, when done too eagerly, unreadable. As we will see in subsequent articles on [Profunctors](https://pursuit.purescript.org/packages/purescript-profunctor/5.0.0/docs/Data.Profunctor#t:Profunctor) and [Free Semigroupoids](https://github.com/natefaubion/purescript-free-semigroupoid), composition can be applied to other things besides functions. By working at this higher level of abstraction, we unteather ourselves from functions and think in more general terms about output flowing into input. For me, this type of abstract reasoning is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
 
 ### A bouquet of functions
 
@@ -123,7 +127,7 @@ We can also control the volume with a [low-frequency oscilator, or LFO](https://
 
 <Player player={noteLfoMain} code={noteLfo} />
 
-The one thing that all of these examples have in common is that they are functions from a `Number` to a `Number`. As the output of one can be the input of another, we can _compose_ them together. Interestingly, the meanings of the word "composition" in music and functional programming largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
+The one thing that all of these examples have in common is that they are functions from a `Number` to a `Number`. As the output of one can be the input of another, we can _compose_ them together. Interestingly, the meanings of the word "composition" in music and functional programming largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose programs, we blend together functions to create complex control patterns and data flow.
 
 Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add an offset, and the third will clip the wave at boundaires.
 
@@ -249,6 +253,8 @@ Getting less mathy for a bit, here are the first four bars of BWV 846 transcribe
 
 <Player player={bachMain} code={bach} />
 
+What if, before the `mapWithIndex`, you add `(map <<< map) (add minorThird) $`?
+
 ## Deconstructing and reconstructing
 
 One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's again start with a "single" note that is comprised of six oscillators.
@@ -261,6 +267,6 @@ Now, let's undercut the unity of our sound by pulling it apart over time. To do 
 
 ## Conclusion
 
-In this section, we learned how to use functions to shape a single note. We saw how we can compose functions to modulate a note's volume and pitch, and we saw how to compose together several notes into one larger note that breaks apart and reforms as we listen to it.
+In this section, we learned how to use functions to shape a single note. We saw how we can compose functions to modulate a note's volume and pitch, and we saw how to compose together several notes into one larger note that breaks apart and reforms as we listen to it. I'm pretty sure that the next article will be called _The Rhythm and the Functor_, so stay tuned for that!
 
 <Footer />
