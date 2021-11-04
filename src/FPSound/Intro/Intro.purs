@@ -4,6 +4,7 @@ import Prelude
 
 import Data.Lens (_Just, set)
 import Data.Map as Map
+import Data.Bifunctor (bimap)
 import Data.Newtype (unwrap)
 import Data.Tuple.Nested ((/\))
 import WAGS.Lib.Learn (Player, player)
@@ -37,7 +38,7 @@ wag =
                     <<< unwrap
             )
         $ parse_ "wdm:1;comp"
-    , sounds: Map.fromFoldable $ map (\(a /\ b) -> Sample a /\ BufferUrl b)
+    , sounds: Map.fromFoldable $ map (bimap Sample BufferUrl)
         [ "wdm:0" /\ "https://freesound.org/data/previews/332/332741_34095-lq.mp3"
         , "wdm:1" /\ "https://freesound.org/data/previews/332/332740_34095-hq.mp3"
         ]

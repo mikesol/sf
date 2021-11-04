@@ -15,9 +15,9 @@ I'm Mike, and I use functional programming to make music and noise.
 
 <Player player={introMain} code={intro} />
 
-The example above uses many rich control structures that are challenging to recreate in traditional DAW like [Logic Pro](https://www.apple.com/logic-pro/), a tool like [Live](https://www.ableton.com/en/live/), a visual coding language like [Max](https://cycling74.com/products/max) or a procedural language like [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript). I've written it in a functional programming language called [PureScript](https://purescript.org), a language in the ML-family of languages with some of the most powerful abstractions I've ever seen for controlling data.
+The example above is written in a functional programming language called [PureScript](https://purescript.org). It makes use of several control structures and data-flow patterns that are challenging to recreate in a traditional DAW like [Logic Pro](https://www.apple.com/logic-pro/), a visual coding language like [Max](https://cycling74.com/products/max) or a procedural language like [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
 
-I'm writing these articles because I believe that most modern music-making technologies enforce paradigms that stifle creativity more than they channel it. Functional programming (or "FP") provides a toolset of powerful ideas that enable, motivate, and inspire artists to create radically new work. I hope that, by the end of our time together, you'll feel empowered to use FP in your own artistic creations.
+The history of music is full of examples of artists (1) coalescing around, (2) making abundant use of, and (3) ultimately destroying a technology. Western notation and Western harmony have both followed this arc. I believe that the DAW is entering phase 3, and I find artists grasping for new means of expression as their traditional tools fail them. Functional programming (or "FP") helps break out of the current dominant paradigm, providing a collection of powerful ideas that allow artists to create radically new work. I hope that, by the end of our time together, you'll feel empowered to use FP in your own artistic creations.
 
 ## The journey ahead
 
@@ -29,14 +29,14 @@ During this journey, we will frequently make use of our fingers to edit code and
 
 In the example you're listening to, `c4` is a pitch representing middle-c on a piano. Press <FontAwesomeIcon icon={faStopCircle} /> and then click on `c4` to edit the code.  Try changing the `c4` to `d4`, then press <FontAwesomeIcon icon={faPlayCircle} /> again and listen to the difference. What about `aFlat4`? `c5`?
 
-Building from here, we can arrive at complex patterns in ~10 lines of code after various `import` statements.
+Building from here, we can arrive at complex patterns in relatively few lines of code.
 
 <Player preload player={complexPatternMain} code={complexPattern} />
 
 In the example above, try adding or removing pitches, rhythms, and dynamics to/from the arrays and listen to what effect that produces.
 
-If you've never worked with functional programming before, don't worry. The code in the example uses a several powerful abstractions, including the [functor](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Functor#t:Functor), the [profunctor](https://pursuit.purescript.org/packages/purescript-profunctor/5.0.0/docs/Data.Profunctor#t:Profunctor), and the [semigroupoid](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid). We'll learn about what all these concepts mean and revisit some of them multiple times. The important thing to know is that one domain will always reinforce the other, stimulating our creativity and leading us to new territory as both musicians and programmers.
+If you find functional programming intimidating, you're certainly not alone. When I started out on my journey through FP, concepts like the [functor](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Functor#t:Functor) and the [semigroupoid](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid) were so overwhelming that I almost gave up. Music proved to be the path that helped me truly understand functional programming, and inversely, functional programming changed the way I looked at music. As you make your way through these articles, I hope that one domain always reinforces the other, making you more creative musicians and programmers.
 
-Lastly, a bit of housekeeping. All you need is a browser to follow along, play the audio examples, and edit them. However, at a certain point, you may want to experiment on your local machine or jam with others on a shared server. At the end of every lesson, including this one, there will be a link to a page where you can learn how to set up your own music-making environment.
+Lastly, a bit of housekeeping. All you need is a browser to follow along, play the audio examples, and edit them. However, at a certain point, you may want to experiment on your local machine or jam with others on a shared server. At the end of every article, including this one, there will be links to more resources about PureScript, music making in the browser, and functional programming in general.
 
 <Footer />

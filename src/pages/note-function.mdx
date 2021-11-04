@@ -48,42 +48,40 @@ import { main as timbrePlusMain } from "../../output/FPSound.NoteFunction.Timbre
 
 # The note and the function
 
-We'll start our journey with a single note. This note will be produced by a sine-wave oscillator. When you click <FontAwesomeIcon icon={faPlayCircle} />, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in air pressure that propagate all the way to your ear. Middle-C, the note below, will cause the air around you to oscillate 264 times a second. This pattern is far too fast for us to perceive each individual oscillation. Our ear clumps the oscillations together as a pattern, and we hear it as the note middle-C. You can also check out this [amazing interactive article about how sound works](https://pudding.cool/2018/02/waveforms/).
+We'll start our journey with a single note produced by a sine-wave oscillator. When you click <FontAwesomeIcon icon={faPlayCircle} />, the computer will send instructions to your loudspeaker or headphones to oscillate back and forth in sinusoidal motion. This creates wave-like variations in the air that propagate all the way to your ear. Middle-C, the note below, will cause the air around your ear to vibrate 264 times a second. Our ear clumps these oscillations together as a pattern, and we hear it as a pitch. To learn more about the physics of sound, I highly recommend checking out this [amazing interactive article in The Pudding](https://pudding.cool/2018/02/waveforms/).
 
 <Player player={singleNoteMain} code={singleNote} />
 
-The player above, as well as all of the players in this article, are interactive, so you can edit them to change the sound. For example, try changing the note above from `c4` to `d4`, `aFlat4`, or `fSharp5` and see what happens.
+The player above, as well as all of the players in this article, are editable. For example, try changing the note above from `c4` to `d4`, `aFlat5`, or `fSharp1` and see what happens.
 
-Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. By calling this module `Main`, we're telling the compiler that this is where the main action of our program resides. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Player`) and on the term-level (its terms are `play` and `c4`). This distinction between, and eventually interplay of, types and terms will be crucial to our reasoning about music and functional programs.
+Our single note is accompanied by a short program: the minimal amount of information we need to play back the note. The program starts by defining a **module**. As a convention, we usually call the main module `Main`. This is followed by a series of `import` statements declaring what types and terms we'll use from other libraries (I'll define "type" and "term" below). Lastly, the actual program called `main` exists on two levels: the type-level (its type is `Player`) and on the term-level (its terms are `player` and `c4`). This distinction between, and eventual interplay of, types and terms will be crucial to our reasoning about music and programs.
 
 ## Types and terms
 
-Functional programs contain two basic units of composition: _types_ and _terms_. These units form the basis of a play staring three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `play` to indicate to other readers what it _is_ or _does_. A _type_ is an assertion to the compiler about how a term can be used in a program. Types have names like `Player`. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `play c4` has the type `Player`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
+Programs in PureScript contain two basic units of composition: _types_ and _terms_. These units form the basis of a play starring three core protagonists: you, a compiler, and a computer. A _term_ points to some chunk of memory on a computer that stores an opaque series of bytes. We give the term a name like `c4` or `player` to indicate to other readers what it _is_ or _does_. A _type_ is an assertion to the compiler about how a term can be used in a program. Types have names like `Player`. When the compiler receives an assertion in the form of a type, it can either accept the assertion, reject it, or punt until it receives more information. In our program above, the compiler _accepts_ the assertion that `player c4` has the type `Player`. When all the assertions in a program are accepted, we say a program compiles, and the compiler sends the program off to the computer to do something interesting like render it to your screen, play it through your loudspeakers, or save it for a rainy day.
 
 Let's revisit the program above:
 
 <Player player={singleNoteMain} code={singleNote} />
 
-It contains one type assertion - that `main` is `Player` - and three terms:
+It contains one type assertion — that `main` is of type `Player` — and three terms:
 
 - `main`, whose type is asserted to be `Player`;
-- `play`, whose type is `Function Pitch Player`; and
-- `c4`, whose type is `Pitch`.
+- `player`, whose type is defined in `Wags.Lib.Learn` as `Pitch ((->) Number) -> Player`; and
+- `c4`, whose type is defined in `Wags.Lib.Learn.Pitch` as `Pitch ((->) Number)`.
 
-Often times, when talking about functions, we'll use an infix notation of a right-pointing arrow `->`. So, `play` can be rewritten as `Pitch -> Player`.
+When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `player` is a proposition saying "If you give me a `Pitch ((->) Number)`, I'll give you a term of type `Player`." In the program, `c4` is _evidence_ to `player` (we can also call it an argument to `player` or `player`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch ((->) Number)` unlocks the proposition `Pitch ((->) Number) -> Player`, producing an `Player`. Because we have annotated our program `main` as `Player`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
 
-When the compiler compiles the program, it treats every function as an _if/then_ proposition and makes sure that we've provided enough evidence to prove this proposition. In the case above, `play` is a proposition saying "If you give me a `Pitch`, I'll give you a term of type `Player`". In the program, `c4` is _evidence_ to play (we can also call it an argument to `play` or `play`'s input). Evidence to propositions, or equivalently arguments to functions, act like keys to a lock. The term `c4` of type `Pitch` unlocks the proposition `Pitch -> Player`, producing an `Player`. Because we have annotated our program `main` as `Player`, the compiler accepts the program, sends it to your loudspeaker and plays a note. w00t!
+The fluidity with which one can switch between the language of logic (proving a proposition with evidence) and programming (applying to a function an argument) is called the [Curry-Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence). Informally, it posits that programs are logical proofs and vice versa. Granted, music is a highly _illogical_ endeavor, so this type of rigorous formalism may seem out of place given the deeply subjective nature of music composition and listening. The point of types here is to provide a set of constraints that accomplish two goals:
 
-The fluidity with which one can switch between the language of logic (proving a proposition with evidence) and programming (applying to a function an argument) is called the [Curry-Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence). Informally, it posits that programs are logical proofs and vice versa. Granted, music is a highly _illogical_ endeavor, so this type of rigorous formalism may seem out of place given the high degree of fantasy present in music composition and listening. The point of types here is to provide a set of constraints that accomplish two goals:
-
-1. The constraints act as a proof that what you're building has the best chance to work as expected and produce the sound you're aiming to produce. This makes experimentation go faster.
-2. Like all art-forms, the constraints act simultaneously as a dialectical guide through _and_ impediment to creation. It's the epiphanies we have as we are guided and impeded that help us make great work.
+1. Types act as proof that what you're building has the best chance to work as expected. This makes experimentation go faster as you spend less time fixing bugs and more time writing and listening.
+2. Like all art-forms, constraints act simultaneously as a dialectical guide through _and_ impediment to creation. The epiphanies we have as we are guided and impeded help us make great work.
 
 ## Our first composition(s)
 
-In the example above, we listened to our first note `c4` by applying the function `play` to it. Let's add together some more functions to see how far we can push that note.
+In the example above, we listened to our first note `c4` by applying the function `player` to it. Let's add together some more functions to see how far we can push that note.
 
-We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 5 seconds. To do so, we'll write a function that multiplies time by 0.1 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 5 seconds.
+We'll start by acting on the volume of the note as a function of time.  Let's make the note taper down to zero-volume over 5 seconds. To do so, we'll write a function that multiplies time by 0.2 and subtracts it from 1.0, which will smoothly interpolate from 1 to 0 over 5 seconds.
 
 <Player player={noteFadeMain} code={noteFade} />
 
@@ -91,9 +89,9 @@ An equivalent way to write that would be the following:
 
 <Player player={noteFadeAltMain} code={noteFadeAlt} />
 
-[`calcSlope`](https://github.com/mikesol/purescript-wags/blob/81dd024e13ad2bdb6a2598b29e86105fa762b7a9/src/WAGS/Math.purs#L7) and [`betwixt`](https://github.com/mikesol/purescript-wags-lib/blob/a1569215c2360461f70f1e6505d01ec3d5a72f05/src/WAGS/Lib/Tidal/Tidal.purs#L953) are functions provided by the libraries [`wags`](https://github.com/mikesol/purescript-wags) and [`wags-lib`](https://github.com/mikesol/purescript-wags-lib), as will be the case of many of the functions we'll encounter along our path.  While we'll use these functions for convenience, it's often helpful to write them out by hand for learning purposes.  As a challenge throughout this and other articles, after reading the article once, try to write some these functions from scratch and compare them to the reference implementations.
+[`calcSlope`](https://github.com/mikesol/purescript-wags/blob/81dd024e13ad2bdb6a2598b29e86105fa762b7a9/src/WAGS/Math.purs#L7) and [`betwixt`](https://github.com/mikesol/purescript-wags-lib/blob/a1569215c2360461f70f1e6505d01ec3d5a72f05/src/WAGS/Lib/Tidal/Tidal.purs#L953) are functions provided by the libraries [`wags`](https://github.com/mikesol/purescript-wags) and [`wags-lib`](https://github.com/mikesol/purescript-wags-lib), as will be the case of many of the functions we'll encounter along our path.  While we'll use these functions for convenience, it's often helpful to write them out by hand for learning purposes.  As a challenge throughout this and other articles, after reading the article once, try to write some these functions from scratch and compare them to the library implementations. If you feel that your implementation is better, please make a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)!
 
-When working with functions of time like calcSlope, one common convention is to leave `time` as the last argument. If we write a function `f` of `time` that internally calls a function `g` of `time`, we say that `time` is an [_abstraction_](https://wiki.haskell.org/Eta_conversion) over the function `g`. Without the time term, we call the function `f` eta-reduced.
+When working with functions of time like `calcSlope`, one common convention is to leave `time` as the last argument. If we write a function `f` of `time` that internally calls a function `g` of `time`, we say that `time` is an [_abstraction_](https://en.wikipedia.org/wiki/Lambda_calculus) over the function `g`. Without the `time` term, we call the function `f` [_eta-reduced_](https://wiki.haskell.org/Eta_conversion).
 
 ```haskell
 f time = g time -- time abstracted over g
@@ -107,13 +105,13 @@ f + 2 = g + 2 -- ...is the same as stating that...
 f = g
 ```
 
-The idea of abstraction (creating a function), along with application (otherwise known as _invoking_ a function) are core to the [Simple Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) and act as a basis for functional programming.
+The idea of abstraction (_defining_ a function) and application (_invoking_ a function) are core to a formal system in mathematical logic called the [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus). Developed in the 1930s by Alonzo Church, the Lambda Calculus acts as a syntactic basis for most functional programming languages, including PureScript.
 
-In order to eta-reduce the function in the example above, we introduce one of the most powerful ideas in functional programming - composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`.
+In order to eta-reduce `fadeOut` from the example above, we introduce one of the most powerful ideas in functional programming — composition, which we will represent as `<<<`. When you compose two functions, you pipe the output of one into the input of another without _abstracting_ the input to either function.  If we write `h time = f (g time)`, `time` is abstracted over `g` and `(g time)` is abstracted over `f`. However, if we write `h = f <<< g`, the abstraction is eta-reduced _both_ for `g`'s input _and_ for `f`'s input. Let's see that in the example using `betwixt` and `calcSlope`. The `time` term is no longer present - it has been eta-reduced using function composition.
 
 <Player player={noteFadeEtaMain} code={noteFadeEta} />
 
-Function composition is not just about terser syntax - as we will see in subsequent lessons on profunctors and free-semigroupoids, composition as an operation can be applied to other things besides functions. So working with at this higher level of abstraction, we unteather ourselves from functions and talk in more general terms about two things being composed. For me, describing the world abstractly in this way is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
+Function composition is not just about terser syntax. In fact, the terser syntax — also called point-free syntax — often leads to a golf-like competition to make as short as possible and, when done too eagerly, unreadable. As we will see in subsequent articles on [Profunctors](https://pursuit.purescript.org/packages/purescript-profunctor/5.0.0/docs/Data.Profunctor#t:Profunctor) and [Free Semigroupoids](https://github.com/natefaubion/purescript-free-semigroupoid), composition as an operation can be applied to other things besides functions. By working at this higher level of abstraction, we unteather ourselves from functions and think in more general terms about output flowing into input. For me, this type of abstract reasoning is one of the joys of both music and functional programming, making it possible to exploit structural similarities at multiple levels of abstraction.
 
 ### A bouquet of functions
 
@@ -125,7 +123,7 @@ We can also control the volume with a [low-frequency oscilator, or LFO](https://
 
 <Player player={noteLfoMain} code={noteLfo} />
 
-The one thing that all of these examples have in common is that they are functions of a `Number` that ouput a number. As the output of one can be the input of another, we can _compose_ them together. Composition is an essential term in both music and functional programming, and their meanings largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
+The one thing that all of these examples have in common is that they are functions from a `Number` to a `Number`. As the output of one can be the input of another, we can _compose_ them together. Interestingly, the meanings of the word "composition" in music and functional programming largely overlap. When we compose music, we blend together sounds either in a sequence or simultaneously to crete a larger work. When we compose functions, we use the output of one as the input of another to create complex control parameters.
 
 Let's compose three functions together using the purescript operator `<<<`. The first one will be our LFO, the second will add an offset, and the third will clip the wave at boundaires.
 
@@ -135,7 +133,7 @@ Visually, the result looks something like this:
 
 <CompChart />
 
-There's a special term for functions whose input type is the same as the output type. We call these _endo_ functions - endo being a prefix from the Greek ἔνδον (endon) meaning "within, inner, absorbing, or containing." We can chain together compositions of endo-functions to create some pretty jolting sounds.
+There's a special term for functions whose input type is the same as the output type. We call these _endo_ functions — endo being a prefix from the Greek ἔνδον (endon) meaning "within, inner, absorbing, or containing." We can chain together compositions of endo-functions to create some pretty jolting sounds.
 
 The beautiful thing about chaining compositions of endo-functions is that you can comment out different functions using two dashes `--` to change the result. In the example below, in addition to playing around with the values, try to comment out some functions (add `--`) and comment in (remove `--`) others.
 
@@ -143,39 +141,39 @@ The beautiful thing about chaining compositions of endo-functions is that you ca
 
 ## A taste of things to come
 
-In this article series, I will try to keep the pacing of the material more or less consistent. However, at certain points, I will glimpse into the future to show you where we are heading by subtly tweaking an example to provide a teaser for a future concept. We will have entire articles devoted to functors, applicatives, folds, semigroups and monoids, so consider this a small _mise en bouche_ for the not-too-distant future.
+In this article series, I will try to keep the pacing of the material more or less consistent. However, at certain points, I will glimpse into the future to show you where we are heading by subtly tweaking an example. I intend to write full articles devoted to functors, applicatives, folds, semigroups and monoids, so consider this a small _mise en bouche_ for the not-too-distant future.
 
 ### Functors and applicatives
 
-Currently, while we have a way to pipe output into an input via composition, we have no way to _blend_ two results together. For example, if we want to add the result of an LFO to the result of a terraced function, we would write something like `(\time -> lfo time + terraced time)`. While this is fine in small doses, it gets tedious if _everything_ is a function of time. We'd like to somehow have the time term get passed from function to function automatically. In functional programming, there are many ways to do this, including the [`Reader`](https://pursuit.purescript.org/packages/purescript-transformers/5.1.0/docs/Control.Monad.Reader#t:Reader) pattern and the [`Behavior`](https://pursuit.purescript.org/packages/purescript-behaviors/7.0.0/docs/FRP.Behavior#t:Behavior) pattern. We'll see both of those in a later article, but what I'd like to show here is how to accomplish this using functors and applicatives.
+Currently, while we have a way to pipe output into an input via composition, we have no way to _blend_ two results together. For example, if we want to add the result of an LFO to the result of a terraced function, we would write something like `(\time -> lfo time + terraced time)`. While this is fine in small doses, it gets tedious if _everything_ is a function of time. Instead, we'd like for time to flow from function to function automatically. In functional programming, there are many ways to do this, including the [`Reader`](https://pursuit.purescript.org/packages/purescript-transformers/5.1.0/docs/Control.Monad.Reader#t:Reader) pattern and the [`Behavior`](https://pursuit.purescript.org/packages/purescript-behaviors/7.0.0/docs/FRP.Behavior#t:Behavior) pattern. We'll see both of those in a later article, but what I'd like to show here is how to accomplish this using functors and applicatives.
 
 The example below, we'll write the same function with `time` abstracted over the function and without `time` abstracted. The "without" version uses functors via the [`<$>` or _map_](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Functor#t:Functor) operator and applicative functors via the [`<*>` or _apply_](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Apply#t:Apply) operator. You can think of them as "lifting" a computation (in this case, a function of time) into an abstraction. When we "lower" the computation, we get the abstraction over time back. If you substitute `variation1` for `variation2`, you'll hear no difference.
 
 <Player player={noteFunkMain} code={noteFunk} />
 
-Later on, there will be a whole lesson on functors applicatives that explore the many uses of `<$>` and `<*>`. Here, I mostly want to build intution that you can blend together functions of time using binary operations, functors, applicatives, and function composition. The example below is a small Bolero using all three techniques. Play around with the parameters to see how it changes!
+Using this technique, you can blend together functions of time using binary operations, functors, applicatives, and function composition. The example below is a small Bolero using all three techniques. Play around with the parameters to see how it changes!
 
 <Player player={noteFunk2Main} code={noteFunk2} />
 
 ### Folds
 
-In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with composition. [`<<<`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid) is, after all, a function that is applied to two arguments. So, rather than applying it directly, let's store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, `compose`) to the arguments starting from an initial argument. Here, the initial argument is `identity` - a function that returns its argument.
+In functional programming, rather than applying a function to arguments, we often store arguments in a structure called a _free_ structure and then _interpret_ that structure later. Let's do that with function composition. Rather than applying it directly, we'll store its arguments in a free structure (an Array, also known as a "free monoid") and then interpret it using a simple interpreter called `foldl` that applies a function (in this case, [`<<<`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid)) to the arguments starting from an initial argument. Here, the initial argument is [`identity`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Category#t:Category) — a function that returns its argument.
 
 <Player player={noteFoldMain} code={noteFold} />
 
-The function [`identity`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Category#t:Category) is my favorite function. The profundity of `identity` comes up time and time again in functional programming through its central role in [Category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/). We'll see it again when we make music using the [Yoneda lemma](https://bartoszmilewski.com/2015/09/01/the-yoneda-lemma/). There are lots of neat tricks you can do with identity. You can even omit it enitrely in many forumlations, like in the example below, which produces the same sound as the example above but uses the fact that identity _is_ the identity in the set of endo functions (meaning that it is the endofunction that, when composed with an endofunction, will return the original).
+The function [`identity`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Category#t:Category) is my favorite function. It comes up time and time again in functional programming through its central role in [Category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/). We'll see it again when we make music using the [Yoneda lemma](https://bartoszmilewski.com/2015/09/01/the-yoneda-lemma/). There are lots of neat tricks you can do with identity, including omitting it enitrely in certain forumlations. In the example below, which sounds exactly like the example above, we exploit the fact that identity _is_ the identity in the set of endo functions (meaning that it is the endofunction that, when composed with an endofunction, will return the original).
 
 <Player player={noteEndoMain} code={noteEndo} />
 
 ## Scales
 
-Armed with our composition skills, we can approach pitch in the same way that we approached volume.  Before we do, though, it'd be useful to talk a bit about scales and perception of pitch and volume. While one can be plenty creative without knowing these scales, mastering them makes it easier to anticipate how music will be heard in certain cultural contexts.
+Armed with our composition skills, we can approach pitch in the same way that we approached volume.  Before we do, though, it'd be useful to talk a bit about the scales along which we perceive pitch and volume. While one can be plenty creative without knowing these scales, mastering them makes it easier to anticipate how music will be heard in certain cultural contexts.
 
 In the previous example, when we were linearly changing volume between 0 and 1, the change from `0.0-0.5` was _much_ greater than the change from `0.5-1.0`. Let's confirm that by using the example below. Switch between the functions `firstHalf` and `secondHalf` to hear the difference.
 
 <Player player={noteFadeHalvesMain} code={noteFadeHalves} />
 
-This is because, while we scaled the amplitude of the waves in the air linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows loudness (amplitude ratio) descending from 1 to 0, and the corresponding change in decibels, and how we effectively hear it (the power ratio).
+This is because, when we scale the amplitude of a signal linearly, we hear that change _logarithmically_. The unit for logarithmic amplitude is the **bel**, and in almsot all literature on sound, you'll hear folks talking about tenths of bels, or **decibels** (dB for short).  Below is a chart that shows loudness (amplitude ratio) descending from 1 to 0, and the corresponding change in decibels, and how we effectively hear it (the power ratio).
 
 <table>
   <thead>
@@ -201,21 +199,21 @@ We can bring this even closer to human perception using [Fletcher-Munson curves]
 
 ![Fletcher-Munson curves](https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Lindos1.svg/668px-Lindos1.svg.png)
 
-Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3` in the examples, we are using a scale called the equally-tempered chromatic scale which became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when one is a multiple of two of the other one. For example, most people hear 220.0, 440.0, 880.0 and 1760.0 as the same note shifted higher and higher.  In fact, let's let that be the basis of our first exmaple on pitch.  We'll use a function similar to the terraced function we used for volume, but we will use values that correspond to jumping octaves.
+Pitch also exists on many different scales, and depending on our choice of scale, we can have radically different musical outocmes that are evokative of cultures that span the globe. When we use notes like `c4` or `aFlat3`, we draw them from a scale called the equally-tempered chromatic scale. This scale became standardized in Europe in the 18th century and is currently the basis of most popular music.  The equally-tempered scale is also a logarithmic one: we perceive two pitches to be of the same class when based on powers of 2. For example, most people hear 220.0 (`220 * 2 ^ 0`), 440.0 (`220 * 2 ^ 1`), 880.0 (`220 * 2 ^ 2`) and 1760.0 (`220 * 2 ^ 3`) as the same note shifted higher and higher.  Let's use that as a point of departure for our first exmaple on pitch.
 
 <Player player={noteOctavesMain} code={noteOctaves} />
 
 ## Pitch
 
-All of the same functions we used to control volume can also be used to control the pitch of our single note. Let's use the same `base` function to control both volume and pitch, scaling it to appropriate ranges for each parameter. Again, we'll use composition (`<<<`) for this.
+All of the same functions we used to control volume can also be used to control the pitch of our single note. In the example below, the same `base` function is scaled to appropriate ranges for each parameter. Again, we'll use composition (`<<<`) for this.
 
 <Player player={noteSameVPMain} code={noteSameVP} />
 
-When working with pitch, it's often useful to use notes from a scale like `c4` or `d5`. In addition, we can transpose notes by adding intervals. Let's see an example that modulates transposition based on time. Another interesting aspect of this example is that pitch no longer _contains_ a function of time, but rather a function of time is used to produce `Pitch`. We can distribute `time` from the outside to the inside of pitch using the function [`join`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Bind#v:join) - a function we'll explore deeper when we look at monads.
+When working with pitch, it's often useful to use notes from a scale like `c4` or `d5`. In addition, we can transpose notes by adding intervals. Let's see an example that modulates transposition based on time. Another interesting aspect of this example is that pitch no longer _contains_ a function of time (no more `Pitch (\t -> f t)`), but rather a function of time is used to _produce_ a `Pitch` (something isomorphic to `\t -> Pitch (f t)`). We can distribute `time` from the outside to the inside of pitch using the function [`join`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Bind#v:join) — a function we'll explore deeper when we look at [monads](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Monad#t:Monad).
 
 <Player player={noteDimMain} code={noteDim} />
 
-Interestingly, we see that when we add an octave to a pitch, this has the effect of multiplying it by 2. This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they adhere to certain predefined laws. Here, addition and multiplcation are the two operators that form a [Semiring](https://en.wikipedia.org/wiki/Semiring). Here is how they're defined in `wags-lib`.
+Interestingly, we see that when we _add_ an octave to a pitch, this has the effect of _multiplying_ it by 2. This is because `Pitch` adheres to a different meaning of `add` and `mul` than `Number`.  In functional programming, the behavior of operators like `add` and `mul` can vary from type to type so long as they follow certain predefined laws. For addition and multiplcation, the laws in question are those of the [Semiring](https://en.wikipedia.org/wiki/Semiring). Here is how they're defined in `wags-lib`.
 
 ```haskell
 cpsToMidi' :: Number -> Number
@@ -233,17 +231,17 @@ instance semiringPitch :: Applicative f => Semiring (Pitch f) where
     (mul <$> (cpsToMidi' <$> a) <*> (cpsToMidi' <$> b)))
 ```
 
-Of course, these definitions need to conform to semiring laws of being commutative over addition and distributive over multiplication. Let's test out those laws in music! In functional programming, when we test laws, we usually use a tool called QuickCheck to generate a bunch of random examples, which we'll do here. In each example, we'll hear pairs of notes in series, and if the pairs are always the same, the law holds!
+Are these definitions in fact lawful? Let's test them out in music! In functional programming, when we [test laws](https://pursuit.purescript.org/packages/purescript-quickcheck-laws/6.0.1), we usually use a library called [QuickCheck](https://pursuit.purescript.org/packages/purescript-quickcheck/7.1.0) to generate a bunch of random examples, which we'll do here. In each example, we'll hear pairs of notes in series, and if the pairs are always the same, the law holds!
 
-### Law 1 - Addition is commutative
+### Law 1 — Addition is commutative
 
 <Player player={pitchLaw1Main} code={pitchLaw1} />
 
-### Law 2 - Multiplication is distributive
+### Law 2 — Multiplication is distributive
 
 <Player preload player={pitchLaw2Main} code={pitchLaw2} />
 
-Indeed, we hear that the addition of pitch commutes - `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](), [Idris](), and the language used for these examples - `PureScript`. The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can function differently in different contexts while retaining its identity.
+Indeed, we hear that the addition of pitch commutes — `a + (b + c) = (a + b) + c`. Furthermore, multiplication distributes: `a * (b + c) = a * b + a * c`. The abiltiy to define custom behavior of functions on types based on laws is a core feature of most programming languages in the [ML-family](https://en.wikipedia.org/wiki/ML_(programming_language)), including [Haskell](https://haskell.org), [Idris](https://idris-lang.org), and of course [`PureScript`](https://purescript.org). The fact that a single function operates differently on different types according to an underlying law is a deeply musical idea. It is the essence of a _theme_ or _motif_: something that can [function differently in different contexts while retaining its identity](http://websites.umich.edu/~umfandsf/symbolismproject/symbolism.html/Teutonic_Mythology/wagleit.html).
 
 ## I'll be Bach
 
@@ -253,11 +251,11 @@ Getting less mathy for a bit, here are the first four bars of BWV 846 transcribe
 
 ## Deconstructing and reconstructing
 
-One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's take our first `lfo` example and write it in a slightly different syntax with a different timbre. Here, instead of using one note, we'll use six. However, as the six notes will be playing at the same time, we'll hear them as a single organ-like sound.
+One of my favorite aspects about both music and functional programming is that anything can be a unit of construction or a subject of deconstruction. Often these two processes can happen at the same time. As a last exercise, and as a glimpse into the future, let's again start with a "single" note that is comprised of six oscillators.
 
 <Player player={timbreMain} code={timbre} />
 
-Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use a function of time and LFOs to subtly shift the overtones of the pitch, making it shimmer over time.
+Now, let's undercut the unity of our sound by pulling it apart over time. To do this, we'll again use LFOs, this time to subtly shift the overtones of the pitch.
 
 <Player preload player={timbrePlusMain} code={timbrePlus} />
 

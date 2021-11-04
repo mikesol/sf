@@ -4,7 +4,6 @@ import Prelude
 import WAGS.Lib.Learn.Duration
 import WAGS.Lib.Learn.Pitch
 import WAGS.Lib.Learn.Volume
-
 import Control.Apply (lift2)
 import Control.Comonad (extract)
 import Control.Comonad.Cofree (Cofree, deferCofree)
