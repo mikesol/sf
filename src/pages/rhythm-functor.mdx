@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 
 Rhythm transports humans and functors transport categories. This is why my second post is on the rhythm and the functor. By the end of this post, I want you to _hear_ the rhythm of functors and allow them to take your music to new places.
 
-### Rhythm
+## Rhythm
 
 Everything we perceive as rhythm boils down to a series of unaccented and accented moments in time. The accents, or agogics, are a mix of volume, timbre and harmony.
 
@@ -19,6 +19,34 @@ But at the end of the day when I'm listening to it I don't think about any of th
 
 Over the course of this article, we're going to be unpacking and remixing lots of rhythms. I'll start here, with a short remix of JAY-Z that takes his rhythm as a point of departure and takes it somewhere new.
 
-### Functors 
+## Functors
+
+In the [previous post](), we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a _category_. In the category, types are _objects_ (or nodes) and functions are _morphisms_ (or arrows). Let's call that category **Purs**, hereafter referred to as 𝕻 for short.
+
+For something to be a category, it needs to follow two rules:
+
+- All objects must have an identity morphism that goes from it back to it. You can convince yourself that, for every type `T` in PureScript, we can construct a function `T -> T` that returns the input as output.
+- If there exists a morphism from `C -> D` and a morphism from `B -> C`, there must exist a morphism from `B -> D`. If we look at the definition of [compose](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid), it is `forall b c d. a c d -> a b c -> a b d` where `a` is an arbitrary semigroupoid (in this case, a function). So, when specialized to functions, this can be written as `forall b c d. (c -> d) -> (b -> c) -> (b -> d)`.
+
+So 𝕻 is a category, and where there are categories, there are functors.
+
+A [functor](https://bartoszmilewski.com/2015/01/20/functors/) is a mapping of objects and morphisms from one category to another category. As PureScript can't go outside of PureScript (yet!), the functors we will look at are from 𝕻 to 𝕻. Functors from a category back to itself are called _endo-functors_.
+
+Any category can be described completely in terms of its morphisms, as an object does not exist that does not have at least one morphism - the identity morphism - from and to it. Because of this special property of categories, functors can be described by how they map _morphisms_ to _morphisms_. In PureScript, this is called `map`.
+
+```haskell
+class Functor f where
+  map :: forall a b. (a -> b) -> (f a -> f b)
+```
+
+The parentheses around `f a -> f b` can be dropped and it would mean the same thing, but I like them there as they make it clear that we are mapping a morphism `a -> b` to a _new_ moprhism from `f a -> f b`, where both `f a` and `f b` are objects somewhere else in the vast category of 𝕻.
+
+Some classic functors include `Maybe`, `List`, `Array`, `Tuple a`, `Either a`, `Const a`, `Map k`, `Function a` and `Identity`. For example, the `Maybe` functor transports the function `not :: Boolean -> Boolean` to `Maybe Boolean -> Maybe Boolean`.
+
+## Music + Functors
+
+As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Situate a note in a rhythm? There's a functor for that. Apply a reverb? There's a functor for that. Conditionally strike a drum based on the day of the week? There's a functor for that too!
+
+The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it. We can also partially apply `map (transpose wholeTone)` as a function that will lift the morphism `transpose wholeTone` to _any_ functor containing notes.
 
 <Footer />
