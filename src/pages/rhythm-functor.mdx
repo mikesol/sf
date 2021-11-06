@@ -1,52 +1,178 @@
 import { Player } from "../components/player";
 import Footer from "../components/footer";
+import singleNote from "../FPSound/Intro/SingleNote.purs";
+import { main as singleNoteMain } from "../../output/FPSound.Intro.SingleNote/";
 
 # The rhythm and the functor
 
 Rhythm transports humans and functors transport categories. This is why my second post is on the rhythm and the functor. By the end of this post, I want you to _hear_ the rhythm of functors and allow them to take your music to new places.
 
+<Player stub player={singleNoteMain} code={singleNote} />
+
 ## Rhythm
 
-Everything we perceive as rhythm boils down to a series of unaccented and accented moments in time. The accents, or agogics, are a mix of volume, timbre and harmony.
+A rhythm is a series of unaccented and accented moments in time. The accents are demarcated by changes in volume, timbre and harmony.
 
-Great rhythms have a delicate mix of symmetry and asymettry that deeply moves us. Some of this is certainly culturally delimited, stemming from the use of certain instruments or voices or pitch languages. Other aspects of rhythm's power feels more intrinsic. When we catch ourselves being moved by the rhythm of a forest or of a machine, we struggle to explain why, and that's of course ok. Rhythm defies explanation in ways big and small - the ancient Stoics elevated it to the status of the cosmos, and Kant likened it with the most intimate of beliefs. In both cases, rhythm finds us and takes us elsewhere, be it on an internal or external journey.
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Its the delicate mix of symmetry and asymettry in rhythm that deeply moves us. Some of this is certainly culturally delimited, stemming from the use of certain instruments or voices or pitch languages.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Other aspects of rhythm's power feels more intrinsic. When we catch ourselves being taken aback by the rhythm of a forest or of a machine, we struggle to explain why, and that's of course ok.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Rhythm defies explanation in ways big and small - the ancient Stoics elevated it to the status of the cosmos, and Kant likened it with the most intimate of beliefs. In both cases, rhythm finds us and takes us elsewhere, be it on an internal or external journey.
+
+<Player stub player={singleNoteMain} code={singleNote} />
 
 Like many things in music, rhythm often exists as a conversation with the past, taking the old and creativly deforming it into something new. One of my favorite examples of this is JAY-Z's _Show Me What you Got_.
 
+<Player stub player={singleNoteMain} code={singleNote} />
+
 I could go on forever about why I love this rhythm. Some reasons probably include:
 
-But at the end of the day when I'm listening to it I don't think about any of these things: I just love it.
+- The bold accents on the backbeats coupled with the relatively weak downbeats.
+- The alternation between highly regular measures and measures with a free sens of time.
+- The glacial pace of the horns against the frantic rolls of the drums.
+- The very (very) laid-back backbeat on most beat-2s.
+- The spoken-word style of the rap itself, which flows subtly in and out of the meter in the same way that João Gilberto floats over _bossa nova_.
 
-Over the course of this article, we're going to be unpacking and remixing lots of rhythms. I'll start here, with a short remix of JAY-Z that takes his rhythm as a point of departure and takes it somewhere new.
+But at the end of the day when I'm listening to it I don't think about any of these things: I just love it. And I love to remix it!
 
-## Functors
+<Player stub player={singleNoteMain} code={singleNote} />
 
-In the [previous post](), we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a _category_. In the category, types are _objects_ (or nodes) and functions are _morphisms_ (or arrows). Let's call that category **Purs**, hereafter referred to as 𝕻 for short.
+## Categories
+
+In the [previous post](../note-function), we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a _category_. In the category, types are _objects_ (or nodes) and functions are _morphisms_ (or arrows). Let's call that category **Purs**, hereafter referred to as 𝕻 for short.
 
 For something to be a category, it needs to follow two rules:
 
-- All objects must have an identity morphism that goes from it back to it. You can convince yourself that, for every type `T` in PureScript, we can construct a function `T -> T` that returns the input as output.
-- If there exists a morphism from `C -> D` and a morphism from `B -> C`, there must exist a morphism from `B -> D`. If we look at the definition of [compose](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid), it is `forall b c d. a c d -> a b c -> a b d` where `a` is an arbitrary semigroupoid (in this case, a function). So, when specialized to functions, this can be written as `forall b c d. (c -> d) -> (b -> c) -> (b -> d)`.
+### Rule 1 - Identity
+
+All objects must have an identity morphism that goes from it back to it. You can convince yourself that, for every type `T` in PureScript, we can construct a function `T -> T` that returns the input as output.
+
+```haskell
+idInt :: Int -> Int
+idInt a = a
+
+idBoolean :: Boolean -> Boolean
+idInt a = a
+
+idMaybeArrayListVoid
+  :: Maybe (Array (List Void))
+  -> Maybe (Array (List Void))
+idMaybeArrayListVoid a = a
+```
+
+The `identity` function I discussed in the last post is a generalization of this, and polymorphically applies to _all_ types in 𝕻.
+
+```haskell
+class Category c where
+  identity :: forall a. c a a
+```
+
+### Rule 2 - Composition
+
+If there exists a morphism from `C -> D` and a morphism from `B -> C`, there exists a morphism from `B -> D` that is formed by first going from `B` to `C` and then from `C` to `D`. If we look at the definition of [compose](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid), a function we used extensively in the last section, it is `forall b c d. a c d -> a b c -> a b d` where `a` is an arbitrary semigroupoid (in this case, a function). So, when specialized to functions, this can be written as `forall b c d. (c -> d) -> (b -> c) -> (b -> d)`.
 
 So 𝕻 is a category, and where there are categories, there are functors.
 
+## Functors
+
 A [functor](https://bartoszmilewski.com/2015/01/20/functors/) is a mapping of objects and morphisms from one category to another category. As PureScript can't go outside of PureScript (yet!), the functors we will look at are from 𝕻 to 𝕻. Functors from a category back to itself are called _endo-functors_.
 
-Any category can be described completely in terms of its morphisms, as an object does not exist that does not have at least one morphism - the identity morphism - from and to it. Because of this special property of categories, functors can be described by how they map _morphisms_ to _morphisms_. In PureScript, this is called `map`.
+Any category can be described completely in terms of its morphisms, as all objects can be indexed by their identity morphism. Because of this special property of categories, functors can be described by how they map _morphisms_ to _morphisms_. In PureScript, this is called `map`.
 
 ```haskell
 class Functor f where
   map :: forall a b. (a -> b) -> (f a -> f b)
 ```
 
-The parentheses around `f a -> f b` can be dropped and it would mean the same thing, but I like them there as they make it clear that we are mapping a morphism `a -> b` to a _new_ moprhism from `f a -> f b`, where both `f a` and `f b` are objects somewhere else in the vast category of 𝕻.
+The parentheses around `f a -> f b` can be dropped and it would mean the same thing, but I like them because they make it clear that we are mapping a morphism `a -> b` to a _new_ moprhism from `f a -> f b`, where both `f a` and `f b` are objects somewhere else in the vast category of 𝕻.
 
-Some classic functors include `Maybe`, `List`, `Array`, `Tuple a`, `Either a`, `Const a`, `Map k`, `Function a` and `Identity`. For example, the `Maybe` functor transports the function `not :: Boolean -> Boolean` to `Maybe Boolean -> Maybe Boolean`.
+Some classic functors include `Maybe`, `List`, `Array`, `Tuple a`, `Either a`, `Const a`, `Map k`, `Function a` and `Identity`. For example, the `Maybe` functor transports the function `not :: Boolean -> Boolean` to `Maybe Boolean -> Maybe Boolean`. Those with type variables, like `Tuple a`, represent families of functors: one for every type. Meaning that `Tuple Int` is a functor, `Tuple Boolean` is a functor, etc. 
 
 ## Music + Functors
 
 As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Situate a note in a rhythm? There's a functor for that. Apply a reverb? There's a functor for that. Conditionally strike a drum based on the day of the week? There's a functor for that too!
 
-The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it. We can also partially apply `map (transpose wholeTone)` as a function that will lift the morphism `transpose wholeTone` to _any_ functor containing notes.
+<Player stub player={singleNoteMain} code={singleNote} />
+
+The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it. We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor applied to notes.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+One of the most common types of functors is a collection like a `List` or `Object` or `Array`. Insofar as a rhythm is a connection of notes, we can think of functors as lifting functions (morphisms) from individual elements of rhythms to the whole rhythm. What comes out the other end is a new rhythm...
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+...or another rhythm...
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+...or something that most would not call a rhythm but I still find eerily pleasant...
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+## Functor road-show
+
+Let's take functors for a spin! Each of these examples uses `map` is a slightly different way to achieve a slightly different effect.
+
+## Applicative functors
+
+Functors in PureScript lift functions (morphisms) from 𝕻 to somewhere else in 𝕻. But what if you want to work with a function that's already been lifted? For example, if we don't have `(a -> b)` but rather we have `f (a -> b)`, can we still use it?
+
+Types that are applicative functors answer with a resounding YES. Applicative functors are exactly like `map` but work on functions that have already been lifted:
+
+```haskell
+class Apply f where
+  apply :: forall a b. f (a -> b) -> (f a -> f b)
+```
+
+The most common use case for applicative functors is partially applied functions, which we saw in several examples from the [previous article]().
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+## Indexed functors
+
+In category theory, one is not allowed to peek inside of objects to know anything about them. Meaning that `Boolean`, `Unit`, `Void` and `Int` are all the same in the eyes of a functor. However, in 𝕻, we are able to reason about certain properties of the inhabitants of objects, otherweise known as _terms_. For example, we know that the cardinality of the `Boolean` is 2 - true or false. In addition, certain types are commonly understood to have terms with an inherent _ordinality_, meaning that their contents can be indexed by a natural number. This is most apparent in lists, where the first term in a list can be assigned the ordinal number 0, the second term 1, and so forth until the end of the list. It is important to state, however, that these ordinalities are entirely subjective. While ordering the elements of a list _0,1,2,...,n_ may feel intuitive, there is nothing axiomatically "correct" about this order. On the other hand, lists verifiably have the cardinality of [ℵ1](https://en.wikipedia.org/wiki/Cardinality_of_the_continuum).
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Indexed functors are applicative functors that create a lifted function `f (a -> b)` by lifting a function `i -> a -> b` to a `f i` that contains the index `i` in order. While natural numbers is a common index, it is not the only one possible. The full signature is:
+
+```haskell
+class FunctorWithIndex f i | f -> i where
+  mapWithIndex :: (i -> a -> b) -> f a -> f b
+```
+
+The arrow from `f` to `i` in the class signature is called a _functional dependency_ and indicates that the choice of `f` completely determines `i` or, in other words, that `i` depends (in this case exclusively) on `f`.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Indices are crucial in rhythm - they are the signposts that make rhythm come alive. The reason I can talk about JAY-Z delaying the backbeat of beat-2 is because I can reference _three_ indices: beat-2 (four beats in a measure, so indexed by _0,1,2,3_) and backbeat (splitting a beat in two, so indexed _0,1_) and the hesitation on the backbeat, meaning how much we are delaying it (indexed by a real number, so ℵ1).  We can use an indexed functor to act on several of these indices at once.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+## Contravariant functors
+
+One great feature of category theory is that you get another category for free by "flipping the arrows". For example, if a catgory `X` has objects `A` and `B` and morphisms `A -> A`, `B -> B` and `A -> B`, we get a new category `Y` simply by flipping the arrows, meaning `A -> A`, `B -> B` and `B -> A`. Note that `Y` is purely theoretical: often times, if a category represents a real-world phenomena (ie if `->` is time), we can't flip the arrows and get a time machine for free. But on paper, all categories are flippable, and a large subset of 𝕻 _is_ in fact flippable (certain important functions, like [`absurd`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Void#v:absurd), cannot be flipped). Functors can be applied to these flipped categories and, when they are, they're called **contravariant** functors.
+
+```haskell
+class Contravariant f where
+  cmap :: forall a b. f (a -> b) -> (f b -> f a)
+```
+
+Note that `a` and `b` are flipped on the right-hand side.
+
+The most common contravariant functor is a _predicate_.
+
+## Profunctors
+
+Profunctors are my favorite types of functors. They combine contravariant functors and plain ol' functors in a rather incredible way, and I find that they give the biggest bang for your buck of any concept from functional programming.
+
+Somewhat-formally speaking a pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from a "normal" unflipped catgory, and maps them to yet-another category. As all we have is 𝕻, we'll settle for (𝕻op x 𝕻) being lifted to another region of 𝕻, where 𝕻op is 𝕻 flipped. Note that this flip sort of makes sense - for most functions (ie `Int -> Boolean`) we can conceive of a function in the oppostie direction (`Boolean -> Int`). This falls apart, however, for functions with un
 
 <Footer />
