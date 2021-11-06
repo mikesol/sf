@@ -120,6 +120,18 @@ One of the most common types of functors is a collection like a `List` or `Objec
 
 Let's take functors for a spin! Each of these examples uses `map` is a slightly different way to achieve a slightly different effect.
 
+### A
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+### B
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+### C
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
 ## Applicative functors
 
 Functors in PureScript lift functions (morphisms) from 𝕻 to somewhere else in 𝕻. But what if you want to work with a function that's already been lifted? For example, if we don't have `(a -> b)` but rather we have `f (a -> b)`, can we still use it?
@@ -173,6 +185,6 @@ The most common contravariant functor is a _predicate_.
 
 Profunctors are my favorite types of functors. They combine contravariant functors and plain ol' functors in a rather incredible way, and I find that they give the biggest bang for your buck of any concept from functional programming.
 
-Somewhat-formally speaking a pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from a "normal" unflipped catgory, and maps them to yet-another category. As all we have is 𝕻, we'll settle for (𝕻op x 𝕻) being lifted to another region of 𝕻, where 𝕻op is 𝕻 flipped. Note that this flip sort of makes sense - for most functions (ie `Int -> Boolean`) we can conceive of a function in the oppostie direction (`Boolean -> Int`). This falls apart, however, for functions with un
+Somewhat-formally speaking, a pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from a "normal" unflipped catgory, and maps them to yet-another category. As all we have is 𝕻, we'll settle for (𝕻op x 𝕻) being lifted to another region of 𝕻, where 𝕻op is 𝕻 flipped. Note that this flip sort of makes sense - for most functions (ie `Int -> Boolean`) we can conceive of a function in the oppostie direction (`Boolean -> Int`). This falls apart, however, for functions with un
 
 <Footer />
