@@ -176,10 +176,12 @@ One great feature of category theory is that you get another category for free b
 
 ```haskell
 class Contravariant f where
-  cmap :: forall a b. f (a -> b) -> (f b -> f a)
+  cmap :: forall a b. (a -> b) -> (f b -> f a)
 ```
 
 Note that `a` and `b` are flipped on the right-hand side.
+
+At face value, contravariant functors seem ridiculous. It is sort of like separating a pizza into ingredients after it has been cooked - give me a recipe that takes ingredients `a` to pizza `b`, and if you give me a cooked pizza `f b`, I'll give you back your cooked raw ingredients `f a`.
 
 The most common contravariant functor is a _predicate_.
 
