@@ -222,8 +222,65 @@ class Profunctor p where
   dimap :: forall a b c d. (a -> b) -> (c -> d) -> p b c -> p a d
 ```
 
+The most common profunctor you'll come across is the `Function`. Specialized to function, `dimap` becomes `(a -> b) -> (c -> d) -> (b -> c) -> (a -> d)`. This is sort of like spelunking. If you give me a way to get down to the cave `a -> b`, a way to get back up `c -> d`, and some time in the cave `b -> c`, I'll give you back a spelunking trip `a -> d`.
 
+Another metaphor that is more apt for this context is _editing_. If you give me a way to zoom into a piece of music `a -> b`, a way to zoom out after you've made a change `c -> d`, and a change `b -> c`, I'll give you a function that changes a piece from `a -> d`. Here, argument order is crucial: if we partially apply dimap in a function `editScore = dimap zoomIn zoomOut`, then `editScore` takes an editing function `b -> c` and returns a function from an old score `a` to a new score `d`. The ideas of zooming in & out are _visual_ metaphors, and profunctors are often described based on the behavior of light. Other examples are the [`Optic`](), the [`Lens`]() and the [`Prism`](). The zooming I've just described is in fact a `Lens`, and there are two resources I know of that cover profunctor optics exhaustively:
+
+- A
+- B
+
+All of the setters in the `wags-lib` library are profunctors. They are the stuff music is made of. In the following example, we use eight different profunctor lenses:
+
+1. A
+2. A
+3. A
+4. A
+5. A
+6. A
+7. A
+8. A
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+We can even make our own - here is a different example with two hand-rolled lenses to modulate X and Y.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Profunctors are when things get interesting: they can zoom into data structures with arbitrary levels of precision (contravariant) and come back out (covariant). Going back to the definition of rhythm as a subtle dance of symmetries and asymmetries in accents over time, profunctors take something bland...
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+...and shape it so that it has _rhythm_!
+
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## On the functorality of rhythms and the rhythm of functors
+
+In this article, we looked at five different variations on the theme of the functor:
+
+- Covariant functor
+- Applicative functor
+- Indexed functor
+- Contravariant functor
+- Profunctor
+
+We heard musical examples of how all five can drive a rhythm. At the risk of being gaudy, here's an example of all five shaping a piece of music.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Rhythms are functors because they map musical events like notes to a new place where the events have (a) order and (b) agogic variety. But do functors have a rhythm? Functors map object to new places like `Int` to `Maybe Int`, `Boolean` to `List Boolean`, `String` to `Event String` and `Number` to `Tuple Unit Number`. What the objects become in these new contexts are anyone's guess. In `Maybe Int` the existence of the `Int` becomes optional, in `List Boolean` the existence of the `Boolean` becomes multiple, in `Event String` the existence of the `String` becomes both multiple and temporal and in `Tuple Unit Number` the existence of `Number` remains singular but it gets a buddy `Unit`. The elusive and wide-raning nature of the little bit of flair that functors can add is as rich, subtle, and surprising as the numerous ways a note can be accented. A note can disappear altogether (rest), be muted (con sordino), be delayed (rubato), or be played several times in rapid succession (tremolo). In this way, functors act as the agogics of categories.
+
+| Functor | Agogic |
+| --------- | ---------- |
+| Const a | rest   |
+| Behavior | drone |
+| Vec D3 | triad |
+| Tuple Percussion | orchestration |
+
+But what about order? For functors to have rhythm, it is not enough that they map a base category to novel agogic spaces. They must also create some type of order.
+
+Morphisms in categories can be thought of as _ordering_ the category. In 𝕻, for example, `->` implies a before-after relationship between types. A function must receive its input _before_ yielding its output.
+
+A functor cannot reorder its source category because it must preserve morphisms. However, nothing stops a functor from conflating many morphisms into the same one (and, by extention, many objects to the same object). The extreme example of this is `Const Unit`, which maps all objects a single object and all morphisms to a single morphism.
 
 <Footer />
