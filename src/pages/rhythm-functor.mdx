@@ -92,7 +92,7 @@ class Functor f where
 
 The parentheses around `f a -> f b` can be dropped and it would mean the same thing, but I like them because they make it clear that we are mapping a morphism `a -> b` to a _new_ moprhism from `f a -> f b`, where both `f a` and `f b` are objects somewhere else in the vast category of 𝕻.
 
-Some classic functors include `Maybe`, `List`, `Array`, `Tuple a`, `Either a`, `Const a`, `Map k`, `Function a` and `Identity`. For example, the `Maybe` functor transports the function `not :: Boolean -> Boolean` to `Maybe Boolean -> Maybe Boolean`. Those with type variables, like `Tuple a`, represent families of functors: one for every type. Meaning that `Tuple Int` is a functor, `Tuple Boolean` is a functor, etc. 
+Some classic functors include `Maybe`, `List`, `Array`, `Proxy`, `Tuple a`, `Either a`, `Const a`, `Map k`, `Function a` and `Identity`. For example, the `Maybe` functor transports the function `not :: Boolean -> Boolean` to `Maybe Boolean -> Maybe Boolean`. Those with type variables, like `Tuple a`, represent families of functors: one for every type. Meaning that `Tuple Int` is a functor, `Tuple Boolean` is a functor, etc. 
 
 ## Music + Functors
 
@@ -272,7 +272,7 @@ Rhythms are functors because they map musical events like notes to a new place w
 
 | Functor | Agogic |
 | --------- | ---------- |
-| Const a | rest   |
+| Proxy | rest   |
 | Behavior | drone |
 | Vec D3 | triad |
 | Tuple Percussion | orchestration |
@@ -281,7 +281,7 @@ But what about order? For functors to have rhythm, it is not enough that they ma
 
 Morphisms in categories can be thought of as _ordering_ the category. In 𝕻, for example, `->` implies a before-after relationship between types. A function must receive its input _before_ yielding its output.
 
-A functor cannot reorder its source category because it must preserve morphisms. However, nothing stops a functor from conflating many morphisms into the same one (and, by extention, many objects to the same object). The extreme example of this is `Const Unit`, which maps all objects a single object and all morphisms to a single morphism.
+A functor cannot reorder its source category because it must preserve morphisms. However, nothing stops a functor from conflating many morphisms into the same one (and, by extention, many objects to the same object). The extreme example of this is `Proxy`, which maps all objects a single object and all morphisms to a single morphism.
 
 𝕻 is an unfathomably rich source category - it conains arrows from all terms to all other terms _except_ in the case where the source is inhabited and the destination is not. Meaning that you won't find anything of the signature `a -> Void` unless `a` itself is uninhabited. These functions are rare and are almost exclusively used when proving something to a compiler via [proof by contradiction](https://docs.idris-lang.org/en/latest/tutorial/theorems.html#the-empty-type). This means that a functor has at its disposal infintely many connections and can reduc them to its own special order, much like a sculptor starts from slab of marble with limitless possibilities and arrives at a beautifully-proportioned work of art.
 
