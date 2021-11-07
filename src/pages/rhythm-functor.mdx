@@ -172,24 +172,57 @@ Indices are crucial in rhythm - they are the signposts that make rhythm come ali
 
 ## Contravariant functors
 
-One great feature of category theory is that you get another category for free by "flipping the arrows". For example, if a catgory `X` has objects `A` and `B` and morphisms `A -> A`, `B -> B` and `A -> B`, we get a new category `Y` simply by flipping the arrows, meaning `A -> A`, `B -> B` and `B -> A`. Note that `Y` is purely theoretical: often times, if a category represents a real-world phenomena (ie if `->` is time), we can't flip the arrows and get a time machine for free. But on paper, all categories are flippable, and a large subset of 𝕻 _is_ in fact flippable (certain important functions, like [`absurd`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Void#v:absurd), cannot be flipped). Functors can be applied to these flipped categories and, when they are, they're called **contravariant** functors.
+One great feature of category theory is that you get another category for free by "flipping the arrows". For example, if a catgory `X` has objects `A` and `B` and morphisms `A -> A`, `B -> B` and `A -> B`, we get a new category `Y` simply by flipping the arrows, meaning `A -> A`, `B -> B` and `B -> A`. Note that `Y` is purely theoretical: often times, if a category represents a real-world phenomena (ie if `->` is time), we can't flip the arrows and get a time machine for free. But on paper, all categories are flippable, and a large subset of 𝕻 _is_ in fact flippable (certain important functions, like [`absurd`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Void#v:absurd), cannot be flipped).
+
+Functors can be applied to these flipped categories and, when they are, they're called **contravariant** functors. _Contra_ is used here in its colloquial sense of "against the grain".
 
 ```haskell
 class Contravariant f where
   cmap :: forall a b. (a -> b) -> (f b -> f a)
 ```
-
 Note that `a` and `b` are flipped on the right-hand side.
 
-At face value, contravariant functors seem absurd. It is sort of like separating a pizza into ingredients after it has been cooked - give me a recipe that takes ingredients `a` to pizza `b`, and if you give me a cooked pizza `f b`, I'll give you back your cooked raw ingredients `f a`.
+The functors we have seen until now that use plain ol' `map` will hereafter be called **covariant**, meaning that they vary in the direction of their source category.
 
-The most common contravariant functor is a _predicate_.
+Contravariant functors make sense when the object being lifted is the _input_ to some system. For example, consider the `Predicate`, defined as:
+
+```haskell
+newtype Predicate a = Predicate (a -> Boolean)
+evalPredicate :: forall a. Predicate a -> a -> Boolean
+evalPredicate (Predicate f) a = f a
+-- same as evalPredicate (Predicate f) = f
+-- same as evalPreidcate = coerce
+```
+
+A common predicate is determining if a number is non-negative.
+
+```haskell
+nonNegativeNumber = Predicate ((<=) 0.0)
+```
+
+If we want this to apply to integers, we can use `cmap` like so:
+
+```haskell
+-- toNumber :: Int -> Number
+nonNegativeInt = cmap toNumber nonNegativeNumber
+```
+
+Contravariant functors are useful in music when we have a common base operation and we want it to produce a result for different inputs. For example, we can use the same `Predicate` on `Pitch`, `Duration` and `Volume` by using different versions of `cmap`.
+
+<Player stub player={singleNoteMain} code={singleNote} />
 
 ## Profunctors
 
 Profunctors are my favorite types of functors. They combine contravariant functors and plain ol' functors in a rather incredible way, and I find that they give the biggest bang for your buck of any concept from functional programming.
 
-Somewhat-formally speaking, a pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from a "normal" unflipped catgory, and maps them to yet-another category. As all we have is 𝕻, we'll settle for (𝕻op x 𝕻) being lifted to another region of 𝕻, where 𝕻op is 𝕻 flipped. Note that this flip sort of makes sense - for most functions (ie `Int -> Boolean`) we can conceive of a function in the oppostie direction (`Boolean -> Int`). This falls apart, however, for functions with un
+A pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from the "normal" covariant catgory, and maps them to yet-another category. As all we have is 𝕻, this will have to exist entirely within 𝕻, which we can accomplish through a mapping function that takes two morphisms and lifts them to operate on a functor that contains type variabls _both_ in a contravariant and a covariant position.
+
+```haskell
+class Profunctor p where
+  dimap :: forall a b c d. (a -> b) -> (c -> d) -> p b c -> p a d
+```
+
+
 
 ## On the functorality of rhythms and the rhythm of functors
 
