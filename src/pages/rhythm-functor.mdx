@@ -283,6 +283,10 @@ Morphisms in categories can be thought of as _ordering_ the category. In 𝕻, f
 
 A functor cannot reorder its source category because it must preserve morphisms. However, nothing stops a functor from conflating many morphisms into the same one (and, by extention, many objects to the same object). The extreme example of this is `Const Unit`, which maps all objects a single object and all morphisms to a single morphism.
 
-𝕻 is an unfathomably rich source category - it conains arrows from all terms to all other terms _except_ in the case where the source is inhabited and the destination is not. Meaning that you won't find anything of the signature `a -> Void` unless `a` itself is uninhabited. These functions are rare and are almost exclusively used when proving something to the compiler (Idris, a dependently-typed language in the same family as PureScript, makes extensive of this in its [proof by contradiction](https://docs.idris-lang.org/en/latest/tutorial/theorems.html#the-empty-type)).
+𝕻 is an unfathomably rich source category - it conains arrows from all terms to all other terms _except_ in the case where the source is inhabited and the destination is not. Meaning that you won't find anything of the signature `a -> Void` unless `a` itself is uninhabited. These functions are rare and are almost exclusively used when proving something to a compiler via [proof by contradiction](https://docs.idris-lang.org/en/latest/tutorial/theorems.html#the-empty-type). This means that a functor has at its disposal infintely many connections and can reduc them to its own special order, much like a sculptor starts from slab of marble with limitless possibilities and arrives at a beautifully-proportioned work of art.
+
+By assigning an agogic quality or mood to a type and by pruning the vast, order-rich 𝕻 to something with a more slimmed-down order (or lack thereof), when we apply functors, we are creating a rhythm with types. So rhythms are not just functors - functors are rhythms. They both transport us to new places, and some of my greatest joys in life come when a new functor or rhythm transports me to an entirely new place that I would have never imagined before.
+
+<Player stub player={singleNoteMain} code={singleNote} />
 
 <Footer />
