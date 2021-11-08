@@ -2,12 +2,15 @@ import { Player } from "../components/player";
 import Footer from "../components/footer";
 import singleNote from "../FPSound/Intro/SingleNote.purs";
 import { main as singleNoteMain } from "../../output/FPSound.Intro.SingleNote/";
+import header from "../FPSound/RhythmFunctor/Header.purs";
+import { main as headerMain } from "../../output/FPSound.RhythmFunctor.Header/";
+
 
 # The rhythm and the functor
 
 Rhythms transport humans and functors transport categories. By the end of this post, I want you to have a working understanding of what functors are with respect to categories and what the rhythms are with respect to music. Even more importantly, I want you to feel the rhythm of functors and grok the functorality of rhythm.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={headerMain} code={header} />
 
 ## Rhythm
 

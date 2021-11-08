@@ -34,16 +34,67 @@ bigGuard ((a /\ b) : c) default time
 gap = 0.3 :: Number
 
 pitches :: List (Number /\ PitchI)
-pitches = mapWithIndex
-  (lcmap ((/\) <<< add gap <<< mul gap <<< toNumber) ($)) $
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : d4 : a4 : d5 : f5 : a4 : d5 : f5 :
-  c4 : d4 : a4 : d5 : f5 : a4 : d5 : f5 :        
-  b3 : d4 : g4 : d5 : f5 : g4 : d5 : f5 :
-  b3 : d4 : g4 : d5 : f5 : g4 : d5 : f5 :        
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 : Nil
+pitches =
+  mapWithIndex
+    (lcmap ((/\) <<< add gap <<< mul gap <<< toNumber) ($)) $
+    c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : c4
+      : d4
+      : a4
+      : d5
+      : f5
+      : a4
+      : d5
+      : f5
+      : c4
+      : d4
+      : a4
+      : d5
+      : f5
+      : a4
+      : d5
+      : f5
+      : b3
+      : d4
+      : g4
+      : d5
+      : f5
+      : g4
+      : d5
+      : f5
+      : b3
+      : d4
+      : g4
+      : d5
+      : f5
+      : g4
+      : d5
+      : f5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : Nil
 
 main :: Player
 main = player
