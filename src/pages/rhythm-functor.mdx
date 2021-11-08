@@ -265,7 +265,7 @@ We heard musical examples of how all five can drive a rhythm. At the risk of bei
 
 <Player stub player={singleNoteMain} code={singleNote} />
 
-Rhythms are functors because they map musical events like notes to a new place where the events have (a) order and (b) agogic variety. But do functors have a rhythm? Functors map object to new places like `Int` to `Maybe Int`, `Boolean` to `List Boolean`, `String` to `Event String` and `Number` to `Tuple Unit Number`. What the objects become in these new contexts are anyone's guess. In `Maybe Int` the existence of the `Int` becomes optional, in `List Boolean` the existence of the `Boolean` becomes multiple, in `Event String` the existence of the `String` becomes both multiple and temporal and in `Tuple Unit Number` the existence of `Number` remains singular but it gets a buddy `Unit`. The elusive and wide-raning nature of the little bit of flair that functors can add is as rich, subtle, and surprising as the numerous ways a note can be accented. A note can disappear altogether (rest), be muted (con sordino), be delayed (rubato), or be played several times in rapid succession (tremolo). In this way, functors act as the agogics of categories.
+Rhythms are functors because they map musical events like notes to a new place where the events have (a) order and (b) variety (dynamic, agogic, harmonic etc). But do functors have a rhythm? Functors map object to new places like `Int` to `Maybe Int`, `Boolean` to `List Boolean`, `String` to `Event String` and `Number` to `Tuple Unit Number`. What the objects become in these new contexts are anyone's guess. In `Maybe Int` the existence of the `Int` becomes optional, in `List Boolean` the existence of the `Boolean` becomes multiple, in `Event String` the existence of the `String` becomes both multiple and temporal and in `Tuple Unit Number` the existence of `Number` remains singular but it gets a buddy `Unit`. The elusive and wide-raning nature of the little bit of flair that functors can add is as rich, subtle, and surprising as the numerous ways a note can be accented. A note can disappear altogether (rest), be muted (con sordino), be delayed (rubato), or be played several times in rapid succession (tremolo). In this way, functors act as the accents of categories.
 
 | Functor | Agogic |
 | --------- | ---------- |
@@ -274,7 +274,7 @@ Rhythms are functors because they map musical events like notes to a new place w
 | Vec D3 | triad |
 | Tuple Percussion | orchestration |
 
-But what about order? For functors to have rhythm, it is not enough that they map a base category to novel agogic spaces. They must also create some type of order.
+But what about order? For functors to have rhythm, it is not enough that they add accents to a catgory. They must also create some type of order.
 
 Morphisms in categories can be thought of as _ordering_ the category. In 𝕻, for example, `->` implies a before-after relationship between types. A function must receive its input _before_ yielding its output.
 
@@ -282,7 +282,7 @@ A functor cannot reorder its source category because it must preserve morphisms.
 
 𝕻 is an unfathomably rich source category - it conains arrows from all terms to all other terms _except_ in the case where the source is inhabited and the destination is not. Meaning that you won't find anything of the signature `a -> Void` unless `a` itself is uninhabited. These functions are rare and are almost exclusively used when proving something to a compiler via [proof by contradiction](https://docs.idris-lang.org/en/latest/tutorial/theorems.html#the-empty-type). This means that a functor has at its disposal infintely many connections and can reduc them to its own special order, much like a sculptor starts from slab of marble with limitless possibilities and arrives at a beautifully-proportioned work of art.
 
-By assigning an agogic quality or mood to a type and by pruning the vast, order-rich 𝕻 to something with a more slimmed-down order (or lack thereof), when we apply functors, we are creating a rhythm with types. So rhythms are not just functors - functors are rhythms. They both transport us to new places, and some of my greatest joys in life come when a new functor or rhythm transports me to an entirely new place that I would have never imagined before.
+By assigning an accent (a quality or mood) to a type and by pruning the vast, order-rich 𝕻 to something with a more slimmed-down order (including no order at all), when we apply functors, we are breathing rhythm into types. So rhythms are not just functors - functors are rhythms. They both transport us to new places, and some of my greatest joys in life come when a new functor or rhythm transports me to an entirely new place that I would have never imagined before.
 
 <Player stub player={singleNoteMain} code={singleNote} />
 
