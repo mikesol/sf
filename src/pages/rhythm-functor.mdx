@@ -48,32 +48,20 @@ But at the end of the day when I'm listening to it I don't think about any of th
 
 ## Categories
 
-In the [previous post](../note-function), we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a _category_. In the category, types are _objects_ (or nodes) and functions are _morphisms_ (or arrows). Let's call that category **Purs**, hereafter referred to as 𝕻 for short.
+In the [previous post](../note-function), we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a [_category_](https://en.wikipedia.org/wiki/Category_(mathematics)). In this category, types are _objects_ (or nodes) and functions are _morphisms_ (or arrows). Let's call PureScript's category **Purs**, hereafter referred to as 𝕻 for short.
 
 For something to be a category, it needs to follow two rules:
 
 ### Rule 1 - Identity
 
-All objects must have an identity morphism that goes from it back to it. You can convince yourself that, for every type `T` in PureScript, we can construct a function `T -> T` that returns the input as output.
-
-```haskell
-idInt :: Int -> Int
-idInt a = a
-
-idBoolean :: Boolean -> Boolean
-idInt a = a
-
-idMaybeArrayListVoid
-  :: Maybe (Array (List Void))
-  -> Maybe (Array (List Void))
-idMaybeArrayListVoid a = a
-```
-
-The `identity` function I discussed in the last post is a generalization of this, and polymorphically applies to _all_ types in 𝕻.
+All objects must have an identity morphism that goes from it back to it. For every type `a` in 𝕻, we can construct a function `a -> a` that returns the input as output.
 
 ```haskell
 class Category c where
   identity :: forall a. c a a
+
+instance Category (->) where
+  identity a = a
 ```
 
 ### Rule 2 - Composition
