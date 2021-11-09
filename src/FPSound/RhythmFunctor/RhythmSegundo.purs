@@ -13,7 +13,8 @@ import WAGS.Lib.Tidal.Samples (class SampleTime, sampleTime)
 m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
 
 fadeDown :: forall r. SampleTime r => r -> Number
-fadeDown = lcmap sampleTime (betwixt 0.0 1.0 <<< calcSlope 0.4 1.0 1.2 0.0)
+fadeDown = lcmap sampleTime
+  (betwixt 0.0 1.0 <<< calcSlope 0.4 1.0 1.2 0.0)
 
 wag :: AFuture
 wag =
