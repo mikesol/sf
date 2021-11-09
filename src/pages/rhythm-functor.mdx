@@ -4,6 +4,10 @@ import singleNote from "../FPSound/Intro/SingleNote.purs";
 import { main as singleNoteMain } from "../../output/FPSound.Intro.SingleNote/";
 import header from "../FPSound/RhythmFunctor/Header.purs";
 import { main as headerMain } from "../../output/FPSound.RhythmFunctor.Header/";
+import rhythmPrimo from "../FPSound/RhythmFunctor/RhythmPrimo.purs";
+import { main as rhythmPrimoMain } from "../../output/FPSound.RhythmFunctor.RhythmPrimo/";
+import rhythmSegundo from "../FPSound/RhythmFunctor/RhythmSegundo.purs";
+import { main as rhythmSegundoMain } from "../../output/FPSound.RhythmFunctor.RhythmSegundo/";
 
 
 # The rhythm and the functor
@@ -14,13 +18,13 @@ Rhythms transport humans and functors transport categories. By the end of this p
 
 ## Rhythm
 
-A rhythm is a series of unaccented and accented moments in time. The accents are demarcated by changes in volume, timbre and harmony.
+A rhythm is a series of unaccented and accented moments in time. The accents are demarcated by changes in metric placement, volume, timbre and harmony.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={rhythmPrimoMain} code={rhythmPrimo} />
 
 Its the delicate mix of symmetry and asymettry in rhythm that deeply moves us. Some of this is certainly culturally delimited, stemming from the use of certain instruments or voices or pitch languages.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={rhythmSegundoMain} code={rhythmSegundo} />
 
 Other aspects of rhythm's power feels more intrinsic. When we catch ourselves being taken aback by the rhythm of a forest or of a machine, we struggle to explain why, and that's of course ok.
 
