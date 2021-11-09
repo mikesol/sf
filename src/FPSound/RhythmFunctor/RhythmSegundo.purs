@@ -19,8 +19,7 @@ fadeDown = lcmap sampleTime
 wag :: AFuture
 wag =
   make (m2 * 4.0)
-    { -- lows
-      earth: s
+    { earth: s
         $ set
             (traversed <<< _Just <<< lnv)
             fadeDown
@@ -48,7 +47,6 @@ wag =
       ~ tink ~ ~   ~ tink ~ ~
       ~ tink ~ ~    ~ tink ~ ~ 
     """
-    , title: "tablas and lighters"
     }
 
 main :: Player
