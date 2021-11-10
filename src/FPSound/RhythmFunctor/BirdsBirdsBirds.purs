@@ -3,7 +3,7 @@ module FPSound.RhythmFunctor.BirdsBirdsBirds where
 import Prelude
 
 import WAGS.Graph.Parameter (ff)
-import WAGS.Create.Optionals (delay, gain, highpass, loopBuf, ref, speaker)
+import WAGS.Create.Optionals (delay, gain, bandpass, loopBuf, ref, speaker)
 import WAGS.Lib.Learn (Player, player, buffers, using)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Run (SceneI(..))
@@ -18,10 +18,10 @@ main = player $
       { v0: gain 1.0
           { lp: loopBuf loopy
           , hp:
-              highpass
+              bandpass
                 ( ff 0.1 $ pure $
-                    lfo { phase: 0.0, amp: 1000.0, freq: 0.2 }
-                      time + 3000.0
+                    lfo { phase: 0.0, amp: 1000.0, freq: 0.55 }
+                      time + 2000.0
                 )
                 $ gain 0.6
                     { del:
