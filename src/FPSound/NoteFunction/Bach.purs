@@ -3,7 +3,9 @@ module FPSound.NoteFunction.Bach where
 import Prelude
 import WAGS.Lib.Learn.Pitch
 
+import Data.Distributive (distribute)
 import Data.FunctorWithIndex (mapWithIndex)
+import Data.Identity (Identity)
 import Data.Int (toNumber)
 import Data.List (List(..), length, (:))
 import Data.Newtype (unwrap, wrap)
@@ -16,11 +18,11 @@ import WAGS.Lib.Learn.Note (note_)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Learn.Volume (Volume(..))
 
-type PitchI = Pitch ((->) Number)
+type PitchI = Pitch Identity
 type FofTime = Number -> Number
 
-toPitch :: (Number -> Pitch ((->) Number)) -> Pitch ((->) Number)
-toPitch = wrap <<< join <<< map unwrap
+toPitch :: (Number -> Pitch Identity) -> Pitch ((->) Number)
+toPitch = wrap <<< unwrap <<< distribute <<< map unwrap
 
 beat :: FofTime
 beat = max 0.0 <<< lfo { phase: pi, amp: 0.75, freq: 2.0 / gap }

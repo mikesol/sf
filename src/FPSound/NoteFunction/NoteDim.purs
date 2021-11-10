@@ -3,7 +3,8 @@ module FPSound.NoteFunction.NoteDim where
 import Prelude
 import WAGS.Lib.Learn.Pitch
 
-import Data.Newtype (unwrap, wrap)
+import Data.Identity (Identity)
+import Data.Newtype (unwrap)
 import Math ((%), pi)
 import WAGS.Lib.Learn (player, Player)
 import WAGS.Lib.Learn.Duration (longest)
@@ -13,13 +14,13 @@ import WAGS.Lib.Learn.Volume (Volume(..))
 
 type FofTime = Number -> Number
 
-toPitch :: (Number -> Pitch ((->) Number)) -> Pitch ((->) Number)
-toPitch = wrap <<< join <<< map unwrap
+toPitch :: (Number -> Pitch Identity) -> Pitch ((->) Number)
+toPitch = Pitch <<< compose (unwrap <<< unwrap)
 
 beat :: FofTime
 beat = max 0.0 <<< lfo { phase: 0.5 * pi, amp: 0.75, freq: 8.0 }
 
-chord :: Number -> Pitch ((->) Number)
+chord :: Number -> Pitch Identity
 chord t =
   let
     time = t % 1.0
@@ -31,7 +32,7 @@ chord t =
   in
     out
 
-transposition :: Number -> Pitch ((->) Number)
+transposition :: Number -> Pitch Identity
 transposition t =
   let
     time = t % 6.0

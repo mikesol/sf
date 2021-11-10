@@ -18,7 +18,10 @@ import smwyg2 from "../FPSound/RhythmFunctor/SMWYG2.purs";
 import { main as smwyg2Main } from "../../output/FPSound.RhythmFunctor.SMWYG2/";
 import transpose from "../FPSound/RhythmFunctor/Transpose.purs";
 import { main as transposeMain } from "../../output/FPSound.RhythmFunctor.Transpose/";
-
+import speed from "../FPSound/RhythmFunctor/Speed.purs";
+import { main as speedMain } from "../../output/FPSound.RhythmFunctor.Speed/";
+import omit from "../FPSound/RhythmFunctor/Omit.purs";
+import { main as omitMain } from "../../output/FPSound.RhythmFunctor.Omit/";
 
 # The rhythm and the functor
 
@@ -103,11 +106,15 @@ Some classic covariant functors include `Maybe`, `List`, `Array`, `Proxy`, `Tupl
 
 As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Transpose a scale? There's a functor for that.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={transposeMain} code={transpose} />
 
-Apply a reverb? There's a functor for that. Conditionally strike a drum based on the day of the week? There's a functor for that too!
+Speed it up? There's a functor for that.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={speedMain} code={speed} />
+
+Terrace dynamics based on the note? There's a functor for that too!
+
+<Player player={omitMain} code={omit} />
 
 The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it. We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor applied to notes.
 

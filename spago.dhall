@@ -18,6 +18,7 @@ to generate this file without the comments in this block.
   , "arrays"
   , "bifunctors"
   , "control"
+  , "distributive"
   , "effect"
   , "either"
   , "exceptions"

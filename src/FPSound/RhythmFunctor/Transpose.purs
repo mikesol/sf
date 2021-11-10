@@ -7,10 +7,10 @@ import WAGS.Lib.Learn (player, Player)
 import WAGS.Lib.Learn.Transpose (transpose)
 import WAGS.Lib.Stream (cycle)
 
-someNotes = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
 
 functorToTheRescue =
-  map (transpose semitone) someNotes
+  map (transpose semitone) somePitches
 
 main :: Player
 main = player $ cycle functorToTheRescue
