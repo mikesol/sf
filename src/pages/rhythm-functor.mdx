@@ -16,6 +16,8 @@ import smwyg from "../FPSound/RhythmFunctor/SMWYG.purs";
 import { main as smwygMain } from "../../output/FPSound.RhythmFunctor.SMWYG/";
 import smwyg2 from "../FPSound/RhythmFunctor/SMWYG2.purs";
 import { main as smwyg2Main } from "../../output/FPSound.RhythmFunctor.SMWYG2/";
+import transpose from "../FPSound/RhythmFunctor/Transpose.purs";
+import { main as transposeMain } from "../../output/FPSound.RhythmFunctor.Transpose/";
 
 
 # The rhythm and the functor
@@ -99,7 +101,11 @@ Some classic covariant functors include `Maybe`, `List`, `Array`, `Proxy`, `Tupl
 
 ## Music + Functors
 
-As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Situate a note in a rhythm? There's a functor for that. Apply a reverb? There's a functor for that. Conditionally strike a drum based on the day of the week? There's a functor for that too!
+As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Transpose a scale? There's a functor for that.
+
+<Player stub player={singleNoteMain} code={singleNote} />
+
+Apply a reverb? There's a functor for that. Conditionally strike a drum based on the day of the week? There's a functor for that too!
 
 <Player stub player={singleNoteMain} code={singleNote} />
 
