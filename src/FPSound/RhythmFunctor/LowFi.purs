@@ -20,7 +20,9 @@ wag =
   make (m2 * 2.0)
     { earth: s
         $ set (traversed <<< _Just <<< lnr)
-            (lcmap unwrap \{ normalizedLittleCycleTime: t } -> 1.0 + t * 0.1)
+            ( lcmap unwrap \{ normalizedLittleCycleTime: t } ->
+                1.0 + t * 0.1
+            )
         $ parse_
             """tink:1;t0 tink:2;t1 tink:3;t2 tink:0;t3 tink:4;t4
     tink:2;t5 tink:3;t6 tink:1;t7 tink:2;t8 tink:0;t9 tink:3;t10 """
@@ -66,7 +68,12 @@ wag =
                       ( lfo { phase: 0.0, amp: 1.0, freq: 0.2 }
                           clockTime + 0.0
                       )
-                      { myhp: highpass (lfo { phase: 0.0, amp: 2000.0, freq: 0.4 } clockTime + 2000.0) hello }
+                      { myhp: highpass
+                          ( lfo { phase: 0.0, amp: 2000.0, freq: 0.4 }
+                              clockTime + 2000.0
+                          )
+                          hello
+                      }
                   )
               )
           ) $ s "~ ~ ~ ~ ~ ~ speechless:2 ~"
