@@ -24,19 +24,21 @@ upASemitone = map (transpose semitone)
 
 faster = map (over (unto Note) (_ { duration = semiquaver }))
 
+dynamics = Map.fromFoldable
+  [ c4 /\ piano
+  , d4 /\ mezzoForte
+  , e4 /\ fortissimo
+  , fSharp4 /\ piano
+  , gSharp4 /\ mezzoForte
+  , bFlat4 /\ fortissimo
+  , c5 /\ mezzoForte
+  ]
+
 terraced = map
-  $ \(Note n@{ pitch }) -> Note $ n
+  $ over (unto Note)
+  $ \n@{ pitch } -> n
       { volume = fromMaybe mezzoPiano
-          $ Map.lookup pitch
-          $ Map.fromFoldable
-              [ c4 /\ piano
-              , d4 /\ mezzoForte
-              , e4 /\ fortissimo
-              , fSharp4 /\ piano
-              , gSharp4 /\ mezzoForte
-              , bFlat4 /\ fortissimo
-              , c5 /\ mezzoForte
-              ]
+          $ Map.lookup pitch dynamics
       }
 
 main :: Player
