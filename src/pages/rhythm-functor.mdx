@@ -22,6 +22,8 @@ import speed from "../FPSound/RhythmFunctor/Speed.purs";
 import { main as speedMain } from "../../output/FPSound.RhythmFunctor.Speed/";
 import omit from "../FPSound/RhythmFunctor/Omit.purs";
 import { main as omitMain } from "../../output/FPSound.RhythmFunctor.Omit/";
+import manyMaps from "../FPSound/RhythmFunctor/ManyMaps.purs";
+import { main as manyMapsMain } from "../../output/FPSound.RhythmFunctor.ManyMaps/";
 
 # The rhythm and the functor
 
@@ -116,7 +118,9 @@ Get louder based on the note? There's a functor for that too!
 
 <Player player={omitMain} code={omit} />
 
-The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it. We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor applied to notes.
+The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it.
+
+We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor applied to notes.
 
 <Player stub player={singleNoteMain} code={singleNote} />
 
