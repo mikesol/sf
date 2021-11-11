@@ -4,15 +4,15 @@ import Prelude
 import WAGS.Lib.Learn.Pitch
 import WAGS.Lib.Learn.Volume
 
-import Data.Map as Map
-import Data.Maybe (fromMaybe)
-import Data.NonEmpty ((:|))
 import Data.Lens (over)
 import Data.Lens.Iso.Newtype (unto)
+import Data.Map as Map
+import Data.Maybe (maybe)
+import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import WAGS.Lib.Learn (player, Player)
-import WAGS.Lib.Learn.Note (noteFromPitch_, Note(..))
 import WAGS.Lib.Learn.Duration (semiquaver)
+import WAGS.Lib.Learn.Note (noteFromPitch_, Note(..))
 import WAGS.Lib.Learn.Transpose (transpose)
 import WAGS.Lib.Stream (cycle)
 
@@ -37,8 +37,8 @@ dynamics = Map.fromFoldable
 terraced = map
   $ over (unto Note)
   $ \n@{ pitch } -> n
-      { volume = fromMaybe mezzoPiano
-          $ Map.lookup pitch dynamics
+      { volume = maybe mezzoPiano _.value
+          $ Map.lookupLE pitch dynamics
       }
 
 main :: Player
