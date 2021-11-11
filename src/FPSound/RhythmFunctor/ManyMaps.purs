@@ -16,10 +16,9 @@ import WAGS.Lib.Stream (cycle)
 upAWholeTone = map (transpose wholeTone)
 
 -- upAWholeTone used on NonEmpty Array
-stream1 = cycle $ upAWholeTone $ c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+stream1 = cycle $ upAWholeTone $ c3 :| [ d3, e3, fSharp3, gSharp3, bFlat3 ]
 
 ite = if _ then _ else _
-
 infixr 3 ite as ?
 
 -- upAWholeTone used on Cofree Identity
@@ -35,11 +34,13 @@ stream2 = upAWholeTone $ map _.note $ ana
   )
   ({ note: c4, rising: true })
 
+on_ = flip on
+
 -- merge the two
 alter = deferCombine
-  ( on
-      (\a b -> Pitch (flip (%) 6.0 >>> (>) 3.0 >>> if _ then a else b))
-      (unwrap <<< unwrap)
+  ((unwrap <<< unwrap) `on_`
+    \a b ->
+      Pitch (flip (%) 8.0 >>> (>) 4.0 >>> if _ then a else b)
   )
   lift2
   stream1

@@ -120,9 +120,9 @@ Get louder based on the note? There's a functor for that too!
 
 The power of functors lies in their ability to "lift" functions from a context to another one. This means that, for example, instead of writing `[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]` we can write `map (transpose wholeTone) [c4, d4, e4]` and be done with it.
 
-We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor applied to notes.
+We can also partially apply `map (transpose wholeTone)` to create a function that will lift the morphism `transpose wholeTone` to _any_ functor that has pitches inside of it. In the example below, the functors in question are `NonEmpty Array` and `Cofree Identity`.
 
-<Player stub player={singleNoteMain} code={singleNote} />
+<Player player={manyMapsMain} code={manyMaps} />
 
 One of the most common types of functors is a collection like a `List` or `Object` or `Array`. Insofar as a rhythm is a connection of notes, we can think of functors as lifting functions (morphisms) from individual elements of rhythms to the whole rhythm. What comes out the other end is a new rhythm...
 
