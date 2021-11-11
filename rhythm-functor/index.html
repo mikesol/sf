@@ -449,7 +449,1153 @@
 
 .fad.fa-inverse {
   color: #fff;
-}</style><title data-react-helmet="true">Soundly functional</title><link data-react-helmet="true" rel="canonical" href="http://mikesol.github.io/fp-sound"/><meta data-react-helmet="true" charSet="utf-8"/><link rel="sitemap" type="application/xml" href="/sf/sitemap/sitemap-index.xml"/><link rel="icon" href="/sf/favicon-32x32.png?v=ee9345bdf569bb5c1b4b55427242827c" type="image/png"/><link rel="manifest" href="/sf/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/sf/icons/icon-48x48.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="72x72" href="/sf/icons/icon-72x72.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="96x96" href="/sf/icons/icon-96x96.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="144x144" href="/sf/icons/icon-144x144.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="192x192" href="/sf/icons/icon-192x192.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="256x256" href="/sf/icons/icon-256x256.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="384x384" href="/sf/icons/icon-384x384.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="512x512" href="/sf/icons/icon-512x512.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link as="script" rel="preload" href="/sf/webpack-runtime-dcd316e5c1c0ba81ffd3.js"/><link as="script" rel="preload" href="/sf/framework-b9deb5b1814bf6b76933.js"/><link as="script" rel="preload" href="/sf/de3309da-22f6f90c02655d800791.js"/><link as="script" rel="preload" href="/sf/469bb142-338af84dab33a00cd09c.js"/><link as="script" rel="preload" href="/sf/5f97a78d-28fbe6c0f50b244b2a9c.js"/><link as="script" rel="preload" href="/sf/4317adae-b2dd59357a3b470e9581.js"/><link as="script" rel="preload" href="/sf/532a2f07-688adb9b4acf536f0e77.js"/><link as="script" rel="preload" href="/sf/cb1608f2-b226e0f60ee15e1f6380.js"/><link as="script" rel="preload" href="/sf/app-104b4514e85998bc3d9a.js"/><link as="script" rel="preload" href="/sf/component---src-pages-rhythm-functor-mdx-a25133fb9d294c31eed5.js"/><link as="fetch" rel="preload" href="/sf/page-data/rhythm-functor/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/sf/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="application"><h1>The rhythm and the functor</h1><p>Rhythm transports humans and functors transport categories. This is why my second post is on the rhythm and the functor. By the end of this post, I want you to <em>hear</em> the rhythm of functors and allow them to take your music to new places.</p><h3>Rhythm</h3><p>Everything we perceive as rhythm boils down to a series of unaccented and accented moments in time. The accents, or agogics, are a mix of volume, timbre and harmony.</p><p>Great rhythms have a delicate mix of symmetry and asymettry that deeply moves us. Some of this is certainly culturally delimited, stemming from the use of certain instruments or voices or pitch languages. Other aspects of rhythm&#x27;s power feels more intrinsic. When we catch ourselves being moved by the rhythm of a forest or of a machine, we struggle to explain why, and that&#x27;s of course ok. Rhythm defies explanation in ways big and small - the ancient Stoics elevated it to the status of the cosmos, and Kant likened it with the most intimate of beliefs. In both cases, rhythm finds us and takes us elsewhere, be it on an internal or external journey.</p><p>Like many things in music, rhythm often exists as a conversation with the past, taking the old and creativly deforming it into something new. One of my favorite examples of this is JAY-Z&#x27;s <em>Show Me What you Got</em>.</p><p>I could go on forever about why I love this rhythm. Some reasons probably include:</p><p>But at the end of the day when I&#x27;m listening to it I don&#x27;t think about any of these things: I just love it.</p><p>Over the course of this article, we&#x27;re going to be unpacking and remixing lots of rhythms. I&#x27;ll start here, with a short remix of JAY-Z that takes his rhythm as a point of departure and pushes it somewhere new.</p><h3>Functors</h3><blockquote><p><a href="https://github.com/mikesol/wagsi">Click here</a> to learn more about working with these examples on the cloud, on Windows, on Mac or on Linux. <a href="https://purescript.org">Click here</a> to learn more about the PureScript programming language, and join the Discord using<!-- --> <a href="https://purescript.org/chat">this link</a>. You&#x27;ll find me on the<!-- --> <code>#music</code> channel 🎶</p></blockquote></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script>
+}</style><title data-react-helmet="true">Soundly functional</title><link data-react-helmet="true" rel="canonical" href="http://mikesol.github.io/fp-sound"/><meta data-react-helmet="true" charSet="utf-8"/><link rel="sitemap" type="application/xml" href="/sf/sitemap/sitemap-index.xml"/><link rel="icon" href="/sf/favicon-32x32.png?v=ee9345bdf569bb5c1b4b55427242827c" type="image/png"/><link rel="manifest" href="/sf/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/sf/icons/icon-48x48.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="72x72" href="/sf/icons/icon-72x72.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="96x96" href="/sf/icons/icon-96x96.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="144x144" href="/sf/icons/icon-144x144.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="192x192" href="/sf/icons/icon-192x192.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="256x256" href="/sf/icons/icon-256x256.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="384x384" href="/sf/icons/icon-384x384.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link rel="apple-touch-icon" sizes="512x512" href="/sf/icons/icon-512x512.png?v=ee9345bdf569bb5c1b4b55427242827c"/><link as="script" rel="preload" href="/sf/webpack-runtime-55cc2b4e14ec4bf9c358.js"/><link as="script" rel="preload" href="/sf/framework-b9deb5b1814bf6b76933.js"/><link as="script" rel="preload" href="/sf/de3309da-22f6f90c02655d800791.js"/><link as="script" rel="preload" href="/sf/469bb142-338af84dab33a00cd09c.js"/><link as="script" rel="preload" href="/sf/5f97a78d-28fbe6c0f50b244b2a9c.js"/><link as="script" rel="preload" href="/sf/4317adae-b2dd59357a3b470e9581.js"/><link as="script" rel="preload" href="/sf/532a2f07-688adb9b4acf536f0e77.js"/><link as="script" rel="preload" href="/sf/cb1608f2-b226e0f60ee15e1f6380.js"/><link as="script" rel="preload" href="/sf/app-2538d735a2b9ef408e2e.js"/><link as="script" rel="preload" href="/sf/component---src-pages-rhythm-functor-mdx-1af91e45d53c2421859e.js"/><link as="fetch" rel="preload" href="/sf/page-data/rhythm-functor/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/sf/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="application"><h1>The rhythm and the functor</h1><p>Rhythms transport humans and functors transport categories. By the end of this post, I want you to have a working understanding of what functors are with respect to categories and what the rhythms are with respect to music. Even more importantly, I want you to feel the rhythm of functors and grok the functorality of rhythm.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import Data.FunctorWithIndex (mapWithIndex)
+import Data.Int (toNumber)
+import Data.Lens (_Just, set)
+import Data.Profunctor (lcmap)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Sounds.Gamelan as Gamelan
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Samples (sampleTime)
+import WAGS.Lib.Tidal.Tidal (betwixt, lnr, lnv, make, parse_, s)
+import WAGS.Math (calcSlope)
+
+wag :: AFuture
+wag =
+  make 2.1
+    { earth: s
+        $ mapWithIndex
+            ( \i -&gt;
+                set (_Just &lt;&lt;&lt; lnr)
+                  $ const
+                  $ 1.0 + 0.1 * (toNumber (i `mod` 3))
+
+            )
+        $ map
+            ( set (_Just &lt;&lt;&lt; lnv)
+                $ lcmap sampleTime
+                $ betwixt 0.0 1.0
+                    &lt;&lt;&lt; calcSlope 0.0 1.0 0.75 0.0
+            )
+        $ parse_
+            &quot;&quot;&quot;
+      BBPL1 BBPL2h BBPL2h BBPL3
+      BBPL2h BBPL2h BBPL5 BBPL2h
+      BBPL2h BBPL4 BBPL6 BBPL6
+      BBPL3h BBPL2h BBPL4 BBPL2h
+      &quot;&quot;&quot;
+    , sounds: Gamelan.sounds
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import Data.FunctorWithIndex (mapWithIndex)
+import Data.Int (toNumber)
+import Data.Lens (_Just, set)
+import Data.Profunctor (lcmap)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Sounds.Gamelan as Gamelan
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Samples (sampleTime)
+import WAGS.Lib.Tidal.Tidal (betwixt, lnr, lnv, make, parse_, s)
+import WAGS.Math (calcSlope)
+
+wag :: AFuture
+wag =
+  make 2.1
+    { earth: s
+        $ mapWithIndex
+            ( \i -&gt;
+                set (_Just &lt;&lt;&lt; lnr)
+                  $ const
+                  $ 1.0 + 0.1 * (toNumber (i `mod` 3))
+
+            )
+        $ map
+            ( set (_Just &lt;&lt;&lt; lnv)
+                $ lcmap sampleTime
+                $ betwixt 0.0 1.0
+                    &lt;&lt;&lt; calcSlope 0.0 1.0 0.75 0.0
+            )
+        $ parse_
+            &quot;&quot;&quot;
+      BBPL1 BBPL2h BBPL2h BBPL3
+      BBPL2h BBPL2h BBPL5 BBPL2h
+      BBPL2h BBPL4 BBPL6 BBPL6
+      BBPL3h BBPL2h BBPL4 BBPL2h
+      &quot;&quot;&quot;
+    , sounds: Gamelan.sounds
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Rhythm</h2><p>A rhythm is a series of unaccented and accented moments in time. The accents are demarcated by changes in metric placement, volume, timbre and harmony.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Tidal (lnr, lvt, make, parse_, s)
+import Data.Lens (set, traversed, _Just)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import WAGS.Create.Optionals (highpass, pan)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Samples (littleCycleTime)
+
+wag :: AFuture
+wag =
+  make 1.0
+    { earth: s $
+        &quot;&quot;&quot;newnotes:0 ~
+      &lt;newnotes:2 notes:13 newnotes:14&gt; ~
+      &lt;newnotes:4 newnotes:10&gt; ~
+      &lt;newnotes:6 newnotes:14&gt; ~
+      &lt;notes:8 newnotes:9&gt;&quot;&quot;&quot;
+    , fire:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ pan
+                      (lfo { phase: 0.0, amp: 1.0, freq: 0.1 } clockTime)
+                      { myhp: highpass
+                          ( lfo { phase: 0.0, amp: 1500.0, freq: 0.4 }
+                              clockTime + 1510.0
+                          )
+                          hello
+                      }
+
+          ) $ s $
+          &quot;&quot;&quot;~ &lt;newnotes:1 notes:8&gt;
+      ~ notes:3
+      ~ &lt;newnotes:5 notes:9 newnotes:2&gt;
+      ~ newnotes:7 ~&quot;&quot;&quot;
+    , wind: s
+        $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnr)
+            (lcmap littleCycleTime (add 0.5 &lt;&lt;&lt; mul 0.5))
+        $ parse_
+        $ &quot;chin:0 ~ chin:1 ~ ~ chin:2 ~ chin:3&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Tidal (lnr, lvt, make, parse_, s)
+import Data.Lens (set, traversed, _Just)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import WAGS.Create.Optionals (highpass, pan)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Samples (littleCycleTime)
+
+wag :: AFuture
+wag =
+  make 1.0
+    { earth: s $
+        &quot;&quot;&quot;newnotes:0 ~
+      &lt;newnotes:2 notes:13 newnotes:14&gt; ~
+      &lt;newnotes:4 newnotes:10&gt; ~
+      &lt;newnotes:6 newnotes:14&gt; ~
+      &lt;notes:8 newnotes:9&gt;&quot;&quot;&quot;
+    , fire:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ pan
+                      (lfo { phase: 0.0, amp: 1.0, freq: 0.1 } clockTime)
+                      { myhp: highpass
+                          ( lfo { phase: 0.0, amp: 1500.0, freq: 0.4 }
+                              clockTime + 1510.0
+                          )
+                          hello
+                      }
+
+          ) $ s $
+          &quot;&quot;&quot;~ &lt;newnotes:1 notes:8&gt;
+      ~ notes:3
+      ~ &lt;newnotes:5 notes:9 newnotes:2&gt;
+      ~ newnotes:7 ~&quot;&quot;&quot;
+    , wind: s
+        $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnr)
+            (lcmap littleCycleTime (add 0.5 &lt;&lt;&lt; mul 0.5))
+        $ parse_
+        $ &quot;chin:0 ~ chin:1 ~ ~ chin:2 ~ chin:3&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Its the delicate mix of symmetry and asymmetry in rhythm that deeply moves us. Some of this is certainly culturally delimited, stemming from the use of certain instruments or voices or pitch languages.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Tidal (betwixt, lnv, make, onTag, parse_, s)
+import Data.Lens (set, traversed, _Just)
+import Data.Profunctor (lcmap)
+import WAGS.Math (calcSlope)
+import WAGS.Lib.Tidal.Samples (class SampleTime, sampleTime)
+
+m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
+
+fadeDown :: forall r. SampleTime r =&gt; r -&gt; Number
+fadeDown = lcmap sampleTime
+  (betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.4 1.0 1.2 0.0)
+
+wag :: AFuture
+wag =
+  make (m2 * 4.0)
+    { earth: s
+        $ set
+            (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+            fadeDown
+        $ parse_ &quot;tabla:23 tabla2:21  tabla2:28 tabla2:41&quot;
+    , wind: s
+        &quot;&quot;&quot;~ [tabla:3 tabla2:37] ~ tabla2:11   
+  ~ tabla:3 ~ tabla2:40 
+  ~ tabla:3 ~ ~ 
+  ~ tabla:3 ~ tabla2:31&quot;&quot;&quot;
+    , fire: s
+        $ onTag &quot;str&quot;
+            ( set (_Just &lt;&lt;&lt; lnv)
+                $ lcmap sampleTime
+                $ betwixt 0.0 1.0 &lt;&lt;&lt; sub 1.0 &lt;&lt;&lt; mul 0.2
+            )
+        $ parse_
+            &quot;&quot;&quot;~ [chin*4 lighter] ~ ~ 
+    ~ [lighter:4 lighter:3 ] ~ [~ lighter:6]
+    ~ ~ ~ [~ lighter:13]
+    ~ ~ ~ [~ lighter:12] ,
+      ~ sitar:3;str ~ ~
+      ~ ~ ~ ~
+      sitar:4;str  ~ ~
+      ~ ~ ~ ~ ,
+      ~ tink ~ ~   ~ tink ~ ~
+      ~ tink ~ ~    ~ tink ~ ~ 
+    &quot;&quot;&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Tidal (betwixt, lnv, make, onTag, parse_, s)
+import Data.Lens (set, traversed, _Just)
+import Data.Profunctor (lcmap)
+import WAGS.Math (calcSlope)
+import WAGS.Lib.Tidal.Samples (class SampleTime, sampleTime)
+
+m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
+
+fadeDown :: forall r. SampleTime r =&gt; r -&gt; Number
+fadeDown = lcmap sampleTime
+  (betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.4 1.0 1.2 0.0)
+
+wag :: AFuture
+wag =
+  make (m2 * 4.0)
+    { earth: s
+        $ set
+            (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+            fadeDown
+        $ parse_ &quot;tabla:23 tabla2:21  tabla2:28 tabla2:41&quot;
+    , wind: s
+        &quot;&quot;&quot;~ [tabla:3 tabla2:37] ~ tabla2:11   
+  ~ tabla:3 ~ tabla2:40 
+  ~ tabla:3 ~ ~ 
+  ~ tabla:3 ~ tabla2:31&quot;&quot;&quot;
+    , fire: s
+        $ onTag &quot;str&quot;
+            ( set (_Just &lt;&lt;&lt; lnv)
+                $ lcmap sampleTime
+                $ betwixt 0.0 1.0 &lt;&lt;&lt; sub 1.0 &lt;&lt;&lt; mul 0.2
+            )
+        $ parse_
+            &quot;&quot;&quot;~ [chin*4 lighter] ~ ~ 
+    ~ [lighter:4 lighter:3 ] ~ [~ lighter:6]
+    ~ ~ ~ [~ lighter:13]
+    ~ ~ ~ [~ lighter:12] ,
+      ~ sitar:3;str ~ ~
+      ~ ~ ~ ~
+      sitar:4;str  ~ ~
+      ~ ~ ~ ~ ,
+      ~ tink ~ ~   ~ tink ~ ~
+      ~ tink ~ ~    ~ tink ~ ~ 
+    &quot;&quot;&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Other aspects of rhythm&#x27;s power feels more intrinsic. When we catch ourselves being taken aback by the rhythm of a forest or of a machine, we struggle to explain why, and that&#x27;s of course ok.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import WAGS.Graph.Parameter (ff)
+import WAGS.Create.Optionals (delay, gain, bandpass, loopBuf, ref, speaker)
+import WAGS.Lib.Learn (Player, player, buffers, using)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Run (SceneI(..))
+
+mp3 :: String
+mp3 = &quot;https://freesound.org/data/previews/418/418104_7707368-lq.mp3&quot;
+
+main :: Player
+main = player $
+  using (buffers { loopy: mp3 })
+    \(SceneI { time, world: { buffers: { loopy } } }) -&gt; speaker
+      { v0: gain 1.0
+          { lp: loopBuf loopy
+          , hp:
+              bandpass
+                ( ff 0.1 $ pure $
+                    lfo { phase: 0.0, amp: 1000.0, freq: 0.55 }
+                      time + 2000.0
+                )
+                $ gain 0.6
+                    { del:
+                        delay
+                          ( ff 0.1 $ pure $
+                              lfo { phase: 0.0, amp: 0.05, freq: 0.1 }
+                                time + 0.3
+                          )
+                          { v0: ref }
+                    }
+          }
+      }</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import WAGS.Graph.Parameter (ff)
+import WAGS.Create.Optionals (delay, gain, bandpass, loopBuf, ref, speaker)
+import WAGS.Lib.Learn (Player, player, buffers, using)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Run (SceneI(..))
+
+mp3 :: String
+mp3 = &quot;https://freesound.org/data/previews/418/418104_7707368-lq.mp3&quot;
+
+main :: Player
+main = player $
+  using (buffers { loopy: mp3 })
+    \(SceneI { time, world: { buffers: { loopy } } }) -&gt; speaker
+      { v0: gain 1.0
+          { lp: loopBuf loopy
+          , hp:
+              bandpass
+                ( ff 0.1 $ pure $
+                    lfo { phase: 0.0, amp: 1000.0, freq: 0.55 }
+                      time + 2000.0
+                )
+                $ gain 0.6
+                    { del:
+                        delay
+                          ( ff 0.1 $ pure $
+                              lfo { phase: 0.0, amp: 0.05, freq: 0.1 }
+                                time + 0.3
+                          )
+                          { v0: ref }
+                    }
+          }
+      }</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Rhythm has been the subject of a rich hermeneutic tradition throughout the ages — Plato compared it to both an orderly life and the most intimate of personal tastes and convictions in <a href="http://classics.mit.edu/Plato/republic.4.iii.html">The Republic</a>. The free use of mixed metaphors that liken rhythm to internal and external phenomena show both the difficulty in classifying it and the captivating power it has over us.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import Data.Lens (_Just, set, traversed)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import Math ((%))
+import WAGS.Create.Optionals (highpass, pan)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Tidal (lnr, lnv, lvt, make, onTag, parse_, s)
+
+m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
+
+wag :: AFuture
+wag =
+  make (m2 * 2.0)
+    { earth: s
+        $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnr)
+            ( lcmap unwrap \{ normalizedLittleCycleTime: t } -&gt;
+                1.0 + t * 0.1
+            )
+        $ parse_
+            &quot;&quot;&quot;tink:1;t0 tink:2;t1 tink:3;t2 tink:0;t3 tink:4;t4
+    tink:2;t5 tink:3;t6 tink:1;t7 tink:2;t8 tink:0;t9 tink:3;t10 &quot;&quot;&quot;
+    , wind:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt;
+                  let
+                    mody = clockTime % (m2 * 2.0)
+                  in
+                    fx
+                      $ goodbye
+                      $ highpass (200.0 + mody * 100.0) hello
+          ) $ s
+          $ onTag &quot;ph&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      min 1.2 (1.0 + t * 0.3)
+              )
+          $ onTag &quot;print&quot;
+              ( set (_Just &lt;&lt;&lt; lnv)
+                  $ lcmap unwrap \{ normalizedSampleTime: _ } -&gt; 0.2
+              )
+          $ onTag &quot;pk&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      0.7 - t * 0.2
+              )
+          $ onTag &quot;kt&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      min 1.0 (0.6 + t * 0.8)
+              )
+          $ parse_
+              &quot;&quot;&quot;psr:3 ~ [~ chin*4] ~ ~ [psr:3;ph psr:3;ph ~ ] _ _
+            , [~ ~ ~ &lt;psr:1;print kurt:0;print&gt; ] kurt:5;kt
+            , ~ ~ pluck:1;pk ~ ~ ~ ~ ~ &quot;&quot;&quot;
+    , fire:
+        map
+          ( set lvt
+              ( lcmap unwrap \{ clockTime } -&gt; fx
+                  ( goodbye $ pan
+                      ( lfo { phase: 0.0, amp: 1.0, freq: 0.2 }
+                          clockTime + 0.0
+                      )
+                      { myhp: highpass
+                          ( lfo { phase: 0.0, amp: 2000.0, freq: 0.4 }
+                              clockTime + 2000.0
+                          )
+                          hello
+                      }
+                  )
+              )
+          ) $ s &quot;~ ~ ~ ~ ~ ~ speechless:2 ~&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag
+
+</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import Data.Lens (_Just, set, traversed)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import Math ((%))
+import WAGS.Create.Optionals (highpass, pan)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Tidal (lnr, lnv, lvt, make, onTag, parse_, s)
+
+m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
+
+wag :: AFuture
+wag =
+  make (m2 * 2.0)
+    { earth: s
+        $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnr)
+            ( lcmap unwrap \{ normalizedLittleCycleTime: t } -&gt;
+                1.0 + t * 0.1
+            )
+        $ parse_
+            &quot;&quot;&quot;tink:1;t0 tink:2;t1 tink:3;t2 tink:0;t3 tink:4;t4
+    tink:2;t5 tink:3;t6 tink:1;t7 tink:2;t8 tink:0;t9 tink:3;t10 &quot;&quot;&quot;
+    , wind:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt;
+                  let
+                    mody = clockTime % (m2 * 2.0)
+                  in
+                    fx
+                      $ goodbye
+                      $ highpass (200.0 + mody * 100.0) hello
+          ) $ s
+          $ onTag &quot;ph&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      min 1.2 (1.0 + t * 0.3)
+              )
+          $ onTag &quot;print&quot;
+              ( set (_Just &lt;&lt;&lt; lnv)
+                  $ lcmap unwrap \{ normalizedSampleTime: _ } -&gt; 0.2
+              )
+          $ onTag &quot;pk&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      0.7 - t * 0.2
+              )
+          $ onTag &quot;kt&quot;
+              ( set (_Just &lt;&lt;&lt; lnr)
+                  $ lcmap unwrap \{ normalizedSampleTime: t } -&gt;
+                      min 1.0 (0.6 + t * 0.8)
+              )
+          $ parse_
+              &quot;&quot;&quot;psr:3 ~ [~ chin*4] ~ ~ [psr:3;ph psr:3;ph ~ ] _ _
+            , [~ ~ ~ &lt;psr:1;print kurt:0;print&gt; ] kurt:5;kt
+            , ~ ~ pluck:1;pk ~ ~ ~ ~ ~ &quot;&quot;&quot;
+    , fire:
+        map
+          ( set lvt
+              ( lcmap unwrap \{ clockTime } -&gt; fx
+                  ( goodbye $ pan
+                      ( lfo { phase: 0.0, amp: 1.0, freq: 0.2 }
+                          clockTime + 0.0
+                      )
+                      { myhp: highpass
+                          ( lfo { phase: 0.0, amp: 2000.0, freq: 0.4 }
+                              clockTime + 2000.0
+                          )
+                          hello
+                      }
+                  )
+              )
+          ) $ s &quot;~ ~ ~ ~ ~ ~ speechless:2 ~&quot;
+    }
+
+main :: Player
+main = player $ tdl $ wag
+
+</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Like many things in music, rhythm often exists as a conversation with the past, taking the old and creativly deforming it into something new. One of my favorite examples of this is JAY-Z&#x27;s <em>Show Me What you Got</em>.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (Player, player)
+
+smyg :: String
+smyg = &quot;https://media.graphcms.com/B98L69ZNRWOV86ZHO7K9&quot;
+
+main :: Player
+main = player smyg</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (Player, player)
+
+smyg :: String
+smyg = &quot;https://media.graphcms.com/B98L69ZNRWOV86ZHO7K9&quot;
+
+main :: Player
+main = player smyg</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>I could go on forever about why I love this rhythm. Some reasons probably include:</p><ul><li>The bold accents on the backbeats coupled with the relatively weak downbeats.</li><li>The alternation between highly regular measures and measures with a free sens of time.</li><li>The slow pace of the horns and sax against the drum groove and piano glissandos.</li><li>The very (very) laid-back backbeat on most beat-2s.</li><li>The rap itself, which flows in and out of the meter in really subtle ways.</li></ul><p>But at the end of the day when I&#x27;m listening to it I don&#x27;t think about any of these things: I just love it. And I love to remix it!</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+
+import Data.Array ((..))
+import Data.Lens (set, traversed, _Just)
+import Data.Map as Map
+import Data.Maybe (Maybe)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import Data.Tuple.Nested ((/\))
+import WAGS.Create.Optionals (gain, highpass, lowpass)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Cycle (Cycle, noteFromSample)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Samples (sampleTime)
+import WAGS.Lib.Tidal.Tidal (betwixt, i_, lnbo, lnv, lvt, make, s)
+import WAGS.Lib.Tidal.Types (BufferUrl(..), Note, Sample(..))
+import WAGS.Math (calcSlope)
+
+smwyg :: forall e. Cycle (Maybe (Note e))
+smwyg = noteFromSample (Sample &quot;smwyg&quot;)
+
+wag :: AFuture
+wag =
+  make 10.0
+    { earth:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ gain 1.0
+                      { hp: highpass
+                          ( lfo { phase: 0.0, amp: 1000.0, freq: 1.0 }
+                              clockTime + 2000.0
+                          )
+                          hello
+                      }
+
+          ) $ s
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+              ( lcmap sampleTime $
+                  betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.0 1.0 0.4 0.0
+              )
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnbo)
+              ( lcmap unwrap
+                  \{ bigCycleTime, initialEntropy } -&gt;
+                    0.6 * bigCycleTime + initialEntropy
+              )
+          $ i_ smwyg (map (const smwyg) (0 .. 100))
+    , wind:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ gain 1.0
+                      { hp: lowpass
+                          ( lfo { phase: 0.0, amp: 950.0, freq: 0.12 }
+                              clockTime + 1000.0
+                          )
+                          hello
+                      }
+
+          ) $ s
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+              ( lcmap sampleTime $
+                  betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.0 1.0 0.4 0.0
+              )
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnbo)
+              ( lcmap unwrap
+                  \{ bigCycleTime, initialEntropy } -&gt;
+                    0.9 * bigCycleTime + initialEntropy
+              )
+          $ i_ smwyg (map (const smwyg) (0 .. 60))
+    , sounds: Map.fromFoldable
+        [ Sample &quot;smwyg&quot;
+            /\ BufferUrl &quot;https://media.graphcms.com/B98L69ZNRWOV86ZHO7K9&quot;
+        ]
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+
+import Data.Array ((..))
+import Data.Lens (set, traversed, _Just)
+import Data.Map as Map
+import Data.Maybe (Maybe)
+import Data.Newtype (unwrap)
+import Data.Profunctor (lcmap)
+import Data.Tuple.Nested ((/\))
+import WAGS.Create.Optionals (gain, highpass, lowpass)
+import WAGS.Lib.Learn (Player, player)
+import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal.Cycle (Cycle, noteFromSample)
+import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
+import WAGS.Lib.Tidal.Samples (sampleTime)
+import WAGS.Lib.Tidal.Tidal (betwixt, i_, lnbo, lnv, lvt, make, s)
+import WAGS.Lib.Tidal.Types (BufferUrl(..), Note, Sample(..))
+import WAGS.Math (calcSlope)
+
+smwyg :: forall e. Cycle (Maybe (Note e))
+smwyg = noteFromSample (Sample &quot;smwyg&quot;)
+
+wag :: AFuture
+wag =
+  make 10.0
+    { earth:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ gain 1.0
+                      { hp: highpass
+                          ( lfo { phase: 0.0, amp: 1000.0, freq: 1.0 }
+                              clockTime + 2000.0
+                          )
+                          hello
+                      }
+
+          ) $ s
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+              ( lcmap sampleTime $
+                  betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.0 1.0 0.4 0.0
+              )
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnbo)
+              ( lcmap unwrap
+                  \{ bigCycleTime, initialEntropy } -&gt;
+                    0.6 * bigCycleTime + initialEntropy
+              )
+          $ i_ smwyg (map (const smwyg) (0 .. 100))
+    , wind:
+        map
+          ( set lvt
+              $ lcmap unwrap \{ clockTime } -&gt; fx
+                  $ goodbye
+                  $ gain 1.0
+                      { hp: lowpass
+                          ( lfo { phase: 0.0, amp: 950.0, freq: 0.12 }
+                              clockTime + 1000.0
+                          )
+                          hello
+                      }
+
+          ) $ s
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnv)
+              ( lcmap sampleTime $
+                  betwixt 0.0 1.0 &lt;&lt;&lt; calcSlope 0.0 1.0 0.4 0.0
+              )
+          $ set (traversed &lt;&lt;&lt; _Just &lt;&lt;&lt; lnbo)
+              ( lcmap unwrap
+                  \{ bigCycleTime, initialEntropy } -&gt;
+                    0.9 * bigCycleTime + initialEntropy
+              )
+          $ i_ smwyg (map (const smwyg) (0 .. 60))
+    , sounds: Map.fromFoldable
+        [ Sample &quot;smwyg&quot;
+            /\ BufferUrl &quot;https://media.graphcms.com/B98L69ZNRWOV86ZHO7K9&quot;
+        ]
+    }
+
+main :: Player
+main = player $ tdl $ wag</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Categories</h2><p>In the <a href="../note-function">previous post</a>, we explored the difference between types and terms. In PureScript and related programming languages, the sum total of all possible types and the functions between the terms that inhabit these types make up a <a href="https://en.wikipedia.org/wiki/Category_(mathematics)"><em>category</em></a>. In this category, types are <em>objects</em> (or nodes) and functions are <em>morphisms</em> (or arrows). Let&#x27;s call PureScript&#x27;s category <strong>Purs</strong>, hereafter referred to as 𝕻 for short.</p><p>For something to be a category, it needs to follow two rules:</p><h3>Rule 1 - Identity</h3><p>All objects must have an identity morphism that goes from it back to it. For every type <code>a</code> in 𝕻, we can construct a function <code>a -&gt; a</code> that returns the input as output.</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class Category c where
+  identity :: forall a. c a a
+
+instance Category (-&gt;) where
+  identity a = a</code>
+        </deckgo-highlight-code><h3>Rule 2 - Composition</h3><p>If there exists a morphism from <code>C -&gt; D</code> and a morphism from <code>B -&gt; C</code>, there exists a morphism from <code>B -&gt; D</code> that is formed by first going from <code>B</code> to <code>C</code> and then from <code>C</code> to <code>D</code>. If we look at the definition of <a href="https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid#t:Semigroupoid">compose</a>, a function we used extensively in the last section, it is <code>forall b c d. a c d -&gt; a b c -&gt; a b d</code> where <code>a</code> is an arbitrary semigroupoid (in this case, a function). So, when specialized to functions, this can be written as <code>forall b c d. (c -&gt; d) -&gt; (b -&gt; c) -&gt; (b -&gt; d)</code>.</p><p>So 𝕻 is a category, and where there are categories, there are functors.</p><h2>Functors</h2><p>A <a href="https://bartoszmilewski.com/2015/01/20/functors/">functor</a> is a mapping of objects and morphisms from one category to another category. As PureScript can&#x27;t go outside of PureScript (yet!), the functors we will look at are from 𝕻 to 𝕻. Functors from a category back to itself are called <em>endo-functors</em>.</p><p>Any category can be described completely in terms of its morphisms, as all objects can be indexed by their identity morphism. Because of this special property of categories, functors can be described by how they map <em>morphisms</em> to <em>morphisms</em>. In PureScript, one way this is done is called <code>map</code>.</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class Functor f where
+  map :: forall a b. (a -&gt; b) -&gt; (f a -&gt; f b)</code>
+        </deckgo-highlight-code><p>The parentheses around <code>f a -&gt; f b</code> can be dropped and it would mean the same thing, but I like them because they make it clear that we are mapping a morphism <code>a -&gt; b</code> to a <em>new</em> moprhism from <code>f a -&gt; f b</code>, where both <code>f a</code> and <code>f b</code> are objects somewhere else in the vast category of 𝕻. Importantly, the mapping in PureScript&#x27;s <code>Functor</code> class is called a <strong>covariant</strong> mapping, meaning the direction of morphisms in the source category and the destination are the same (they &quot;vary&quot; in the same direction). Not all functors are covariant, but the most common ones in programming are, and the word &quot;functor&quot; is used interchangeably with &quot;covariant functor.&quot;</p><p>Some classic covariant functors include <code>Maybe</code>, <code>List</code>, <code>Array</code>, <code>Proxy</code>, <code>Tuple a</code>, <code>Either a</code>, <code>Const a</code>, <code>Map k</code>, <code>Function a</code> and <code>Identity</code>. For example, the <code>Maybe</code> functor transports the function <code>not :: Boolean -&gt; Boolean</code> to <code>Maybe Boolean -&gt; Maybe Boolean</code>. Those with type variables, like <code>Tuple a</code>, represent families of functors: one for every type. Meaning that <code>Tuple Int</code> is a functor, <code>Tuple Boolean</code> is a functor, etc. </p><h2>Music + Functors</h2><p>As a general strategy, anytime you transport a musical entity to a new place, you can think of a functor being applied to it. Transpose a scale? There&#x27;s a functor for that.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+import Data.NonEmpty ((:|))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+functorToTheRescue =
+  map (transpose semitone) somePitches
+
+main :: Player
+main = player $ cycle functorToTheRescue</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+import Data.NonEmpty ((:|))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+functorToTheRescue =
+  map (transpose semitone) somePitches
+
+main :: Player
+main = player $ cycle functorToTheRescue</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Speed it up? There&#x27;s a functor for that.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+
+import Data.Lens (over)
+import Data.Lens.Iso.Newtype (unto)
+import Data.NonEmpty ((:|))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Note (Note(..), noteFromPitch_)
+import WAGS.Lib.Learn.Duration (semiquaver)
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+asNotes = map noteFromPitch_
+
+upASemitone = map (transpose semitone)
+
+faster = map (over (unto Note) (_ { duration = semiquaver }))
+
+main :: Player
+main = player
+  $ cycle
+  $ faster
+  $ upASemitone
+  $ asNotes
+  $ somePitches</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+
+import Data.Lens (over)
+import Data.Lens.Iso.Newtype (unto)
+import Data.NonEmpty ((:|))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Note (Note(..), noteFromPitch_)
+import WAGS.Lib.Learn.Duration (semiquaver)
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+asNotes = map noteFromPitch_
+
+upASemitone = map (transpose semitone)
+
+faster = map (over (unto Note) (_ { duration = semiquaver }))
+
+main :: Player
+main = player
+  $ cycle
+  $ faster
+  $ upASemitone
+  $ asNotes
+  $ somePitches</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Get louder based on the note? There&#x27;s a functor for that too!</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+import WAGS.Lib.Learn.Volume
+
+import Data.Lens (over)
+import Data.Lens.Iso.Newtype (unto)
+import Data.Map as Map
+import Data.Maybe (maybe)
+import Data.NonEmpty ((:|))
+import Data.Tuple.Nested ((/\))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Duration (semiquaver)
+import WAGS.Lib.Learn.Note (noteFromPitch_, Note(..))
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+asNotes = map noteFromPitch_
+
+upASemitone = map (transpose semitone)
+
+faster = map (over (unto Note) (_ { duration = semiquaver }))
+
+dynamics = Map.fromFoldable
+  [ c4 /\ piano
+  , d4 /\ mezzoForte
+  , e4 /\ fortissimo
+  , fSharp4 /\ piano
+  , gSharp4 /\ mezzoForte
+  , bFlat4 /\ fortissimo
+  , c5 /\ mezzoForte
+  ]
+
+terraced = map
+  $ over (unto Note)
+  $ \n@{ pitch } -&gt; n
+      { volume = maybe mezzoPiano _.value
+          $ Map.lookupLE pitch dynamics
+      }
+
+main :: Player
+main = player
+  $ cycle
+  $ terraced
+  $ faster
+  $ upASemitone
+  $ asNotes
+  $ somePitches</code></pre><div style="height:28px"></div></div></div></div><div><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import Prelude
+import WAGS.Lib.Learn.Pitch
+import WAGS.Lib.Learn.Volume
+
+import Data.Lens (over)
+import Data.Lens.Iso.Newtype (unto)
+import Data.Map as Map
+import Data.Maybe (maybe)
+import Data.NonEmpty ((:|))
+import Data.Tuple.Nested ((/\))
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Duration (semiquaver)
+import WAGS.Lib.Learn.Note (noteFromPitch_, Note(..))
+import WAGS.Lib.Learn.Transpose (transpose)
+import WAGS.Lib.Stream (cycle)
+
+somePitches = c4 :| [ d4, e4, fSharp4, gSharp4, bFlat4, c5 ]
+
+asNotes = map noteFromPitch_
+
+upASemitone = map (transpose semitone)
+
+faster = map (over (unto Note) (_ { duration = semiquaver }))
+
+dynamics = Map.fromFoldable
+  [ c4 /\ piano
+  , d4 /\ mezzoForte
+  , e4 /\ fortissimo
+  , fSharp4 /\ piano
+  , gSharp4 /\ mezzoForte
+  , bFlat4 /\ fortissimo
+  , c5 /\ mezzoForte
+  ]
+
+terraced = map
+  $ over (unto Note)
+  $ \n@{ pitch } -&gt; n
+      { volume = maybe mezzoPiano _.value
+          $ Map.lookupLE pitch dynamics
+      }
+
+main :: Player
+main = player
+  $ cycle
+  $ terraced
+  $ faster
+  $ upASemitone
+  $ asNotes
+  $ somePitches</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>The power of functors lies in their ability to &quot;lift&quot; functions from a context to another one. This means that, for example, instead of writing <code>[transpose wholeTone c4, transpose wholeTone d4, transpose wholeTone e4]</code> we can write <code>map (transpose wholeTone) [c4, d4, e4]</code> and be done with it. We can also partially apply <code>map (transpose wholeTone)</code> to create a function that will lift the morphism <code>transpose wholeTone</code> to <em>any</em> functor applied to notes.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>One of the most common types of functors is a collection like a <code>List</code> or <code>Object</code> or <code>Array</code>. Insofar as a rhythm is a connection of notes, we can think of functors as lifting functions (morphisms) from individual elements of rhythms to the whole rhythm. What comes out the other end is a new rhythm...</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>...or another rhythm...</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>...or something that most would not call a rhythm but I still find eerily pleasant...</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Functor road-show</h2><p>Let&#x27;s take functors for a spin! Each of these examples uses <code>map</code> is a slightly different way to achieve a slightly different effect.</p><h3>A</h3><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h3>B</h3><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h3>C</h3><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Applicative functors</h2><p>Functors in PureScript lift functions (morphisms) from 𝕻 to somewhere else in 𝕻. But what if you want to work with a function that&#x27;s already been lifted? For example, if we don&#x27;t have <code>(a -&gt; b)</code> but rather we have <code>f (a -&gt; b)</code>, can we still use it?</p><p>Types that are applicative functors answer with a resounding YES. Applicative functors are exactly like <code>map</code> but work on functions that have already been lifted:</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class Apply f where
+  apply :: forall a b. f (a -&gt; b) -&gt; (f a -&gt; f b)</code>
+        </deckgo-highlight-code><p>The most common use case for applicative functors is partially applied functions, which we saw in several examples from the <a href="">previous article</a>.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Indexed functors</h2><p>In category theory, objects are indivisible. One is not allowed to peek inside of objects to know anything about them. This means that <code>Boolean</code>, <code>Unit</code>, <code>Void</code> and <code>Int</code> are all the same in the eyes of a category theorist, and a for a functor to be a functor, it needs to operate indiscriminately on all of these types.</p><p>However, in 𝕻, this restriction is to severe.  We <em>are</em> able to reason about certain properties of the inhabitants of objects, aka <em>terms</em>. For example, we know that the cardinality of the <code>Boolean</code> is 2 - <code>true</code> or <code>false</code>. In addition, certain types are commonly understood to have terms with an inherent <em>ordinality</em>, meaning that their contents can be indexed by a natural number. This is most apparent in lists, where the first term in a list can be assigned the ordinal number 0, the second term 1, and so forth until the end of the list. It is important to state, however, that these ordinalities are entirely subjective. While ordering the elements of a list <em>0,1,2,...,n</em> may feel intuitive, there is nothing axiomatically &quot;correct&quot; about this order. On the other hand, lists verifiably have the cardinality of <a href="https://en.wikipedia.org/wiki/Cardinality_of_the_continuum">ℵ1</a>.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Indexed functors are applicative functors that create a lifted function <code>f (a -&gt; b)</code> by lifting a function <code>i -&gt; a -&gt; b</code> to a <code>f i</code> that contains the index <code>i</code> in order. While natural numbers is a common index, it is not the only one possible. The full signature is:</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class FunctorWithIndex f i | f -&gt; i where
+  mapWithIndex :: (i -&gt; a -&gt; b) -&gt; f a -&gt; f b</code>
+        </deckgo-highlight-code><p>The arrow from <code>f</code> to <code>i</code> in the class signature is called a <em>functional dependency</em> and indicates that the choice of <code>f</code> completely determines <code>i</code> or, in other words, that <code>i</code> depends (in this case exclusively) on <code>f</code>.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Indices are crucial in rhythm - they are the signposts that make rhythm come alive. The reason I can talk about JAY-Z delaying the backbeat of beat-2 is because I can reference <em>three</em> indices: beat-2 (four beats in a measure, so indexed by <em>0,1,2,3</em>) and backbeat (splitting a beat in two, so indexed <em>0,1</em>) and the hesitation on the backbeat, meaning how much we are delaying it (indexed by a real number, so ℵ1).  We can use an indexed functor to act on several of these indices at once.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Contravariant functors</h2><p>One great feature of category theory is that you get another category for free by &quot;flipping the arrows&quot;. For example, if a catgory <code>X</code> has objects <code>A</code> and <code>B</code> and morphisms <code>A -&gt; A</code>, <code>B -&gt; B</code> and <code>A -&gt; B</code>, we get a new category <code>Y</code> simply by flipping the arrows, meaning <code>A -&gt; A</code>, <code>B -&gt; B</code> and <code>B -&gt; A</code>. Note that <code>Y</code> is purely theoretical: often times, if a category represents a real-world phenomena (ie if <code>-&gt;</code> is time), we can&#x27;t flip the arrows and get a time machine for free. But on paper, all categories are flippable, and a large subset of 𝕻 <em>is</em> in fact flippable (certain important functions, like <a href="https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Data.Void#v:absurd"><code>absurd</code></a>, cannot be flipped).</p><p>Functors can be applied to these flipped categories and, when they are, they&#x27;re called <strong>contravariant</strong> functors. <em>Contra</em> is used here in its colloquial sense of &quot;in the opposite direction.&quot;</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class Contravariant f where
+  cmap :: forall a b. (a -&gt; b) -&gt; (f b -&gt; f a)</code>
+        </deckgo-highlight-code><p>Note that <code>a</code> and <code>b</code> are flipped on the right-hand side.</p><p>Contravariant functors make sense when the object being lifted is the <em>input</em> to some system. For example, consider the <code>Predicate</code>, defined as:</p><deckgo-highlight-code language="haskell">
+          <code slot="code">newtype Predicate a = Predicate (a -&gt; Boolean)
+evalPredicate :: forall a. Predicate a -&gt; a -&gt; Boolean
+evalPredicate (Predicate f) a = f a
+-- same as evalPredicate (Predicate f) = f
+-- same as evalPreidcate = coerce</code>
+        </deckgo-highlight-code><p>A common predicate is determining if a number is non-negative.</p><deckgo-highlight-code language="haskell">
+          <code slot="code">nonNegativeNumber = Predicate ((&lt;=) 0.0)</code>
+        </deckgo-highlight-code><p>If we want this to apply to integers, we can use <code>cmap</code> like so:</p><deckgo-highlight-code language="haskell">
+          <code slot="code">-- toNumber :: Int -&gt; Number
+nonNegativeInt = cmap toNumber nonNegativeNumber</code>
+        </deckgo-highlight-code><p>Contravariant functors are useful in music when we have a common base operation and we want it to produce a result for different inputs. For example, we can use the same <code>Predicate</code> on <code>Pitch</code>, <code>Duration</code> and <code>Volume</code> by using different versions of <code>cmap</code>.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>Profunctors</h2><p>Profunctors are my favorite types of functors. They combine contravariant functors and plain ol&#x27; functors in a rather incredible way, and I find that they give the biggest bang for your buck of any concept from functional programming.</p><p>A pro-functor takes a pair of morphisms - one from an opposite (contravariant) category and one from the &quot;normal&quot; covariant catgory, and maps them to yet-another category. As all we have is 𝕻, this will have to exist entirely within 𝕻, which we can accomplish through a mapping function that takes two morphisms and lifts them to operate on a functor that contains type variabls <em>both</em> in a contravariant and a covariant position.</p><deckgo-highlight-code language="haskell">
+          <code slot="code">class Profunctor p where
+  dimap :: forall a b c d. (a -&gt; b) -&gt; (c -&gt; d) -&gt; p b c -&gt; p a d</code>
+        </deckgo-highlight-code><p>The most common profunctor you&#x27;ll come across is the <code>Function</code>. Specialized to function, <code>dimap</code> becomes <code>(a -&gt; b) -&gt; (c -&gt; d) -&gt; (b -&gt; c) -&gt; (a -&gt; d)</code>. This is sort of like spelunking. If you give me a way to get down to the cave <code>a -&gt; b</code>, a way to get back up <code>c -&gt; d</code>, and some time in the cave <code>b -&gt; c</code>, I&#x27;ll give you back a spelunking trip <code>a -&gt; d</code>.</p><p>Another metaphor that is more apt for this context is <em>editing</em>. If you give me a way to zoom into a piece of music <code>a -&gt; b</code>, a way to zoom out after you&#x27;ve made a change <code>c -&gt; d</code>, and a change <code>b -&gt; c</code>, I&#x27;ll give you a function that changes a piece from <code>a -&gt; d</code>. Here, argument order is crucial: if we partially apply dimap in a function <code>editScore = dimap zoomIn zoomOut</code>, then <code>editScore</code> takes an editing function <code>b -&gt; c</code> and returns a function from an old score <code>a</code> to a new score <code>d</code>. The ideas of zooming in &amp; out are <em>visual</em> metaphors, and profunctors are often described based on the behavior of light. Other examples are the <a href=""><code>Optic</code></a>, the <a href=""><code>Lens</code></a> and the <a href=""><code>Prism</code></a>. The zooming I&#x27;ve just described is in fact a <code>Lens</code>, and there are two resources I know of that cover profunctor optics exhaustively:</p><ul><li>A</li><li>B</li></ul><p>All of the setters in the <code>wags-lib</code> library are profunctors. They are the stuff music is made of. In the following example, we use eight different profunctor lenses:</p><ol><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ol><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>We can even make our own - here is a different example with two hand-rolled lenses to modulate X and Y.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Profunctors are when things get interesting: they can zoom into data structures with arbitrary levels of precision (contravariant) and come back out (covariant). Going back to the definition of rhythm as a subtle dance of symmetries and asymmetries in accents over time, profunctors take something bland...</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>...and shape it so that it has <em>rhythm</em>!</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><h2>On the functorality of rhythms and the rhythm of functors</h2><p>In this article, we looked at five different variations on the theme of the functor:</p><ul><li>Covariant functor</li><li>Applicative functor</li><li>Indexed functor</li><li>Contravariant functor</li><li>Profunctor</li></ul><p>We heard musical examples of how all five can drive a rhythm. At the risk of being gaudy, here&#x27;s an example of all five shaping a piece of music.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><p>Rhythms are functors because they map musical events like notes to a new place where the events have (a) order and (b) variety (dynamic, agogic, harmonic etc). But do functors have a rhythm? Functors map object to new places like <code>Int</code> to <code>Maybe Int</code>, <code>Boolean</code> to <code>List Boolean</code>, <code>String</code> to <code>Event String</code> and <code>Number</code> to <code>Tuple Unit Number</code>. What the objects become in these new contexts are anyone&#x27;s guess. In <code>Maybe Int</code> the existence of the <code>Int</code> becomes optional, in <code>List Boolean</code> the existence of the <code>Boolean</code> becomes multiple, in <code>Event String</code> the existence of the <code>String</code> becomes both multiple and temporal and in <code>Tuple Unit Number</code> the existence of <code>Number</code> remains singular but it gets a buddy <code>Unit</code>. The elusive and wide-raning nature of the little bit of flair that functors can add is as rich, subtle, and surprising as the numerous ways a note can be accented. A note can disappear altogether (rest), be muted (con sordino), be delayed (rubato), or be played several times in rapid succession (tremolo). In this way, functors act as the accents of categories.</p><table><thead><tr><th>Functor</th><th>Agogic</th></tr></thead><tbody><tr><td>Proxy</td><td>rest</td></tr><tr><td>Behavior</td><td>drone</td></tr><tr><td>Vec D3</td><td>triad</td></tr><tr><td>Tuple Percussion</td><td>orchestration</td></tr></tbody></table><p>But what about order? For functors to have rhythm, it is not enough that they add accents to a catgory. They must also create some type of order.</p><p>Morphisms in categories can be thought of as <em>ordering</em> the category. In 𝕻, for example, <code>-&gt;</code> implies a before-after relationship between types. A function must receive its input <em>before</em> yielding its output.</p><p>A functor cannot reorder its source category because it must preserve morphisms. However, nothing stops a functor from conflating many morphisms into the same one (and, by extention, many objects to the same object). The extreme example of this is <code>Proxy</code>, which maps all objects a single object and all morphisms to a single morphism.</p><p>𝕻 is an unfathomably rich source category - it conains arrows from all terms to all other terms <em>except</em> in the case where the source is inhabited and the destination is not. Meaning that you won&#x27;t find anything of the signature <code>a -&gt; Void</code> unless <code>a</code> itself is uninhabited. These functions are rare and are almost exclusively used when proving something to a compiler via <a href="https://docs.idris-lang.org/en/latest/tutorial/theorems.html#the-empty-type">proof by contradiction</a>. This means that a functor has at its disposal infintely many connections and can reduc them to its own special order, much like a sculptor starts from slab of marble with limitless possibilities and arrives at a beautifully-proportioned work of art.</p><p>By assigning an accent (a quality or mood) to a type and by pruning the vast, order-rich 𝕻 to something with a more slimmed-down order (including no order at all), when we apply functors, we are breathing rhythm into types. So rhythms are not just functors - functors are rhythms. They both transport us to new places, and some of my greatest joys in life come when a new functor or rhythm transports me to an entirely new place that I would have never imagined before.</p><div style="position:relative"><div style="position:absolute;top:0;z-index:1000;left:0;width:100%;opacity:1"><div style="position:relative"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(90deg,#bdc3c7,#2c3e50)"></div><div><pre><code>module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></pre><div style="height:28px"></div></div></div></div><div><p style="background-color:red">STUB</p><deckgo-highlight-code line-numbers="false" editable="true" language="haskell"><code slot="code">module Main where
+
+import WAGS.Lib.Learn (player, Player)
+import WAGS.Lib.Learn.Pitch
+
+main :: Player
+main = player c4</code></deckgo-highlight-code><div style="display:flex;flex-direction:row;justify-content:space-between"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16 fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="cursor:pointer"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path></svg></div></div></div><blockquote><p><a href="https://github.com/mikesol/wagsi">Click here</a> to learn more about working with these examples on the cloud, on Windows, on Mac or on Linux. <a href="https://purescript.org">Click here</a> to learn more about the PureScript programming language, and join the Discord using<!-- --> <a href="https://purescript.org/chat">this link</a>. You&#x27;ll find me on the<!-- --> <code>#music</code> channel 🎶</p></blockquote></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script>
   
   
   if(true) {
@@ -465,4 +1611,4 @@
       
       
       
-      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/rhythm-functor/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4a7f5b4f0a55e194b5d1.js"],"app":["/app-104b4514e85998bc3d9a.js"],"component---src-pages-404-js":["/component---src-pages-404-js-752f857ee54bcb19e400.js"],"component---src-pages-index-mdx":["/component---src-pages-index-mdx-92121549a99e68e90f71.js"],"component---src-pages-introduction-mdx":["/component---src-pages-introduction-mdx-2c78cbdb64039979f99f.js"],"component---src-pages-note-function-mdx":["/component---src-pages-note-function-mdx-7c0b9704265813025315.js"],"component---src-pages-rhythm-functor-mdx":["/component---src-pages-rhythm-functor-mdx-a25133fb9d294c31eed5.js"]};/*]]>*/</script><script src="/sf/polyfill-4a7f5b4f0a55e194b5d1.js" nomodule=""></script><script src="/sf/component---src-pages-rhythm-functor-mdx-a25133fb9d294c31eed5.js" async=""></script><script src="/sf/app-104b4514e85998bc3d9a.js" async=""></script><script src="/sf/cb1608f2-b226e0f60ee15e1f6380.js" async=""></script><script src="/sf/532a2f07-688adb9b4acf536f0e77.js" async=""></script><script src="/sf/4317adae-b2dd59357a3b470e9581.js" async=""></script><script src="/sf/5f97a78d-28fbe6c0f50b244b2a9c.js" async=""></script><script src="/sf/469bb142-338af84dab33a00cd09c.js" async=""></script><script src="/sf/de3309da-22f6f90c02655d800791.js" async=""></script><script src="/sf/framework-b9deb5b1814bf6b76933.js" async=""></script><script src="/sf/webpack-runtime-dcd316e5c1c0ba81ffd3.js" async=""></script></body></html>
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/rhythm-functor/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4a7f5b4f0a55e194b5d1.js"],"app":["/app-2538d735a2b9ef408e2e.js"],"component---src-pages-404-js":["/component---src-pages-404-js-752f857ee54bcb19e400.js"],"component---src-pages-index-mdx":["/component---src-pages-index-mdx-92121549a99e68e90f71.js"],"component---src-pages-introduction-mdx":["/component---src-pages-introduction-mdx-2c78cbdb64039979f99f.js"],"component---src-pages-note-function-mdx":["/component---src-pages-note-function-mdx-7c0b9704265813025315.js"],"component---src-pages-rhythm-functor-mdx":["/component---src-pages-rhythm-functor-mdx-1af91e45d53c2421859e.js"]};/*]]>*/</script><script src="/sf/polyfill-4a7f5b4f0a55e194b5d1.js" nomodule=""></script><script src="/sf/component---src-pages-rhythm-functor-mdx-1af91e45d53c2421859e.js" async=""></script><script src="/sf/app-2538d735a2b9ef408e2e.js" async=""></script><script src="/sf/cb1608f2-b226e0f60ee15e1f6380.js" async=""></script><script src="/sf/532a2f07-688adb9b4acf536f0e77.js" async=""></script><script src="/sf/4317adae-b2dd59357a3b470e9581.js" async=""></script><script src="/sf/5f97a78d-28fbe6c0f50b244b2a9c.js" async=""></script><script src="/sf/469bb142-338af84dab33a00cd09c.js" async=""></script><script src="/sf/de3309da-22f6f90c02655d800791.js" async=""></script><script src="/sf/framework-b9deb5b1814bf6b76933.js" async=""></script><script src="/sf/webpack-runtime-55cc2b4e14ec4bf9c358.js" async=""></script></body></html>
