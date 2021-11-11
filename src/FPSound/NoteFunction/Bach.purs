@@ -3,7 +3,9 @@ module FPSound.NoteFunction.Bach where
 import Prelude
 import WAGS.Lib.Learn.Pitch
 
+import Data.Distributive (distribute)
 import Data.FunctorWithIndex (mapWithIndex)
+import Data.Identity (Identity)
 import Data.Int (toNumber)
 import Data.List (List(..), length, (:))
 import Data.Newtype (unwrap, wrap)
@@ -16,11 +18,11 @@ import WAGS.Lib.Learn.Note (note_)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Learn.Volume (Volume(..))
 
-type PitchI = Pitch ((->) Number)
+type PitchI = Pitch Identity
 type FofTime = Number -> Number
 
-toPitch :: (Number -> Pitch ((->) Number)) -> Pitch ((->) Number)
-toPitch = wrap <<< join <<< map unwrap
+toPitch :: (Number -> Pitch Identity) -> Pitch ((->) Number)
+toPitch = wrap <<< unwrap <<< distribute <<< map unwrap
 
 beat :: FofTime
 beat = max 0.0 <<< lfo { phase: pi, amp: 0.75, freq: 2.0 / gap }
@@ -34,16 +36,67 @@ bigGuard ((a /\ b) : c) default time
 gap = 0.3 :: Number
 
 pitches :: List (Number /\ PitchI)
-pitches = mapWithIndex
-  (lcmap ((/\) <<< add gap <<< mul gap <<< toNumber) ($)) $
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : d4 : a4 : d5 : f5 : a4 : d5 : f5 :
-  c4 : d4 : a4 : d5 : f5 : a4 : d5 : f5 :        
-  b3 : d4 : g4 : d5 : f5 : g4 : d5 : f5 :
-  b3 : d4 : g4 : d5 : f5 : g4 : d5 : f5 :        
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 :
-  c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5 : Nil
+pitches =
+  mapWithIndex
+    (lcmap ((/\) <<< add gap <<< mul gap <<< toNumber) ($)) $
+    c4 : e4 : g4 : c5 : e5 : g4 : c5 : e5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : c4
+      : d4
+      : a4
+      : d5
+      : f5
+      : a4
+      : d5
+      : f5
+      : c4
+      : d4
+      : a4
+      : d5
+      : f5
+      : a4
+      : d5
+      : f5
+      : b3
+      : d4
+      : g4
+      : d5
+      : f5
+      : g4
+      : d5
+      : f5
+      : b3
+      : d4
+      : g4
+      : d5
+      : f5
+      : g4
+      : d5
+      : f5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : c4
+      : e4
+      : g4
+      : c5
+      : e5
+      : g4
+      : c5
+      : e5
+      : Nil
 
 main :: Player
 main = player

@@ -19,18 +19,38 @@ import WAGS.Lib.Learn.Tempo (allegro)
 import WAGS.Lib.Stream (cycle)
 
 volumes = cycle $ forte :|
-  [ mezzoPiano, forte, mezzoPiano, forte
-  , mezzoPiano, mezzoForte
+  [ mezzoPiano
+  , forte
+  , mezzoPiano
+  , forte
+  , mezzoPiano
+  , mezzoForte
   ]
 
 pitches = cycle $ c4 :|
-  [ g4, f4, eFlat4, bFlat4, d5, eFlat4, bFlat4
-  , d5, f5, d5, bFlat4, eFlat4, f4, g4
+  [ g4
+  , f4
+  , eFlat4
+  , bFlat4
+  , d5
+  , eFlat4
+  , bFlat4
+  , d5
+  , f5
+  , d5
+  , bFlat4
+  , eFlat4
+  , f4
+  , g4
   ]
 
 rhythms = cycle $ map allegro $ crochet :|
-  [ quaver, semiquaver, quaver
-  , semiquaver, quaver, semiquaver
+  [ quaver
+  , semiquaver
+  , quaver
+  , semiquaver
+  , quaver
+  , semiquaver
   ]
 
 zap = deferCombine ($) lift2

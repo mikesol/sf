@@ -32,7 +32,7 @@ wag =
             )
         $ onTag "comp"
             ( set (_Just <<< lnr)
-                $ add 0.95 
+                $ add 0.95
                     <<< mul 0.1
                     <<< _.initialEntropy
                     <<< unwrap

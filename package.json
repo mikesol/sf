@@ -10,6 +10,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "format:purs": "purs-tidy format-in-place src/**/*.purs",
     "build": "npx spago build && gatsby build --prefix-paths",
     "serve": "gatsby serve",
     "clean": "gatsby clean"

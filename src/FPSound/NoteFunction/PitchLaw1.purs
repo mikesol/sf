@@ -3,13 +3,14 @@ module FPSound.NoteFunction.PitchLaw1 where
 import Prelude
 import WAGS.Lib.Learn.Pitch
 
-import Data.Function (on)
 import Data.Array.NonEmpty (fromNonEmpty)
+import Data.Function (on)
 import Data.FunctorWithIndex (mapWithIndex)
+import Data.Identity (Identity)
 import Data.Int (toNumber)
 import Data.Lens (view, over, _1, _2)
 import Data.List (List(..), length, sortBy, (:))
-import Data.Newtype (unwrap, wrap)
+import Data.Newtype (unwrap)
 import Data.NonEmpty ((:|))
 import Data.Profunctor (dimap)
 import Data.Traversable (sequence)
@@ -24,11 +25,11 @@ import WAGS.Lib.Learn.Note (note_)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Learn.Volume (Volume(..))
 
-type PitchI = Pitch ((->) Number)
+type PitchI = Pitch Identity
 type FofTime = Number -> Number
 
-toPitch :: (Number -> Pitch ((->) Number)) -> Pitch ((->) Number)
-toPitch = wrap <<< join <<< map unwrap
+toPitch :: (Number -> Pitch Identity) -> Pitch ((->) Number)
+toPitch = Pitch <<< compose (unwrap <<< unwrap)
 
 beat :: FofTime
 beat = max 0.0 <<< lfo { phase: 0.0, amp: 0.75, freq: 8.0 }
