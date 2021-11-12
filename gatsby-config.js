@@ -7,12 +7,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-google-gtag",
-      options: {
-        trackingIds: ["G-GZRNEZ67E8"],
-      },
-    },
     "gatsby-plugin-fontawesome-css",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
