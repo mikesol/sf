@@ -17,6 +17,13 @@ export default function Layout({ children }) {
         <meta charSet="utf-8" />
         <title>Soundly functional</title>
         <link rel="canonical" href="http://mikesol.github.io/fp-sound" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZRNEZ67E8"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)}
+          gtag('js', new Date());
+          gtag('config', 'G-GZRNEZ67E8');
+        </script>
       </Helmet>
       <AlertProvider template={AlertTemplate} {...options}>
         {children}
