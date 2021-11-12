@@ -8,9 +8,9 @@ module.exports = {
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-image",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-gtag",
       options: {
-        trackingId: "G-GZRNEZ67E8",
+        trackingIds: ["G-GZRNEZ67E8"],
       },
     },
     "gatsby-plugin-fontawesome-css",
