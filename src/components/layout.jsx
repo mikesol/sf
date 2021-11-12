@@ -19,8 +19,10 @@ export default function Layout({ children }) {
         <link rel="canonical" href="http://mikesol.github.io/fp-sound" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZRNEZ67E8"></script>
         <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments)}
+          if (typeof window !== "undefined") {
+            window.dataLayer = window.dataLayer || []
+          }
+          function gtag(){typeof window !== "undefined" && window.dataLayer.push(arguments)}
           gtag('js', new Date());
           gtag('config', 'G-GZRNEZ67E8');
         </script>
