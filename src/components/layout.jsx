@@ -20,7 +20,7 @@ export default function Layout({ children }) {
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZRNEZ67E8"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)}
+          function gtag(){window.dataLayer.push(arguments)}
           gtag('js', new Date());
           gtag('config', 'G-GZRNEZ67E8');
         </script>
