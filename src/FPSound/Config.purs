@@ -1,4 +1,4 @@
-module FPSound.Try.Config where
+module Config where
 
 loaderUrl :: String
 loaderUrl = "https://purescript-wags.netlify.app/js/output"

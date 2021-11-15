@@ -151,6 +151,13 @@ let additions =
         , repo = "https://github.com/mikesol/purescript-behaviors.git"
         , version = "v8.1.0"
         }
+      , jit =
+        { dependencies =
+          [ "maybe"
+          ]
+        , repo = "https://github.com/mikesol/purescript-jit.git"
+        , version = "main"
+        }
       , wags =
         { dependencies =
           [ "aff-promise"

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { compile } from "../../output/FPSound.Try.Compile";
+import { compile } from "../../output/JIT.Compile";
+import { evalSources } from "../../output/JIT.EvalSources";
+import { loaderUrl, compileUrl } from "../../output/Config";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   faPlayCircle,
@@ -18,50 +20,11 @@ const STOPPED = "STOPPED";
 const PROGRAMMING_ERROR = "PROGRAMMING_ERROR";
 const CODE_ERROR = "CODE_ERROR";
 
-const evalSources = function (sources) {
-  var modules = {};
-  function dirname(str) {
-    var ix = str.lastIndexOf("/");
-    return ix < 0 ? "" : str.slice(0, ix);
-  }
-  function resolvePath(a, b) {
-    if (b[0] === "." && b[1] === "/") {
-      return dirname(a) + b.slice(1);
-    }
-    if (b[0] === "." && b[1] === "." && b[2] === "/") {
-      return dirname(dirname(a)) + b.slice(2);
-    }
-    return b;
-  }
-  return function load(name) {
-    if (modules[name]) {
-      return modules[name].exports;
-    }
-    function require(path) {
-      return load(resolvePath(name, path));
-    }
-    var module = (modules[name] = { exports: {} });
-    try {
-      new Function("module", "exports", "require", sources[name])(
-        module,
-        module.exports,
-        require
-      );
-    } catch (e) {
-      console.error("ERR", e);
-      console.error(name);
-      console.error(sources[name]);
-      throw e;
-    }
-    return module.exports;
-  };
-};
-
 const playCompiled = function (data) {
   return function (errorCb) {
     return function (successCb) {
       return function () {
-        var file = evalSources(data)("<file>");
+        var file = evalSources(data)();
         if (file.main && typeof file.main === "function") {
           successCb(file.main)();
         } else {
@@ -111,8 +74,15 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
     // the downside is that there will be jank if someone plays an example immediately
     // but this is usually not the case
     if (preload) {
-      compile(code)(swallowError)(swallowError)((suc) => () => {
-        playCompiled(suc.js)(swallowError)(() => () => {})();
+      compile({
+        code,
+        loaderUrl,
+        compileUrl,
+        ourFaultErrorCallback: swallowError,
+        yourFaultErrorCallback: swallowError,
+        successCallback: (suc) => () => {
+          playCompiled(suc.js)(swallowError)(() => () => {})();
+        },
       })();
     }
   }, [null]);
@@ -224,21 +194,28 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
                     } else {
                       setLastCode(codeRef.current.innerText);
                       setPlayerState(LOADING);
-                      compile(codeRef.current.innerText)((err) => () => {
-                        handleError(err);
-                        setPlayerState(PROGRAMMING_ERROR);
-                      })((err) => () => {
-                        setCompileErrors(err);
-                        setCompileErrorsShowing(false);
-                        setPlayerState(CODE_ERROR);
-                      })((suc) => () => {
-                        playCompiled(suc.js)(loaderErrorCb)((plyr) => () => {
-                          setStop({
-                            hack: plyr(() => (cb) => () => cb()())(
-                              playerLoadedCb
-                            )(playerErrorCb)(),
-                          });
-                        })();
+                      compile({
+                        code: codeRef.current.innerText,
+                        loaderUrl,
+                        compileUrl,
+                        ourFaultErrorCallback: (err) => () => {
+                          handleError(err);
+                          setPlayerState(PROGRAMMING_ERROR);
+                        },
+                        yourFaultErrorCallback: (err) => () => {
+                          setCompileErrors(err);
+                          setCompileErrorsShowing(false);
+                          setPlayerState(CODE_ERROR);
+                        },
+                        successCallback: (suc) => () => {
+                          playCompiled(suc.js)(loaderErrorCb)((plyr) => () => {
+                            setStop({
+                              hack: plyr(() => (cb) => () => cb()())(
+                                playerLoadedCb
+                              )(playerErrorCb)(),
+                            });
+                          })();
+                        },
                       })();
                     }
                   }

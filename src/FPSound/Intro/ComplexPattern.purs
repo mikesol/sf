@@ -28,21 +28,7 @@ volumes = cycle $ forte :|
   ]
 
 pitches = cycle $ c4 :|
-  [ g4
-  , f4
-  , eFlat4
-  , bFlat4
-  , d5
-  , eFlat4
-  , bFlat4
-  , d5
-  , f5
-  , d5
-  , bFlat4
-  , eFlat4
-  , f4
-  , g4
-  ]
+  [ g4, f4, eFlat4, bFlat4, d5, eFlat4, bFlat4, d5, f5, d5, bFlat4, eFlat4, f4, g4 ]
 
 rhythms = cycle $ map allegro $ crochet :|
   [ quaver

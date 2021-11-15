@@ -26,6 +26,7 @@ to generate this file without the comments in this block.
   , "foreign"
   , "foreign-object"
   , "free"
+  , "jit"
   , "identity"
   , "integers"
   , "lists"
