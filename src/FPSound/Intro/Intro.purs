@@ -3,14 +3,13 @@ module FPSound.Intro.Intro where
 import Prelude
 
 import Data.Lens (_Just, set)
-import Data.Map as Map
-import Data.Bifunctor (bimap)
 import Data.Newtype (unwrap)
 import Data.Tuple.Nested ((/\))
+import Foreign.Object as Object
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Tidal (AFuture, tdl)
 import WAGS.Lib.Tidal.Tidal (lnr, lnv, make, onTag, parse_, s)
-import WAGS.Lib.Tidal.Types (BufferUrl(..), Sample(..))
+import WAGS.Lib.Tidal.Types (BufferUrl(..))
 
 wag :: AFuture
 wag =
@@ -38,7 +37,7 @@ wag =
                     <<< unwrap
             )
         $ parse_ "wdm:1;comp"
-    , sounds: Map.fromFoldable $ map (bimap Sample BufferUrl)
+    , sounds: map BufferUrl $ Object.fromFoldable $
         [ "wdm:0" /\ "https://freesound.org/data/previews/332/332741_34095-lq.mp3"
         , "wdm:1" /\ "https://freesound.org/data/previews/332/332740_34095-hq.mp3"
         ]

@@ -4,11 +4,11 @@ import Prelude
 
 import Data.Array ((..))
 import Data.Lens (set, traversed, _Just)
-import Data.Map as Map
 import Data.Maybe (Maybe)
 import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import Data.Tuple.Nested ((/\))
+import Foreign.Object as Object
 import WAGS.Create.Optionals (gain, highpass, lowpass)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
@@ -74,8 +74,8 @@ wag =
                     0.9 * bigCycleTime + initialEntropy
               )
           $ i_ smwyg (map (const smwyg) (0 .. 60))
-    , sounds: Map.fromFoldable
-        [ Sample "smwyg"
+    , sounds: Object.fromFoldable
+        [ "smwyg"
             /\ BufferUrl "https://media.graphcms.com/B98L69ZNRWOV86ZHO7K9"
         ]
     }
