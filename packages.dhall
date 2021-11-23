@@ -156,7 +156,7 @@ let additions =
           [ "maybe"
           ]
         , repo = "https://github.com/mikesol/purescript-jit.git"
-        , version = "v0.0.0"
+        , version = "v0.0.2"
         }
       , wags =
         { dependencies =

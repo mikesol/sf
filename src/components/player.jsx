@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { compile } from "../../output/JIT.Compile";
+import { PSContext } from "./layout";
 import { evalSources } from "../../output/JIT.EvalSources";
-import { loaderUrl, compileUrl } from "../../output/Config";
+import { compileUrl } from "../../output/Config";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   faPlayCircle,
@@ -55,6 +56,7 @@ const renameAsMain = (str) =>
     .join("\n");
 
 export const Player = ({ preload, player, code: protoCode, stub }) => {
+  const loader = useContext(PSContext);
   const code = renameAsMain(protoCode);
   const [showLoader, setShowLoader] = useState(true);
   const [lastCode, setLastCode] = useState(code);
@@ -76,7 +78,7 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
     if (preload) {
       compile({
         code,
-        loaderUrl,
+        loader,
         compileUrl,
         ourFaultErrorCallback: swallowError,
         yourFaultErrorCallback: swallowError,
@@ -196,7 +198,7 @@ export const Player = ({ preload, player, code: protoCode, stub }) => {
                       setPlayerState(LOADING);
                       compile({
                         code: codeRef.current.innerText,
-                        loaderUrl,
+                        loader,
                         compileUrl,
                         ourFaultErrorCallback: (err) => () => {
                           handleError(err);
