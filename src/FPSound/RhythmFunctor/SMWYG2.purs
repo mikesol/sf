@@ -13,7 +13,7 @@ import WAGS.Create.Optionals (gain, highpass, lowpass)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Tidal (AFuture, tdl)
-import WAGS.Lib.Tidal.Cycle (Cycle, noteFromSample)
+import WAGS.Lib.Tidal.Cycle (Cycle, cycleFromSample)
 import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
 import WAGS.Lib.Tidal.Samples (sampleTime)
 import WAGS.Lib.Tidal.Tidal (betwixt, i_, lnbo, lnv, lvt, make, s)
@@ -21,7 +21,7 @@ import WAGS.Lib.Tidal.Types (BufferUrl(..), Note, Sample(..))
 import WAGS.Math (calcSlope)
 
 smwyg :: forall e. Cycle (Maybe (Note e))
-smwyg = noteFromSample (Sample "smwyg")
+smwyg = cycleFromSample (Sample "smwyg")
 
 wag :: AFuture
 wag =

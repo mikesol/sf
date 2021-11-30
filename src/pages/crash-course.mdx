@@ -1,0 +1,144 @@
+import { Player } from "../components/player";
+import Footer from "../components/footer";
+import Next from "../components/next";
+import single from "../FPSound/CrashCourse/Single.purs";
+import { main as singleMain } from "../../output/FPSound.CrashCourse.Single/";
+
+# Crash course
+
+This page is a crash course for [`purescript-wags`](https://github.com/mikesol/purescript-wags), the web audio library that powers [`wags.fm`](https://github.com/mikesol/wags.fm) and [`wagsi`](https://github.com/mikesol/wagsi).
+
+## A single hi-hat
+
+Let's start with a single hi-hat.
+
+<Player player={singleMain} code={single} />
+
+Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `sn:0` (snare), stop it, and start it again. You can change to any of the sounds on [this site](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
+
+You can copy this and all other examples into the _blank slate_ example on [wags.fm](https://wags.fm) and they will work out of the box.
+
+## More notes
+
+When you add more events in the sequence, they are played in sequence.  The example above has four different events. You can add some or subtract some, stop, and play again to hear the difference.
+
+<Player stub player={singleMain} code={single} />
+
+## Faster loops
+
+Let's make our loop faster. You'll see that this example is the same as the example above but twice the speed. This is because the first value passed to `make` is `0.4`, or half of the value used above.
+
+<Player stub player={singleMain} code={single} />
+
+## Silence
+
+Silence is golden! Use a tidla (`~`) to add silence in place of a note.
+
+<Player stub player={singleMain} code={single} />
+
+## Simultaneous events
+
+Sometimes, you want two events to happen at the same time. You can do this by putting a square bracket around them and separating them with a comma. More than two events, no problem, just add more commas.
+
+<Player stub player={singleMain} code={single} />
+
+## Branching events
+
+Hearing the same loop over and over again is boring. Spice it up with _branching_. Each time the example loops, a different branch will be chosen.
+
+<Player stub player={singleMain} code={single} />
+
+## Polyrhythms
+
+You can have more than one note when you use a comma (`,`) to separate them. When you do this, you create polyrhythms. Let's listen to 3 on 4.
+
+<Player stub player={singleMain} code={single} />
+
+## Voices
+
+Up until now, we've only used one voice called `earth`. Let's add a new voice called `wind`. The three possible voices are `earth`, `wind`, and `fire`. Different voices are helpful when we want to add effects (we'll do this later).
+
+<Player stub player={singleMain} code={single} />
+
+## Drones
+
+To add a drone, you can use the `water` or `heart` voice. You'll also need to import the `Drones` sound pack from `WAGS.Lib`. Sound packs are additional sounds that are not included with the standard distro.
+
+<Player stub player={singleMain} code={single} />
+
+## Changing the volume of a note
+
+You can give any note a tag using a semi-colon (`;`). Then, use the `onTag` function to grab the note and `changeVolume` to change the volume. Note the use of `const`, which is a PureScript function that returns constant values.
+
+<Player stub player={singleMain} code={single} />
+
+## Changing the rate (pitch) of a note
+
+You can use `changeRate` to change the rate of a note.
+
+<Player stub player={singleMain} code={single} />
+
+## Working with functions of time
+
+It's often useful to work with functions of time. You can modify both rate and volume as a function of time. There are many different representations of time, so choose wisely! The example below uses:
+
+- `clockTime` to change the rate
+- `sampleTime` to change the volume
+
+<Player stub player={singleMain} code={single} />
+
+Other types of time you can use include
+
+- `littleCycleTime`: the time since the branch of a cycle started. For example, if you have a cycle that lasts 4 seconds with 5 branches and you just started branch 3, the value will be `0.0`.
+- `bigCycleTime`: the time since the last cycle started. For example, if you have a cycle that lasts 4 seconds with 5 branches and you just started branch 3, the value will be `12.0`.
+
+## Adding effects
+
+You can add aribtrary effects chains to voices.
+
+### High-pass filter
+
+Let's add a high-pass filter to create a sweeping effect.
+
+<Player stub player={singleMain} code={single} />
+
+### Pan
+
+Let's now try a pan.
+
+<Player stub player={singleMain} code={single} />
+
+### Synthetic sounds
+
+Let's add a few sine-wave oscillators.
+
+<Player stub player={singleMain} code={single} />
+
+### Delays and feedback
+
+To create a feedback delay, use the `delay` effect as well as `ref`, which is a reference to another node in the graph. In this case, `ref` refers to `myGain`, which is the gain node that we created elsewhere in the graph.
+
+<Player stub player={singleMain} code={single} />
+
+### Other effects
+
+I unfortunately haven't had time to document all the effects yet, but they are all here in [this module](https://github.com/mikesol/purescript-wags/blob/main/src/WAGS/Create/Optionals.purs). Here is a "kitchen sink" example that uses a lot of them.
+
+<Player stub player={singleMain} code={single} />
+
+## Inspiration
+
+`wags` is heavily indebted to the [Tidal Cycles](https://tidalcycles.org/) project, which inspired its mini-notation. It also makes heavy use of:
+
+- the [PureScript Programming Language](https://purescript.org), a purely functional language originally created by [Phil Freeman](https://twitter.com/paf31).
+- cofree comonads, an idea popularized (if not invented) by [Edward Kmett](https://twitter.com/kmett).
+- [functional reactive programming](https://en.wikipedia.org/wiki/Functional_reactive_programming), a technique popularized by Conal Elliott and Paul Hudak.
+
+## What next?
+
+You could:
+- listen to a track on [wags.fm](https://wags.fm). All of the tracks are editable in real-time just like these examples. You could also propose your own track on the [GitHub](https://github.com/mikesol/wags.fm) or leave a suggestion on the [issues page](https://github.com/mikesol/wags.fm/issues).
+- use [wagsi](https://github.com/mikesol/wagsi) to [DJ your own session](https://twitter.com/stronglynormal/status/1459623955719991299) and collaborate with others as you do. Our community has one jam session a month, and we usually meet up on the `#music` channel of the [PureScript Discord](https://purescript.org/chat) server.
+- dive into the examples on [`purescript-wags-lib`](https://github.com/mikesol/purescript-wags-lib) for more advanced use cases, including using [TensorFlow.js to create markov models]() and [controlling the music with a mouse]().
+
+I wish you lots of satisfaction as you play with wags to create music, noise, or whatever makes your ears perk up. Happy wagging!
