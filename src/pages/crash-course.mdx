@@ -3,6 +3,24 @@ import Footer from "../components/footer";
 import Next from "../components/next";
 import single from "../FPSound/CrashCourse/Single.purs";
 import { main as singleMain } from "../../output/FPSound.CrashCourse.Single/";
+import several from "../FPSound/CrashCourse/Several.purs";
+import { main as severalMain } from "../../output/FPSound.CrashCourse.Several/";
+import faster from "../FPSound/CrashCourse/Faster.purs";
+import { main as fasterMain } from "../../output/FPSound.CrashCourse.Faster/";
+import silence from "../FPSound/CrashCourse/Silence.purs";
+import { main as silenceMain } from "../../output/FPSound.CrashCourse.Silence/";
+import simul from "../FPSound/CrashCourse/Simul.purs";
+import { main as simulMain } from "../../output/FPSound.CrashCourse.Simul/";
+import subdiv from "../FPSound/CrashCourse/Subdiv.purs";
+import { main as subdivMain } from "../../output/FPSound.CrashCourse.Subdiv/";
+import branch from "../FPSound/CrashCourse/Branch.purs";
+import { main as branchMain } from "../../output/FPSound.CrashCourse.Branch/";
+import poly from "../FPSound/CrashCourse/Poly.purs";
+import { main as polyMain } from "../../output/FPSound.CrashCourse.Poly/";
+import voices from "../FPSound/CrashCourse/Voices.purs";
+import { main as voicesMain } from "../../output/FPSound.CrashCourse.Voices/";
+import drones from "../FPSound/CrashCourse/Drones.purs";
+import { main as dronesMain } from "../../output/FPSound.CrashCourse.Drones/";
 
 # Crash course
 
@@ -14,57 +32,67 @@ Let's start with a single hi-hat.
 
 <Player player={singleMain} code={single} />
 
-Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `sn:0` (snare), stop it, and start it again. You can change to any of the sounds on [this site](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
+Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `sn:0` (snare), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
 
-You can copy this and all other examples into the _blank slate_ example on [wags.fm](https://wags.fm) and they will work out of the box.
+You can copy this and all other examples into the _blank slate_ track on [wags.fm](https://wags.fm) and they will work out of the box.
 
 ## More notes
 
 When you add more events in the sequence, they are played in sequence.  The example above has four different events. You can add some or subtract some, stop, and play again to hear the difference.
 
-<Player stub player={singleMain} code={single} />
+<Player player={severalMain} code={several} />
 
 ## Faster loops
 
 Let's make our loop faster. You'll see that this example is the same as the example above but twice the speed. This is because the first value passed to `make` is `0.4`, or half of the value used above.
 
-<Player stub player={singleMain} code={single} />
+<Player player={fasterMain} code={faster} />
 
 ## Silence
 
 Silence is golden! Use a tidla (`~`) to add silence in place of a note.
 
-<Player stub player={singleMain} code={single} />
+<Player player={silenceMain} code={silence} />
 
 ## Simultaneous events
 
-Sometimes, you want two events to happen at the same time. You can do this by putting a square bracket around them and separating them with a comma. More than two events, no problem, just add more commas.
+Sometimes, you want two events to happen at the same time. You can do this by putting square brackets (`[` and `]`) around them and separating them with a comma. More than two events? No problem, just add more commas.
 
-<Player stub player={singleMain} code={single} />
+In the example below, we use three quotation marks to open and close a multiline string.
+
+<Player player={simulMain} code={simul} />
+
+## Subdivisions
+
+To create internal subdivisions like 16th-notes (aka semiquavers), use square brackets (`[` and `]`) without a comma. You can also use an asterisk (`*`) to create subdivisions of a single sample.
+
+<Player player={subdivMain} code={subdiv} />
 
 ## Branching events
 
 Hearing the same loop over and over again is boring. Spice it up with _branching_. Each time the example loops, a different branch will be chosen.
 
-<Player stub player={singleMain} code={single} />
+> Branches multiply, so something that branches two times, three times and then four times will be 2*3*4 cycles long.
+
+<Player player={branchMain} code={branch} />
 
 ## Polyrhythms
 
-You can have more than one note when you use a comma (`,`) to separate them. When you do this, you create polyrhythms. Let's listen to 3 on 4.
+You can have more than one note when you use a comma (`,`) between square brackets. When you do this, you create polyrhythms. Let's listen to 3 on 4.
 
-<Player stub player={singleMain} code={single} />
+<Player player={polyMain} code={poly} />
 
 ## Voices
 
-Up until now, we've only used one voice called `earth`. Let's add a new voice called `wind`. The three possible voices are `earth`, `wind`, and `fire`. Different voices are helpful when we want to add effects (we'll do this later).
+Up until now, we've only used one voice called `earth`. Let's add a new voice called `wind`. The three possible voices are `earth`, `wind`, and `fire`. Different voices are helpful when you're doing a jam session, as different DJs can work on different voices. They're also useful if you want to add effects (we'll add effects later).
 
-<Player stub player={singleMain} code={single} />
+<Player player={voicesMain} code={voices} />
 
 ## Drones
 
-To add a drone, you can use the `water` or `heart` voice. You'll also need to import the `Drones` sound pack from `WAGS.Lib`. Sound packs are additional sounds that are not included with the standard distro.
+To add a drone, you can use the `air` or `heart` voice followed by the `drone` function with the sample you wish to use. The sample will loop.
 
-<Player stub player={singleMain} code={single} />
+<Player player={dronesMain} code={drones} />
 
 ## Changing the volume of a note
 

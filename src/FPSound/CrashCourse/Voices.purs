@@ -1,4 +1,4 @@
-module FPSound.CrashCourse.Single where
+module FPSound.CrashCourse.Voices where
 
 import Prelude
 
@@ -7,7 +7,10 @@ import WAGS.Lib.Tidal (AFuture, tdl)
 import WAGS.Lib.Tidal.Tidal (make, s)
 
 wag :: AFuture
-wag = make 0.8 { earth: s "hh:0" }
+wag = make 0.8
+  { earth: s "pluck:3 pluck:5 pluck:10 pluck:12 pluck:16"
+   , wind: s "[bd,hh] hh [clap,hh] hh"
+  }
 
 main :: Player
 main = player (tdl wag)
