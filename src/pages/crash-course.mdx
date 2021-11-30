@@ -21,6 +21,10 @@ import voices from "../FPSound/CrashCourse/Voices.purs";
 import { main as voicesMain } from "../../output/FPSound.CrashCourse.Voices/";
 import drones from "../FPSound/CrashCourse/Drones.purs";
 import { main as dronesMain } from "../../output/FPSound.CrashCourse.Drones/";
+import volume from "../FPSound/CrashCourse/Volume.purs";
+import { main as volumeMain } from "../../output/FPSound.CrashCourse.Volume/";
+import rate from "../FPSound/CrashCourse/Rate.purs";
+import { main as rateMain } from "../../output/FPSound.CrashCourse.Rate/";
 
 # Crash course
 
@@ -96,15 +100,18 @@ To add a drone, you can use the `air` or `heart` voice followed by the `drone` f
 
 ## Changing the volume of a note
 
-You can give any note a tag using a semi-colon (`;`). Then, use the `onTag` function to grab the note and `changeVolume` to change the volume. Note the use of `const`, which is a PureScript function that returns constant values.
+You can give any note a tag using a semi-colon (`;`). Then, use the `onTag` function to grab the note and `changeVolume` to change the volume. A couple additional things to note:
 
-<Player stub player={singleMain} code={single} />
+1. `const` is a PureScript function that returns constant values.
+2. `parse_` must be used to end a chain of one or more `onTag`.
+
+<Player player={volumeMain} code={volume} />
 
 ## Changing the rate (pitch) of a note
 
 You can use `changeRate` to change the rate of a note.
 
-<Player stub player={singleMain} code={single} />
+<Player player={rateMain} code={rate} />
 
 ## Working with functions of time
 
