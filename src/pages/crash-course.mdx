@@ -50,7 +50,7 @@ Let's start with a single hi-hat.
 
 <Player player={singleMain} code={single} />
 
-To listen to this and all other examples, click or press the <FontAwesomeIcon icon={faPlayCircle} /> button.
+To listen to this and all other examples, click or press the **Play** <FontAwesomeIcon icon={faPlayCircle} /> button below the player.
 
 Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `realclaps:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
 
@@ -133,7 +133,7 @@ You can give any note a tag using a semi-colon (`;`). Then, use the `onTag` func
 
 You can use `changeRate` to change the rate of a note.
 
-<Player player={rateMain} code={rate} />
+<Player preload player={rateMain} code={rate} />
 
 ## Working with functions of time
 
