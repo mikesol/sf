@@ -10,7 +10,7 @@ import WAGS.Lib.Tidal.Tidal as T
 wag :: AFuture
 wag = T.make 4.0
   { earth: T.s
-      $ T.onTag "ph"
+      $ T.onTag "pad"
           ( T.changeRate
               ( _.sampleTime
                   >>> mul 1.3
@@ -29,7 +29,7 @@ wag = T.make 4.0
                   >>> add 0.4
               )
           )
-      $ T.parse_ "[psr:3 ~] [~ psr:3;ph ~ psr:3;ph ~]"
+      $ T.parse_ "pad:2 pad:2;pad"
   }
 
 main :: Player

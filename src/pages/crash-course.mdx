@@ -29,6 +29,14 @@ import sounds from "../FPSound/CrashCourse/Sounds.purs";
 import { main as soundsMain } from "../../output/FPSound.CrashCourse.Sounds/";
 import foft from "../FPSound/CrashCourse/FofT.purs";
 import { main as foftMain } from "../../output/FPSound.CrashCourse.FofT/";
+import highpass from "../FPSound/CrashCourse/Highpass.purs";
+import { main as highpassMain } from "../../output/FPSound.CrashCourse.Highpass/";
+import pan from "../FPSound/CrashCourse/Pan.purs";
+import { main as panMain } from "../../output/FPSound.CrashCourse.Pan/";
+import sines from "../FPSound/CrashCourse/Sines.purs";
+import { main as sinesMain } from "../../output/FPSound.CrashCourse.Sines/";
+import feedback from "../FPSound/CrashCourse/Feedback.purs";
+import { main as feedbackMain } from "../../output/FPSound.CrashCourse.Feedback/";
 
 # Crash course
 
@@ -127,8 +135,10 @@ You can use `changeRate` to change the rate of a note.
 
 It's often useful to work with functions of time. You can modify both rate and volume as a function of time. There are many different representations of time, so choose wisely! The example below uses:
 
-- `clockTime` to change the rate
-- `sampleTime` to change the volume
+- `clockTime` to change the volume
+- `sampleTime` to change the rate
+
+It also uses a [Low Frequency Oscillator (`lfo`)](https://en.wikipedia.org/wiki/Low-frequency_oscillation). Lastly, it uses the `>>>` operator to pipe values from left-to-right. Because we're making heavy use of the `WAGS.Lib.Tidal.Tidal` module, we'll use a qualified import and rename it `T`.
 
 <Player player={foftMain} code={foft} />
 
@@ -139,37 +149,35 @@ Other types of time you can use include
 
 ## Adding effects
 
-You can add aribtrary effects chains to voices.
+You can add aribtrary effects chains to voices. Effect chains must end with an output called `goodbye` and optionally use an input called `hello`. Discarding the input is useful if you want to use purely synthetic effects.
 
 ### High-pass filter
 
 Let's add a high-pass filter to create a sweeping effect.
 
-<Player stub player={singleMain} code={single} />
+<Player player={highpassMain} code={highpass} />
 
 ### Pan
 
 Let's now try a pan.
 
-<Player stub player={singleMain} code={single} />
+<Player player={panMain} code={pan} />
 
 ### Synthetic sounds
 
 Let's add a few sine-wave oscillators.
 
-<Player stub player={singleMain} code={single} />
+<Player player={sinesMain} code={sines} />
 
 ### Delays and feedback
 
-To create a feedback delay, use the `delay` effect as well as `ref`, which is a reference to another node in the graph. In this case, `ref` refers to `myGain`, which is the gain node that we created elsewhere in the graph.
+To create a feedback loop, use the `delay` effect as well as `ref`, which is a reference to another node in the graph. In this case, `ref` refers to `myGain`, which is the gain node that we created elsewhere in the graph.
 
-<Player stub player={singleMain} code={single} />
+<Player player={feedbackMain} code={feedback} />
 
 ### Other effects
 
-I unfortunately haven't had time to document all the effects yet, but they are all here in [this module](https://github.com/mikesol/purescript-wags/blob/main/src/WAGS/Create/Optionals.purs). Here is a "kitchen sink" example that uses a lot of them.
-
-<Player stub player={singleMain} code={single} />
+Almost all of the effects from the WebAudio API are reproducible using this method. For example, to use an allpass filter instead of a highpass, import `allpass` instead of `highpass`. All importable functions can be found in [this module](https://github.com/mikesol/purescript-wags/blob/main/src/WAGS/Create/Optionals.purs).
 
 ## Inspiration
 
@@ -184,6 +192,7 @@ I unfortunately haven't had time to document all the effects yet, but they are a
 You could:
 - listen to a track on [wags.fm](https://wags.fm). All of the tracks are editable in real-time just like these examples. You could also propose your own track on the [GitHub](https://github.com/mikesol/wags.fm) or leave a suggestion on the [issues page](https://github.com/mikesol/wags.fm/issues).
 - use [wagsi](https://github.com/mikesol/wagsi) to [DJ your own session](https://twitter.com/stronglynormal/status/1459623955719991299) and collaborate with others as you do. Our community has one jam session a month, and we usually meet up on the `#music` channel of the [PureScript Discord](https://purescript.org/chat) server.
-- dive into the examples on [`purescript-wags-lib`](https://github.com/mikesol/purescript-wags-lib) for more advanced use cases, including using [TensorFlow.js to create markov models]() and [controlling the music with a mouse]().
+- dive into the examples on [`purescript-wags-lib`](https://github.com/mikesol/purescript-wags-lib) for more advanced use cases, including using [TensorFlow.js to create markov models](https://purescript-wags-lib-sector.netlify.app/) (code [here](https://github.com/mikesol/purescript-wags-lib/tree/main/examples/sector)) and [controlling the music with a mouse](https://purescript-wags-lib-sequencer.netlify.app/) (code [here](https://github.com/mikesol/purescript-wags-lib/tree/main/examples/gamelan)).
+- embed [wags](https://github.com/mikesol/purescript-wags) into your site to create rich interactive audio experiences, including custom [Audio Worklets](https://developer.mozilla.org/en-US/docs/Web/API/AudioWorklet) and [Analyzers](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode).
 
 I wish you lots of satisfaction as you play with wags to create music, noise, or whatever makes your ears perk up. Happy wagging!
