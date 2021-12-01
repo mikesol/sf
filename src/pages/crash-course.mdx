@@ -52,11 +52,11 @@ Let's start with a single hi-hat.
 
 To listen to this and all other examples, click or press the **Play** <FontAwesomeIcon icon={faPlayCircle} /> button below the player.
 
-Wags is written in [PureScript](https://purescript.org), but you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `realclaps:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md).
+Wags is written in [PureScript](https://purescript.org), but you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `realclaps:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md). Much of the Wags syntax is heavily inspired by [Tidal Cycles](https://tidalcycles.org/), so if you know Tidal, you should feel at home.
 
 If you're coming from [wags.fm](https://wags.fm), you can copy this and all other examples into the _blank slate_ track and they will work out of the box.
 
-## More notes
+## More samples
 
 When you add more samples like `bd:0` or `hh:0` to the string, they are played in series.  The example below has four different samples. Try adding and removing some to see what happens.
 
@@ -74,7 +74,7 @@ Silence is golden! Use a tidla (`~`) to add silence in place of a note.
 
 <Player player={silenceMain} code={silence} />
 
-## Simultaneous events
+## Simultaneous samples
 
 Sometimes, you want two samples to play at the same time. You can do this by putting square brackets (`[` and `]`) around them and separating them with a comma. More than two samples? No problem, just add more commas.
 
@@ -90,11 +90,11 @@ To create internal subdivisions like 16th-notes (aka semiquavers), use square br
 
 ## Polyrhythms
 
-You can combine subdivisions and simultaneous events to create polyrhythms. Let's listen to 3 on 4.
+You can combine subdivisions and simultaneous samples to create polyrhythms. Let's listen to 3 on 4.
 
 <Player player={polyMain} code={poly} />
 
-## Branching events
+## Branching cycles
 
 Hearing the same loop over and over again is boring. Spice it up with _branching_. Each time the cycle loops, a different branch will be chosen.
 
