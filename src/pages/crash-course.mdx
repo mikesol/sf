@@ -157,7 +157,7 @@ You can add aribtrary effects chains to voices. Effect chains must end with an o
 
 ### High-pass filter
 
-Let's add a high-pass filter to create a sweeping effect.
+Let's add a high-pass filter to create a sweeping effect. The function `ff` here creates a small control-rate delay that smooths over the rapid changes in the filter's frequency, which could cause clicks or pops on some devices.
 
 <Player player={highpassMain} code={highpass} />
 

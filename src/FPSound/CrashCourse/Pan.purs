@@ -3,6 +3,7 @@ module FPSound.CrashCourse.Pan where
 import Prelude
 
 import WAGS.Create.Optionals (pan)
+import WAGS.Graph.Parameter (ff)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
 import WAGS.Lib.Tidal (AFuture, tdl)
@@ -17,6 +18,8 @@ wag = make 4.0
             ( fx
                 <<< goodbye
                 <<< flip pan hello
+                <<< ff 0.1
+                <<< pure
                 <<< lfo
                   { phase: 0.0
                   , amp: 1.0
