@@ -146,14 +146,14 @@ It also uses a [Low Frequency Oscillator (`lfo`)](https://en.wikipedia.org/wiki/
 
 <Player player={foftMain} code={foft} />
 
-Other types of time you can use include
+Other types of time you can use include:
 
 - `littleCycleTime`: the time since the branch of a cycle started. For example, if you have a cycle that lasts 4 seconds with 5 branches and you just started branch 3, the value will be `0.0`.
 - `bigCycleTime`: the time since the last cycle started. For example, if you have a cycle that lasts 4 seconds with 5 branches and you just started branch 3, the value will be `12.0`.
 
 ## Adding effects
 
-You can add aribtrary effects chains to voices. Effect chains must end with an output called `goodbye` and optionally use an input called `hello`. Discarding the input is useful if you want to use purely synthetic effects.
+You can add aribtrary effects chains to voices. Effect chains must end with an output called `goodbye` and optionally use an input called `hello`. Discarding the input is useful if you want to create purely synthetic effects.
 
 ### High-pass filter
 
