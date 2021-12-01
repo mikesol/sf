@@ -52,19 +52,19 @@ Let's start with a single hi-hat.
 
 To listen to this and all other examples, click or press the **Play** <FontAwesomeIcon icon={faPlayCircle} /> button below the player.
 
-Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `realclaps:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
+Wags is written in [PureScript](https://purescript.org), but you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `realclaps:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md).
 
-You can copy this and all other examples into the _blank slate_ track on [wags.fm](https://wags.fm) and they will work out of the box.
+If you're coming from [wags.fm](https://wags.fm), you can copy this and all other examples into the _blank slate_ track and they will work out of the box.
 
 ## More notes
 
-When you add more events in the sequence, they are played in sequence.  The example above has four different events. You can add some or subtract some, stop, and play again to hear the difference.
+When you add more samples like `bd:0` or `hh:0` to the string, they are played in series.  The example below has four different samples. Try adding and removing some to see what happens.
 
 <Player player={severalMain} code={several} />
 
 ## Faster loops
 
-Let's make our loop faster. You'll see that this example is the same as the example above but twice the speed. This is because the first value passed to `make` is `0.4`, or half of the value used above.
+Let's make our loop faster. The example below is the same as the one above but plays at twice the speed. This is because the first value passed to `make` is `0.4`, or half of the value used above.
 
 <Player player={fasterMain} code={faster} />
 
@@ -76,7 +76,7 @@ Silence is golden! Use a tidla (`~`) to add silence in place of a note.
 
 ## Simultaneous events
 
-Sometimes, you want two events to happen at the same time. You can do this by putting square brackets (`[` and `]`) around them and separating them with a comma. More than two events? No problem, just add more commas.
+Sometimes, you want two samples to play at the same time. You can do this by putting square brackets (`[` and `]`) around them and separating them with a comma. More than two samples? No problem, just add more commas.
 
 In the example below, we use three quotation marks to open and close a multiline string.
 
@@ -88,23 +88,23 @@ To create internal subdivisions like 16th-notes (aka semiquavers), use square br
 
 <Player player={subdivMain} code={subdiv} />
 
-## Branching events
-
-Hearing the same loop over and over again is boring. Spice it up with _branching_. Each time the example loops, a different branch will be chosen.
-
-> Branches multiply, so something that branches two times, three times and then four times will be 2*3*4 cycles long.
-
-<Player player={branchMain} code={branch} />
-
 ## Polyrhythms
 
-You can have more than one note when you use a comma (`,`) between square brackets. When you do this, you create polyrhythms. Let's listen to 3 on 4.
+You can combine subdivisions and simultaneous events to create polyrhythms. Let's listen to 3 on 4.
 
 <Player player={polyMain} code={poly} />
 
+## Branching events
+
+Hearing the same loop over and over again is boring. Spice it up with _branching_. Each time the cycle loops, a different branch will be chosen.
+
+> Branches multiply, so something that branches two times, then three times, and then four times will be 2*3*4=24 cycles long!
+
+<Player player={branchMain} code={branch} />
+
 ## Voices
 
-Up until now, we've only used one voice called `earth`. Let's add a new voice called `wind`. The three possible voices are `earth`, `wind`, and `fire`. Different voices are helpful when you're doing a jam session, as different DJs can work on different voices. They're also useful if you want to add effects (we'll add effects later).
+Up until now, we've only used one voice called `earth`. Let's add a new voice called `wind`. The three possible voices are `earth`, `wind`, and `fire`. Different voices are helpful when you're doing a [`wagsi`](https://github.com/mikesol/wagsi) jam session, as different DJs can work on different areas of a single document. They're also useful if you want to add effects (we'll add effects later).
 
 <Player player={voicesMain} code={voices} />
 
