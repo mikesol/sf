@@ -22,9 +22,9 @@ myLFO phase freq amp clockTime offset =
     lfo
       { phase
       , freq
-      , amp
+      , amp: amp * 0.5
       }
-      clockTime + offset
+      clockTime + (offset * 0.5)
 
 wag :: AFuture
 wag = make 4.0
@@ -39,16 +39,16 @@ wag = make 4.0
                         (sinOsc 220.0)
                     , wave1: gain
                         (myLFO 0.1 4.0 0.1 ct 0.15)
-                        (sinOsc 220.0)
+                        (sinOsc 440.0)
                     , wave2: gain
                         (myLFO 2.0 6.0 0.25 ct 0.3)
-                        (sinOsc 220.0)
+                        (sinOsc 660.0)
                     , wave3: gain
                         (myLFO 2.0 2.0 0.05 ct 0.12)
-                        (sinOsc 220.0)
+                        (sinOsc 880.0)
                     , wave4: gain
                         (myLFO 0.0 16.0 0.03 ct 0.09)
-                        (sinOsc 220.0)
+                        (sinOsc 1100.0)
                     , original: hello
                     }
 
