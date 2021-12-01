@@ -37,6 +37,8 @@ import sines from "../FPSound/CrashCourse/Sines.purs";
 import { main as sinesMain } from "../../output/FPSound.CrashCourse.Sines/";
 import feedback from "../FPSound/CrashCourse/Feedback.purs";
 import { main as feedbackMain } from "../../output/FPSound.CrashCourse.Feedback/";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 
 # Crash course
 
@@ -48,7 +50,9 @@ Let's start with a single hi-hat.
 
 <Player player={singleMain} code={single} />
 
-Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `sn:0` (snare), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
+To listen to this and all other examples, click or press the <FontAwesomeIcon icon={faPlayCircle} /> button.
+
+Wags is written in [PureScript](https://purescript.org). But you don't need to know PureScript in order to use wags. In the example above, change `hh:0` to `bd:0` (bass drum), stop it, and start it again. Change it to `clap:0` (clap), stop it, and start it again. You can change to any of the sounds from the [Amazing SuperDirt Sample Library](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) and you should hear something.
 
 You can copy this and all other examples into the _blank slate_ track on [wags.fm](https://wags.fm) and they will work out of the box.
 
