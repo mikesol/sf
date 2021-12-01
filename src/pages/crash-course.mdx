@@ -25,6 +25,10 @@ import volume from "../FPSound/CrashCourse/Volume.purs";
 import { main as volumeMain } from "../../output/FPSound.CrashCourse.Volume/";
 import rate from "../FPSound/CrashCourse/Rate.purs";
 import { main as rateMain } from "../../output/FPSound.CrashCourse.Rate/";
+import sounds from "../FPSound/CrashCourse/Sounds.purs";
+import { main as soundsMain } from "../../output/FPSound.CrashCourse.Sounds/";
+import foft from "../FPSound/CrashCourse/FofT.purs";
+import { main as foftMain } from "../../output/FPSound.CrashCourse.FofT/";
 
 # Crash course
 
@@ -98,6 +102,12 @@ To add a drone, you can use the `air` or `heart` voice followed by the `drone` f
 
 <Player player={dronesMain} code={drones} />
 
+## Working with new samples
+
+You can add new samples by providing an object to the `sounds` field of the top-level record. `sounds` takes an object of `BufferUrl`-s, and we can construct it using standard PureScript functions like [`/\`](https://pursuit.purescript.org/packages/purescript-tuples/6.0.1/docs/Data.Tuple.Nested), [`<<<`](https://pursuit.purescript.org/packages/purescript-prelude/5.0.1/docs/Control.Semigroupoid) and [`fromFoldable`](https://pursuit.purescript.org/packages/purescript-foreign-object/3.0.0/docs/Foreign.Object#v:fromFoldable).
+
+<Player player={soundsMain} code={sounds} />
+
 ## Changing the volume of a note
 
 You can give any note a tag using a semi-colon (`;`). Then, use the `onTag` function to grab the note and `changeVolume` to change the volume. A couple additional things to note:
@@ -120,7 +130,7 @@ It's often useful to work with functions of time. You can modify both rate and v
 - `clockTime` to change the rate
 - `sampleTime` to change the volume
 
-<Player stub player={singleMain} code={single} />
+<Player player={foftMain} code={foft} />
 
 Other types of time you can use include
 
