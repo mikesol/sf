@@ -1,0 +1,45 @@
+import { Player } from "../components/player";
+import YouTube from 'react-youtube';
+import {  TwitterTweetEmbed  } from 'react-twitter-embed';
+import example from "../FPSound/WagsMR/Example.purs";
+import { main as exampleMain } from "../../output/FPSound.WagsMR.Example/";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
+
+# Wags MR
+
+Wags MR is a mixed-reality platform for DJs around the world to collaborate on a live set.
+
+## How it works
+
+A DJ anchors a live set in a venue and, at the same time, DJs from aronud the world watch the crowd on a live feed and add musical elements. We do this by communicating our music through _code_ using mini-notation, a format popularized by Tidal Cycles.
+
+<YouTube videoId={"smQOiFt8e4Q"} opts={{start:172}} />
+
+We run monthly jam sessions on Discord where tens of DJs and thousands of listeners tune in to our sets.
+
+<TwitterTweetEmbed
+  tweetId={'1459623955719991299'}
+/>
+
+How do we do this? Our software is embedded 100% in the browser, allowing you to create rich musical sets the same way that people collaborate on a Google Doc.
+
+<Player preload player={exampleMain} code={example} />
+
+When you click or press <FontAwesomeIcon icon={faPlayCircle} />, the code you hear is rendered live in your browser. Press <FontAwesomeIcon icon={faStopCircle} /> and change the code a bit. For example, you can change `bass:1` to `bass:1*4` to create a rebound effect on the bass. Then, press <FontAwesomeIcon icon={faPlayCircle} /> again.
+
+In this manner, DJs test out ideas during a live set and commit them to a main document that updates in real time and plays to listeners.
+
+## Mixed reality
+
+As the world opens up again, we are taking our online jams to clubs around the world, starting with a **Florida** tour in **May 2022**. We are planning a European tour in Fall 2022 and would love to talk to you about bringing our mixed-reality jam session to your venue.
+
+### What's in it for you?
+
+- International exposure and PR as DJs around the world collaborate on a set in _your_ venue.
+- A live stream of the set that auto-updates online, allowing folks around the world to discover your brand and make your club a priority destination on their next trip.
+- A novel way to engage your patrons, as they will also be able to collaborate on the music directly from their phones and watches as the set evolves (try opening this page on mobile and playing/editing the example above - it will work flawlessly).
+
+Let's talk. [mike@wavr.so](mailto:mike@wavr.so).
+
+<YouTube videoId={"Tjf-NJNfOP4"} opts={{start:172}} />
