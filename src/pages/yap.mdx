@@ -1,0 +1,50 @@
+import { Player } from "../components/player";
+import { Link } from "gatsby"
+import foft from "../FPSound/CrashCourse/FofT.purs";
+import { main as foftMain } from "../../output/FPSound.CrashCourse.FofT/";
+
+# yap.wags.fm
+
+Hi! This page provides the essential documentation for yap.wags.fm.
+
+## Formats
+
+yap.wags.fm currently accepts two formats:
+
+### Text
+
+The text format, which is in the starter document, consists of mini-notation. Here's an example:
+
+```
+bd bd hh chin*4
+# @duration 0.8
+```
+
+A big thanks to whoever wrote [the Tidal documentation](http://tidalcycles.org/docs/reference/mini_notation/), which was dutifully copied below.
+
+| Symbol | Description                              | Example                               |
+|--------|------------------------------------------|---------------------------------------|
+| `hh27` | A single note.                           | `bassdm hh27 bassdm hh27`             |
+| `~`    | A rest.                                  | `bassdm ~ bassdm hh27`                |
+| `[ ]`  | Create a pattern grouping.               | `[bassdm kick] hh27`                  |
+| `,`    | Play multiple patterns at the same time. | `bassdm hh27 , cr cr cr cr`           |
+| `< >`  | Alternate between patterns.              | `[hh hh hh] [hh27 gab hh27 <gab cr>]` |
+
+All lines starting with a `#` are ignored except in the following cases:
+
+- To set the duration of the cycle to a number (ie 4.2 seconds), write `# @duration 4.2`. This number **must** be a float, meaning it must have a decimal part, even if that part is 0. Only positive numbers are allowed.
+
+### PureScript
+
+You can copy any wags document into the editor and it should "just work."" Check out this <Link to={"../crash-course"}>crash course</Link> to learn more about `wags` syntax. To whet your appetite, a playable and editable example is below! Anything from that crash course or from this [cookbook](https://github.com/mikesol/wagsi/tree/main/cookbook) is fair game.
+
+For more complex synthesis, use this notation at the expense of reactivity (it takes a couple more cycles to update). Also, on mobile devices, PureScript mode can be a bit janky (I'm working to fix this).
+
+<Player player={foftMain} code={foft} />
+
+## Yap?
+
+Why the name yap.wags.fm?
+
+- To yap means to be vociferous... loquacious... prolix... which is what you should do on yap.wags.fm!
+- A buddy of mine and investor in my company Jeremy Yap saw a demo of wags (the library powering this site) tech and said "yeah but can it auto-update in real time?" I showed him a couple demos using VSCode, but they felt cumbersome. So this is my actual answer.
