@@ -30,6 +30,8 @@ A big thanks to whoever wrote [the Tidal documentation](http://tidalcycles.org/d
 | `,`    | Play multiple patterns at the same time. | `bassdm hh27 , cr cr cr cr`           |
 | `< >`  | Alternate between patterns.              | `[hh hh hh] [hh27 gab hh27 <gab cr>]` |
 
+[Click here](https://github.com/mikesol/wagsi/blob/main/SOUNDS.md) for a full list of available samples. If a sample does not have a colon and a number after it (ie `hh` instead of `hh:0`), it is an alias for the `0` version. So `sn` is `sn:0`, `hh` is `hh:0`, etc.
+
 All lines starting with a `#` are ignored except in the following cases:
 
 - To set the duration of the cycle to a number (ie 4.2 seconds), write `# @duration 4.2`. This number **must** be a float, meaning it must have a decimal part, even if that part is 0. Only positive numbers are allowed.
