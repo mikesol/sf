@@ -35,6 +35,18 @@ A big thanks to whoever wrote [the Tidal documentation](http://tidalcycles.org/d
 All lines starting with a `#` are ignored except in the following cases:
 
 - To set the duration of the cycle to a number (ie 4.2 seconds), write `# @duration 4.2`. This number **must** be a float, meaning it must have a decimal part, even if that part is 0. Only positive numbers are allowed.
+- To add a drone, write `# @drone pad`, where `pad` is the name of the sample to use.
+- To import a sample, write `# @sample glz https://freesound.org/data/previews/204/204694_2570743-lq.mp3`, where `glz` is the name of the sample to use and the url after is its url (ie on freesound.org).
+
+The following example uses the sample `pad` as a drone and imports a sound from freesound.org to use in the loop.
+
+```
+bd bd glz chin*4
+
+# @sample glz https://freesound.org/data/previews/204/204694_2570743-lq.mp3
+# @duration 1.3
+# @drone pad
+```
 
 ### PureScript
 
