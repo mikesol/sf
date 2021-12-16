@@ -220,6 +220,19 @@ let additions =
         , repo = "https://github.com/mikesol/purescript-wags-lib.git"
         , version = "v0.0.68"
         }
+      , everythings-better-with-variants =
+        { dependencies =
+          [ "control"
+          , "foldable-traversable"
+          , "invariant"
+          , "newtype"
+          , "prelude"
+          , "psci-support"
+          , "variant"
+          ]
+        , repo = "https://github.com/mikesol/purescript-everythings-better-with-variants.git"
+        , version = "v0.0.0"
+        }
       , painting =
         { dependencies =
           [ "canvas"
