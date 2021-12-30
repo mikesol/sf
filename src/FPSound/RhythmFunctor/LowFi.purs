@@ -2,7 +2,7 @@ module FPSound.RhythmFunctor.LowFi where
 
 import Prelude
 
-import Data.Lens (_Just, set, traversed)
+import Data.Lens (traversed, set)
 import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import Math ((%))
@@ -19,7 +19,7 @@ wag :: AFuture
 wag =
   make (m2 * 2.0)
     { earth: s
-        $ set (traversed <<< _Just <<< lnr)
+        $ set (traversed <<< traversed <<< lnr)
             ( lcmap unwrap \{ normalizedLittleCycleTime: t } ->
                 1.0 + t * 0.1
             )
@@ -38,21 +38,21 @@ wag =
                       $ highpass (200.0 + mody * 100.0) hello
           ) $ s
           $ onTag "ph"
-              ( set (_Just <<< lnr)
+              ( set (traversed <<< lnr)
                   $ lcmap unwrap \{ normalizedSampleTime: t } ->
                       min 1.2 (1.0 + t * 0.3)
               )
           $ onTag "print"
-              ( set (_Just <<< lnv)
+              ( set (traversed <<< lnv)
                   $ lcmap unwrap \{ normalizedSampleTime: _ } -> 0.2
               )
           $ onTag "pk"
-              ( set (_Just <<< lnr)
+              ( set (traversed <<< lnr)
                   $ lcmap unwrap \{ normalizedSampleTime: t } ->
                       0.7 - t * 0.2
               )
           $ onTag "kt"
-              ( set (_Just <<< lnr)
+              ( set (traversed <<< lnr)
                   $ lcmap unwrap \{ normalizedSampleTime: t } ->
                       min 1.0 (0.6 + t * 0.8)
               )

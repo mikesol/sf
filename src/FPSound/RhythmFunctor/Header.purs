@@ -4,7 +4,7 @@ import Prelude
 
 import Data.FunctorWithIndex (mapWithIndex)
 import Data.Int (toNumber)
-import Data.Lens (_Just, set)
+import Data.Lens (traversed, set)
 import Data.Profunctor (lcmap)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Sounds.Gamelan as Gamelan
@@ -19,13 +19,13 @@ wag =
     { earth: s
         $ mapWithIndex
             ( \i ->
-                set (_Just <<< lnr)
+                set (traversed <<< lnr)
                   $ const
                   $ 1.0 + 0.1 * (toNumber (i `mod` 3))
 
             )
         $ map
-            ( set (_Just <<< lnv)
+            ( set (traversed <<< lnv)
                 $ lcmap sampleTime
                 $ betwixt 0.0 1.0
                     <<< calcSlope 0.0 1.0 0.75 0.0

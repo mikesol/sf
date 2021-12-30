@@ -2,13 +2,13 @@ module FPSound.RhythmFunctor.RhythmSegundo where
 
 import Prelude
 
+import Data.Lens (set, traversed)
+import Data.Profunctor (lcmap)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Tidal (AFuture, tdl)
-import WAGS.Lib.Tidal.Tidal (betwixt, lnv, make, onTag, parse_, s)
-import Data.Lens (set, traversed, _Just)
-import Data.Profunctor (lcmap)
-import WAGS.Math (calcSlope)
 import WAGS.Lib.Tidal.Samples (class SampleTime, sampleTime)
+import WAGS.Lib.Tidal.Tidal (betwixt, changeVolume, lnv, make, onTag, parse_, s)
+import WAGS.Math (calcSlope)
 
 m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
 
@@ -21,7 +21,7 @@ wag =
   make (m2 * 4.0)
     { earth: s
         $ set
-            (traversed <<< _Just <<< lnv)
+            (traversed <<< traversed <<< lnv)
             fadeDown
         $ parse_ "tabla:23 tabla2:21  tabla2:28 tabla2:41"
     , wind: s
@@ -31,9 +31,12 @@ wag =
   ~ tabla:3 ~ tabla2:31"""
     , fire: s
         $ onTag "str"
-            ( set (_Just <<< lnv)
-                $ lcmap sampleTime
-                $ betwixt 0.0 1.0 <<< sub 1.0 <<< mul 0.2
+            ( changeVolume
+                ( _.sampleTime
+                    >>> betwixt 0.0 1.0
+                    <<< sub 1.0
+                    <<< mul 0.2
+                )
             )
         $ parse_
             """~ [chin*4 lighter] ~ ~ 

@@ -2,7 +2,7 @@ module FPSound.Intro.Intro where
 
 import Prelude
 
-import Data.Lens (_Just, set)
+import Data.Lens (traversed, set)
 import Data.Newtype (unwrap)
 import Data.Tuple.Nested ((/\))
 import Foreign.Object as Object
@@ -23,14 +23,14 @@ wag =
     pad:3"""
     , wind: s
         $ onTag "comp"
-            ( set (_Just <<< lnv)
+            ( set (traversed <<< lnv)
                 $ (if _ then 1.0 else 0.0)
                     <<< flip (<) 0.9
                     <<< _.normalizedLittleCycleTime
                     <<< unwrap
             )
         $ onTag "comp"
-            ( set (_Just <<< lnr)
+            ( set (traversed <<< lnr)
                 $ add 0.95
                     <<< mul 0.1
                     <<< _.initialEntropy

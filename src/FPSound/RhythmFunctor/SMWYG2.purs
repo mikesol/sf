@@ -3,8 +3,8 @@ module FPSound.RhythmFunctor.SMWYG2 where
 import Prelude
 
 import Data.Array ((..))
-import Data.Lens (set, traversed, _Just)
-import Data.Maybe (Maybe)
+import Data.Lens (set, traversed)
+import Data.Variant.Maybe (Maybe)
 import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import Data.Tuple.Nested ((/\))
@@ -40,11 +40,11 @@ wag =
                       }
 
           ) $ s
-          $ set (traversed <<< _Just <<< lnv)
+          $ set (traversed <<< traversed <<< lnv)
               ( lcmap sampleTime $
                   betwixt 0.0 1.0 <<< calcSlope 0.0 1.0 0.4 0.0
               )
-          $ set (traversed <<< _Just <<< lnbo)
+          $ set (traversed <<< traversed <<< lnbo)
               ( lcmap unwrap
                   \{ bigCycleTime, initialEntropy } ->
                     0.6 * bigCycleTime + initialEntropy
@@ -64,11 +64,11 @@ wag =
                       }
 
           ) $ s
-          $ set (traversed <<< _Just <<< lnv)
+          $ set (traversed <<< traversed <<< lnv)
               ( lcmap sampleTime $
                   betwixt 0.0 1.0 <<< calcSlope 0.0 1.0 0.4 0.0
               )
-          $ set (traversed <<< _Just <<< lnbo)
+          $ set (traversed <<< traversed <<< lnbo)
               ( lcmap unwrap
                   \{ bigCycleTime, initialEntropy } ->
                     0.9 * bigCycleTime + initialEntropy

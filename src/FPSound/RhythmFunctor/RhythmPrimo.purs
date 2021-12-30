@@ -5,7 +5,7 @@ import Prelude
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Tidal (AFuture, tdl)
 import WAGS.Lib.Tidal.Tidal (lnr, lvt, make, parse_, s)
-import Data.Lens (set, traversed, _Just)
+import Data.Lens (set, traversed)
 import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import WAGS.Create.Optionals (highpass, pan)
@@ -42,7 +42,7 @@ wag =
       ~ <newnotes:5 notes:9 newnotes:2>
       ~ newnotes:7 ~"""
     , wind: s
-        $ set (traversed <<< _Just <<< lnr)
+        $ set (traversed <<< traversed <<< lnr)
             (lcmap littleCycleTime (add 0.5 <<< mul 0.5))
         $ parse_
         $ "chin:0 ~ chin:1 ~ ~ chin:2 ~ chin:3"
