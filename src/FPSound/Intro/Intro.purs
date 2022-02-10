@@ -9,7 +9,7 @@ import Foreign.Object as Object
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.Types (AFuture)
-import WAGS.Lib.Tidal.Tidal (lnr, lnv, make, onTag, parse_, s)
+import WAGS.Lib.Tidal.Tidal (lnr, lnv, make, onTag, parse, s)
 import WAGS.Lib.Tidal.Types (BufferUrl(..))
 
 wag :: AFuture
@@ -37,7 +37,7 @@ wag =
                     <<< _.initialEntropy
                     <<< unwrap
             )
-        $ parse_ "wdm:1;comp"
+        $ parse "wdm:1;comp"
     , sounds: map BufferUrl $ Object.fromFoldable $
         [ "wdm:0" /\ "https://freesound.org/data/previews/332/332741_34095-lq.mp3"
         , "wdm:1" /\ "https://freesound.org/data/previews/332/332740_34095-hq.mp3"

@@ -11,7 +11,7 @@ import WAGS.Lib.Sounds.Gamelan as Gamelan
 import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Lib.Tidal.Samples (sampleTime)
-import WAGS.Lib.Tidal.Tidal (betwixt, lnr, lnv, make, parse_, s)
+import WAGS.Lib.Tidal.Tidal (betwixt, lnr, lnv, make, parse, s)
 import WAGS.Math (calcSlope)
 
 wag :: AFuture
@@ -31,7 +31,7 @@ wag =
                 $ betwixt 0.0 1.0
                     <<< calcSlope 0.0 1.0 0.75 0.0
             )
-        $ parse_
+        $ parse
             """
       BBPL1 BBPL2h BBPL2h BBPL3
       BBPL2h BBPL2h BBPL5 BBPL2h

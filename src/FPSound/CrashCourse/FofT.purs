@@ -30,7 +30,7 @@ wag = T.make 4.0
                   >>> add 0.4
               )
           )
-      $ T.parse_ "pad:2 pad:2;pad"
+      $ T.parse "pad:2 pad:2;pad"
   }
 
 main :: Player
