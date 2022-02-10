@@ -3,8 +3,9 @@ module FPSound.CrashCourse.Volume where
 import Prelude
 
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.Tidal (changeVolume, make, onTag, parse_, s)
+import WAGS.Lib.Tidal.Types (AFuture)
 
 wag :: AFuture
 wag = make 0.8

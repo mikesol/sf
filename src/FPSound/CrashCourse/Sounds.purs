@@ -5,9 +5,9 @@ import Prelude
 import Data.Tuple.Nested ((/\))
 import Foreign.Object (fromFoldable)
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.Tidal (make, s)
-import WAGS.Lib.Tidal.Types (BufferUrl(..))
+import WAGS.Lib.Tidal.Types (AFuture, BufferUrl(..))
 
 wag :: AFuture
 wag = make 4.0

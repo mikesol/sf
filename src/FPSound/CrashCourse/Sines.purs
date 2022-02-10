@@ -6,9 +6,10 @@ import WAGS.Create.Optionals (gain, sinOsc)
 import WAGS.Graph.Parameter (AudioParameter, ff)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
 import WAGS.Lib.Tidal.Tidal (addEffect, make, s)
+import WAGS.Lib.Tidal.Types (AFuture)
 
 myLFO
   :: Number

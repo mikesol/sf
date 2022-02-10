@@ -3,7 +3,8 @@ module FPSound.RhythmFunctor.RhythmPrimo where
 import Prelude
 
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
+import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Lib.Tidal.Tidal (lnr, lvt, make, parse_, s)
 import Data.Lens (set, traversed)
 import Data.Newtype (unwrap)

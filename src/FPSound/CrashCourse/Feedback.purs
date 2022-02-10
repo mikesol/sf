@@ -4,7 +4,8 @@ import Prelude
 
 import WAGS.Create.Optionals (delay, gain, highpass, ref)
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
+import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
 import WAGS.Lib.Tidal.Tidal (addEffect, make, s)
 

@@ -4,7 +4,8 @@ import Prelude
 
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
+import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Lib.Tidal.Tidal as T
 
 wag :: AFuture

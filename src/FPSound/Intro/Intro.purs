@@ -7,7 +7,8 @@ import Data.Newtype (unwrap)
 import Data.Tuple.Nested ((/\))
 import Foreign.Object as Object
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
+import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Lib.Tidal.Tidal (lnr, lnv, make, onTag, parse_, s)
 import WAGS.Lib.Tidal.Types (BufferUrl(..))
 

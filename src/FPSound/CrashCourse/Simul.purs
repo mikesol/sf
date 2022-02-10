@@ -3,8 +3,9 @@ module FPSound.CrashCourse.Simul where
 import Prelude
 
 import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (AFuture, tdl)
+import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.Tidal (make, s)
+import WAGS.Lib.Tidal.Types (AFuture)
 
 wag :: AFuture
 wag = make 0.8
