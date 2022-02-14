@@ -3,18 +3,17 @@ module FPSound.RhythmFunctor.RhythmSegundo where
 import Prelude
 
 import Data.Lens (set, traversed)
+import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Tidal (tdl)
-import WAGS.Lib.Tidal.Types (AFuture)
-import WAGS.Lib.Tidal.Samples (class SampleTime, sampleTime)
 import WAGS.Lib.Tidal.Tidal (betwixt, changeVolume, lnv, make, onTag, parse, s)
+import WAGS.Lib.Tidal.Types (AFuture)
 import WAGS.Math (calcSlope)
 
 m2 = 4.0 * 1.0 * 60.0 / 111.0 :: Number
 
-fadeDown :: forall r. SampleTime r => r -> Number
-fadeDown = lcmap sampleTime
+fadeDown = lcmap (unwrap >>> _.sampleTime)
   (betwixt 0.0 1.0 <<< calcSlope 0.4 1.0 1.2 0.0)
 
 wag :: AFuture

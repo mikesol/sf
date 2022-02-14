@@ -2,17 +2,16 @@ module FPSound.RhythmFunctor.RhythmPrimo where
 
 import Prelude
 
-import WAGS.Lib.Learn (Player, player)
-import WAGS.Lib.Tidal (tdl)
-import WAGS.Lib.Tidal.Types (AFuture)
-import WAGS.Lib.Tidal.Tidal (lnr, lvt, make, parse, s)
 import Data.Lens (set, traversed)
 import Data.Newtype (unwrap)
 import Data.Profunctor (lcmap)
 import WAGS.Create.Optionals (highpass, pan)
+import WAGS.Lib.Learn (Player, player)
 import WAGS.Lib.Learn.Oscillator (lfo)
+import WAGS.Lib.Tidal (tdl)
 import WAGS.Lib.Tidal.FX (fx, goodbye, hello)
-import WAGS.Lib.Tidal.Samples (littleCycleTime)
+import WAGS.Lib.Tidal.Tidal (addEffect, lnr, make, parse, s)
+import WAGS.Lib.Tidal.Types (AFuture)
 
 wag :: AFuture
 wag =
@@ -25,8 +24,7 @@ wag =
       <notes:8 newnotes:9>"""
     , fire:
         map
-          ( set lvt
-              $ lcmap unwrap \{ clockTime } -> fx
+          ( addEffect \{ clockTime } -> fx
                   $ goodbye
                   $ pan
                       (lfo { phase: 0.0, amp: 1.0, freq: 0.1 } clockTime)
@@ -44,7 +42,7 @@ wag =
       ~ newnotes:7 ~"""
     , wind: s
         $ set (traversed <<< traversed <<< lnr)
-            (lcmap littleCycleTime (add 0.5 <<< mul 0.5))
+            (lcmap (unwrap >>> _.littleCycleTime) (add 0.5 <<< mul 0.5))
         $ parse
         $ "chin:0 ~ chin:1 ~ ~ chin:2 ~ chin:3"
     }
