@@ -4,4 +4,4 @@ loaderUrl :: String
 loaderUrl = "https://purescript-wags.netlify.app/js/output"
 
 compileUrl :: String
-compileUrl = "https://supvghemaw.eu-west-1.awsapprunner.com"
+compileUrl = "https://ntjkvnw2c5.execute-api.eu-west-1.amazonaws.com"
